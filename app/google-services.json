@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "715826252540",
+    "project_id": "fir-authfinalproject",
+    "storage_bucket": "fir-authfinalproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715826252540:android:25bbe897a0d77ff87e2579",
+        "android_client_info": {
+          "package_name": "com.example.bootcamp_finalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSe11YoAyhC66FCYd9u_5pV4D6peNit74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
