@@ -37,7 +37,7 @@ fun LoginScreen(navController: NavController,authViewModel: AuthViewModel) {
 
     LaunchedEffect(authState.value) {
         when(authState.value){
-            is AuthState.Authenticated -> navController.navigate("mainScreen")
+            is AuthState.Authenticated -> navController.navigate("bottomBarPage")
             is AuthState.Error -> Toast.makeText(
                 context,
                 (authState.value as AuthState.Error).message,

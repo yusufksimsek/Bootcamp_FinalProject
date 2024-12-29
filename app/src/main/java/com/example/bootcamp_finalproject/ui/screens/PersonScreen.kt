@@ -7,8 +7,11 @@ import androidx.compose.runtime.Composable
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 
 @Composable
-fun MainScreen() {
+fun PersonScreen(authViewModel: AuthViewModel) {
     Column {
-        Text(text = "main")
+        Text(text = "Person")
+        Button(onClick = { authViewModel.signOut() }) {
+            Text(text = "Sign out")
+        }
     }
 }
