@@ -4,20 +4,21 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 
 @Composable
-fun PageTransition() {
+fun PageTransition(authViewModel: AuthViewModel) {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "mainScreen"){
+    NavHost(navController = navController, startDestination = "loginScreen"){
         composable("mainScreen"){
             MainScreen(navController = navController)
         }
         composable("loginScreen"){
-            LoginScreen()
+            LoginScreen(navController = navController, authViewModel = authViewModel)
         }
         composable("registerScreen"){
-            RegisterScreen()
+            RegisterScreen(navController = navController, authViewModel = authViewModel)
         }
     }
 }
