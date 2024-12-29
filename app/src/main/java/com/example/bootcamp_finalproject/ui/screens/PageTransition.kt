@@ -12,7 +12,7 @@ fun PageTransition(authViewModel: AuthViewModel) {
 
     NavHost(navController = navController, startDestination = "loginScreen"){
         composable("mainScreen"){
-            MainScreen(navController = navController)
+            MainScreen(navController = navController, authViewModel = authViewModel)
         }
         composable("loginScreen"){
             LoginScreen(navController = navController, authViewModel = authViewModel)
