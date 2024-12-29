@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.bootcamp_finalproject" />
+                  <option name="mobileSdkAppId" value="1:715826252540:android:25bbe897a0d77ff87e2579" />
+                  <option name="projectId" value="fir-authfinalproject" />
+                  <option name="projectNumber" value="715826252540" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
