@@ -5,7 +5,7 @@ import com.example.bootcamp_finalproject.data.entity.toUser
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
 
-class FirebaseAuthDataSource() {
+class FirebaseAuthDataSource {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     suspend fun login(email: String, password: String): Result<User> {
