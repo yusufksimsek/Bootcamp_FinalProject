@@ -3,11 +3,17 @@ package com.example.bootcamp_finalproject.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.bootcamp_finalproject.data.repo.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AuthViewModel : ViewModel() {
-
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val authRepository: AuthRepository
+) : ViewModel() {
 
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
@@ -17,7 +23,8 @@ class AuthViewModel : ViewModel() {
     }
 
     fun checkAuthStatus() {
-        if (auth.currentUser == null) {
+        val currentUser = authRepository.getCurrentUser()
+        if (currentUser == null) {
             _authState.value = AuthState.UnAuthenticated
         } else {
             _authState.value = AuthState.Authenticated
@@ -25,44 +32,39 @@ class AuthViewModel : ViewModel() {
     }
 
     fun login(email: String, password: String) {
-
         if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or Password can't be empty")
             return
         }
-
         _authState.value = AuthState.Loading
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _authState.value = AuthState.Authenticated
-                } else {
-                    _authState.value =
-                        AuthState.Error(task.exception?.message?: "Something went wrong")
-                }
+        viewModelScope.launch {
+            val result = authRepository.login(email, password)
+            if (result.isSuccess) {
+                _authState.value = AuthState.Authenticated
+            } else {
+                _authState.value = AuthState.Error(result.exceptionOrNull()?.message ?: "Something went wrong")
             }
+        }
     }
 
     fun register(email: String, password: String) {
-
         if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or Password can't be empty")
             return
         }
-
         _authState.value = AuthState.Loading
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _authState.value = AuthState.Authenticated
-                } else {
-                    _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")
-                }
+        viewModelScope.launch {
+            val result = authRepository.register(email, password)
+            if (result.isSuccess) {
+                _authState.value = AuthState.Authenticated
+            } else {
+                _authState.value = AuthState.Error(result.exceptionOrNull()?.message ?: "Something went wrong")
             }
+        }
     }
 
-    fun signOut(){
-        auth.signOut()
+    fun signOut() {
+        authRepository.signOut()
         _authState.value = AuthState.UnAuthenticated
     }
 
