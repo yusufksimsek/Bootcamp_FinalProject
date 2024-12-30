@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.navigation.compose.rememberNavController
-import com.example.bootcamp_finalproject.ui.screens.PageTransition
+import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.theme.Bootcamp_FinalProjectTheme
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
