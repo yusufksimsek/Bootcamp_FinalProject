@@ -8,13 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun UpcomingMovieItem(poster: Int) {
     Box {
-        AsyncImage(
-            model = poster,
+        GlideImage(
+            imageModel = poster,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier

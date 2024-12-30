@@ -1,5 +1,6 @@
 package com.example.bootcamp_finalproject.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +31,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.screens.components.UpcomingMovies
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.skydoves.landscapist.glide.GlideImage
+import kotlin.random.Random
+import kotlin.random.Random.Default.nextInt
 
 @Composable
 fun MainScreen(mainViewModel: MainViewModel) {
@@ -61,6 +66,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
             count = moviesList.value.count(),
             itemContent = {
                 val movie = moviesList.value[it]
+                val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
                 Card(modifier = Modifier.padding(all = 4.dp)) {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -69,14 +75,11 @@ fun MainScreen(mainViewModel: MainViewModel) {
                             .padding(start = 6.dp, top = 10.dp, end = 6.dp)
                             .fillMaxWidth()
                     ) {
-                        //GlideImage(imageModel = url, modifier = Modifier.size(200.dp,300.dp))
-
-                        AsyncImage(
-                            model = movie.image,
-                            contentDescription = null,
+                        GlideImage(
+                            imageModel = url,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .size(120.dp, 160.dp)
+                                .size(120.dp,160.dp)
                                 .clip(RoundedCornerShape(10.dp))
                         )
 
