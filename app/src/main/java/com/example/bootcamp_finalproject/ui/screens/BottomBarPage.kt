@@ -44,7 +44,7 @@ fun BottomBarPage(navController: NavController,authViewModel: AuthViewModel) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Movies App", fontSize = 20.sp) },
+                title = { Text("Movies App", fontSize = 25.sp) },
             )
         },
         bottomBar = {
