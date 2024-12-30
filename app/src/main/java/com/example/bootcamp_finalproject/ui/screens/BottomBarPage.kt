@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
@@ -18,12 +20,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBarPage(navController: NavController,authViewModel: AuthViewModel) {
     val authState = authViewModel.authState.observeAsState()
@@ -38,6 +42,11 @@ fun BottomBarPage(navController: NavController,authViewModel: AuthViewModel) {
     val secilenItem = remember { mutableStateOf(0) }
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Movies App", fontSize = 20.sp) },
+            )
+        },
         bottomBar = {
             BottomAppBar (content = {
                 NavigationBarItem(
