@@ -23,10 +23,14 @@ import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomBarPage(navController: NavController,authViewModel: AuthViewModel) {
+fun BottomBarPage(
+    navController: NavController,
+    authViewModel: AuthViewModel,
+    mainViewModel: MainViewModel) {
     val authState = authViewModel.authState.observeAsState()
 
     LaunchedEffect(authState.value) {
@@ -73,16 +77,16 @@ fun BottomBarPage(navController: NavController,authViewModel: AuthViewModel) {
             .fillMaxSize()
             .padding(paddingValues)) {
             if (secilenItem.value == 0){
-                PageTransition(authViewModel = authViewModel, selectedPage = "mainScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "mainScreen")
             }
             if (secilenItem.value == 1){
-                PageTransition(authViewModel = authViewModel, selectedPage = "favouritesScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "favouritesScreen")
             }
             if (secilenItem.value == 2){
-                PageTransition(authViewModel = authViewModel, selectedPage = "cartScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "cartScreen")
             }
             if (secilenItem.value == 3){
-                PageTransition(authViewModel = authViewModel, selectedPage = "personScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "personScreen")
             }
         }
     }

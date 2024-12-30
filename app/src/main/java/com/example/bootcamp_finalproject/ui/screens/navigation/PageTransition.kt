@@ -12,14 +12,18 @@ import com.example.bootcamp_finalproject.ui.screens.MainScreen
 import com.example.bootcamp_finalproject.ui.screens.PersonScreen
 import com.example.bootcamp_finalproject.ui.screens.RegisterScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 
 @Composable
-fun PageTransition(authViewModel: AuthViewModel,selectedPage:String) {
+fun PageTransition(
+    authViewModel: AuthViewModel,
+    selectedPage:String,
+    mainViewModel: MainViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = selectedPage){
         composable("bottomBarPage"){
-            BottomBarPage(navController = navController, authViewModel = authViewModel)
+            BottomBarPage(navController = navController, mainViewModel = mainViewModel ,authViewModel = authViewModel)
         }
         composable("loginScreen"){
             LoginScreen(navController = navController, authViewModel = authViewModel)
@@ -28,7 +32,7 @@ fun PageTransition(authViewModel: AuthViewModel,selectedPage:String) {
             RegisterScreen(navController = navController, authViewModel = authViewModel)
         }
         composable("mainScreen"){
-            MainScreen()
+            MainScreen(mainViewModel)
         }
         composable("favouritesScreen"){
             FavouritesScreen()
