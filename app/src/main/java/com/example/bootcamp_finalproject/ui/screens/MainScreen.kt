@@ -1,6 +1,5 @@
 package com.example.bootcamp_finalproject.ui.screens
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.bootcamp_finalproject.R
-import com.example.bootcamp_finalproject.ui.screens.components.Movies
 import com.example.bootcamp_finalproject.ui.screens.components.UpcomingMovies
 
 @Composable
