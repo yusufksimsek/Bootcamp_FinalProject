@@ -18,7 +18,7 @@ fun UpcomingMovieItem(poster: Int) {
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(130.dp, 200.dp)
+                .size(150.dp, 210.dp)
                 .clip(RoundedCornerShape(10.dp))
         )
     }
