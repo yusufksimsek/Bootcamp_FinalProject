@@ -69,6 +69,8 @@ fun MainScreen(mainViewModel: MainViewModel) {
                             .padding(start = 6.dp, top = 10.dp, end = 6.dp)
                             .fillMaxWidth()
                     ) {
+                        //GlideImage(imageModel = url, modifier = Modifier.size(200.dp,300.dp))
+
                         AsyncImage(
                             model = movie.image,
                             contentDescription = null,
