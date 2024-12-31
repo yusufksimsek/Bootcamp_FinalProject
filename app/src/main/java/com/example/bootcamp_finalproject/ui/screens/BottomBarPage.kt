@@ -58,18 +58,18 @@ fun BottomBarPage(
                 NavigationBarItem(
                     selected = secilenItem.value == 1,
                     onClick = { secilenItem.value = 1 },
-                    label = {Text(text = "Favourites")},
-                    icon = { Icon(painter = painterResource(id = R.drawable.fav_icon), contentDescription = "") })
+                    label = {Text(text = "Search")},
+                    icon = { Icon(painter = painterResource(id = R.drawable.search_icon), contentDescription = "") })
                 NavigationBarItem(
                     selected = secilenItem.value == 2,
                     onClick = { secilenItem.value = 2 },
-                    label = {Text(text = "Cart")},
-                    icon = { Icon(painter = painterResource(id = R.drawable.shop_icon), contentDescription = "") })
+                    label = {Text(text = "Favourites")},
+                    icon = { Icon(painter = painterResource(id = R.drawable.fav_icon), contentDescription = "") })
                 NavigationBarItem(
                     selected = secilenItem.value == 3,
                     onClick = { secilenItem.value = 3 },
-                    label = {Text(text = "Person")},
-                    icon = { Icon(painter = painterResource(id = R.drawable.person_icon), contentDescription = "") })
+                    label = {Text(text = "Cart")},
+                    icon = { Icon(painter = painterResource(id = R.drawable.shop_icon), contentDescription = "") })
             })
         }
     ) { paddingValues ->
@@ -83,10 +83,10 @@ fun BottomBarPage(
                 PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "favouritesScreen")
             }
             if (secilenItem.value == 2){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "cartScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "favouritesScreen")
             }
             if (secilenItem.value == 3){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "personScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "cartScreen")
             }
         }
     }
