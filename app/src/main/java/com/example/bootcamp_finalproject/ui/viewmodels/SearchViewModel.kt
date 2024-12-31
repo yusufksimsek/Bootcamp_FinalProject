@@ -23,14 +23,10 @@ class SearchViewModel @Inject constructor(
         searchJob?.cancel() // Önceki aramayı iptal et
         searchJob = CoroutineScope(Dispatchers.Main).launch {
             if (query.isBlank()) {
-                // Eğer arama metni boşsa listeyi temizle
                 moviesList.value = emptyList()
             } else {
-                delay(300) // Debounce için gecikme
-                val allMovies = moviesRepository.loadMovies()
-                moviesList.value = allMovies.filter {
-                    it.name.contains(query, ignoreCase = true)
-                }
+                val filteredMovies = moviesRepository.searchMovies(query)
+                moviesList.value = filteredMovies
             }
         }
     }
