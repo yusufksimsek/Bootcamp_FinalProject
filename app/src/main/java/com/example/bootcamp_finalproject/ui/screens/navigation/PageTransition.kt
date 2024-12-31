@@ -11,6 +11,7 @@ import com.example.bootcamp_finalproject.ui.screens.LoginScreen
 import com.example.bootcamp_finalproject.ui.screens.MainScreen
 import com.example.bootcamp_finalproject.ui.screens.PersonScreen
 import com.example.bootcamp_finalproject.ui.screens.RegisterScreen
+import com.example.bootcamp_finalproject.ui.screens.SearchScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 
@@ -42,6 +43,9 @@ fun PageTransition(
         }
         composable("personScreen"){
             PersonScreen(authViewModel)
+        }
+        composable("searchScreen"){
+            SearchScreen()
         }
     }
 }

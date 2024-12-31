@@ -80,7 +80,7 @@ fun BottomBarPage(
                 PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "mainScreen")
             }
             if (secilenItem.value == 1){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "favouritesScreen")
+                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "searchScreen")
             }
             if (secilenItem.value == 2){
                 PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "favouritesScreen")
