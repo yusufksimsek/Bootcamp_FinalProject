@@ -1,4 +1,4 @@
-package com.example.bootcamp_finalproject.ui.screens
+package com.example.bootcamp_finalproject.ui.screens.authorization
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
