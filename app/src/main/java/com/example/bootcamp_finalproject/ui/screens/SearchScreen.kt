@@ -64,7 +64,7 @@ fun SearchScreen(searchViewModel: SearchViewModel) {
                                 imageModel = url,
                                 modifier = Modifier
                                     .size(120.dp, 180.dp)
-                                    .clip(RoundedCornerShape(10am.dp)),
+                                    .clip(RoundedCornerShape(10.dp)),
                                 contentScale = ContentScale.Crop
                             )
                             Row(
