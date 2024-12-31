@@ -24,13 +24,15 @@ import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBarPage(
     navController: NavController,
     authViewModel: AuthViewModel,
-    mainViewModel: MainViewModel) {
+    mainViewModel: MainViewModel,
+    searchViewModel: SearchViewModel) {
     val authState = authViewModel.authState.observeAsState()
 
     LaunchedEffect(authState.value) {
@@ -77,16 +79,32 @@ fun BottomBarPage(
             .fillMaxSize()
             .padding(paddingValues)) {
             if (secilenItem.value == 0){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "mainScreen")
+                PageTransition(
+                    authViewModel = authViewModel,
+                    mainViewModel = mainViewModel,
+                    searchViewModel = searchViewModel,
+                    selectedPage = "mainScreen")
             }
             if (secilenItem.value == 1){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "searchScreen")
+                PageTransition(
+                    authViewModel = authViewModel,
+                    mainViewModel = mainViewModel,
+                    searchViewModel = searchViewModel,
+                    selectedPage = "searchScreen")
             }
             if (secilenItem.value == 2){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "favouritesScreen")
+                PageTransition(
+                    authViewModel = authViewModel,
+                    mainViewModel = mainViewModel,
+                    searchViewModel = searchViewModel,
+                    selectedPage = "favouritesScreen")
             }
             if (secilenItem.value == 3){
-                PageTransition(authViewModel = authViewModel, mainViewModel = mainViewModel ,selectedPage = "cartScreen")
+                PageTransition(
+                    authViewModel = authViewModel,
+                    mainViewModel = mainViewModel,
+                    searchViewModel = searchViewModel,
+                    selectedPage = "cartScreen")
             }
         }
     }

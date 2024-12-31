@@ -30,25 +30,19 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun SearchBar(
-    hint: String = "",
+    onSearch: (String) -> Unit
 ) {
     var text by remember {
         mutableStateOf("")
-    }
-
-    var isHintDisplayed by remember {
-        mutableStateOf(hint != "")
     }
 
     Box(modifier = Modifier.padding(10.dp)) {
 
         TextField(
             value = text,
-            keyboardActions = KeyboardActions(onDone = {
-
-            }),
             onValueChange = {
                 text = it
+                onSearch(it)
             },
             maxLines = 1,
             singleLine = true,
@@ -68,7 +62,7 @@ fun SearchBar(
             ),
             trailingIcon = {
                 IconButton(onClick = {
-
+                    onSearch(text)
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.Search,
@@ -81,18 +75,7 @@ fun SearchBar(
                 .clip(RoundedCornerShape(12.dp))
                 .shadow(15.dp, spotColor = Color.White)
                 .background(MaterialTheme.colorScheme.primaryContainer)
-                .padding(horizontal = 20.dp)
-                .onFocusChanged {
-                    isHintDisplayed = it.isFocused != true && text.isEmpty()
-                }
+                .padding(horizontal = 10.dp)
         )
-        if (isHintDisplayed) {
-            Text(
-                text = hint,
-                color = Color.LightGray,
-                modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 12.dp)
-            )
-        }
     }
 }

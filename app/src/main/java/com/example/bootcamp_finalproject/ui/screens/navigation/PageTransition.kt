@@ -14,17 +14,24 @@ import com.example.bootcamp_finalproject.ui.screens.RegisterScreen
 import com.example.bootcamp_finalproject.ui.screens.SearchScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 
 @Composable
 fun PageTransition(
     authViewModel: AuthViewModel,
     selectedPage:String,
-    mainViewModel: MainViewModel) {
+    mainViewModel: MainViewModel,
+    searchViewModel: SearchViewModel
+    ) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = selectedPage){
         composable("bottomBarPage"){
-            BottomBarPage(navController = navController, mainViewModel = mainViewModel ,authViewModel = authViewModel)
+            BottomBarPage(navController = navController,
+                mainViewModel = mainViewModel,
+                authViewModel = authViewModel,
+                searchViewModel = searchViewModel
+                )
         }
         composable("loginScreen"){
             LoginScreen(navController = navController, authViewModel = authViewModel)
@@ -33,7 +40,7 @@ fun PageTransition(
             RegisterScreen(navController = navController, authViewModel = authViewModel)
         }
         composable("mainScreen"){
-            MainScreen(mainViewModel)
+            MainScreen(mainViewModel = mainViewModel)
         }
         composable("favouritesScreen"){
             FavouritesScreen()
@@ -42,10 +49,10 @@ fun PageTransition(
             CartScreen()
         }
         composable("personScreen"){
-            PersonScreen(authViewModel)
+            PersonScreen(authViewModel = authViewModel)
         }
         composable("searchScreen"){
-            SearchScreen()
+            SearchScreen(searchViewModel = searchViewModel)
         }
     }
 }

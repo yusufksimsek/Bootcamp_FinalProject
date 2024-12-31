@@ -8,6 +8,7 @@ import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.theme.Bootcamp_FinalProjectTheme
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,11 +17,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val authViewModel : AuthViewModel by viewModels()
         val mainViewModel : MainViewModel by viewModels()
+        val searchViewModel : SearchViewModel by viewModels()
         setContent {
             Bootcamp_FinalProjectTheme {
                 PageTransition(
                     authViewModel = authViewModel,
                     mainViewModel = mainViewModel,
+                    searchViewModel = searchViewModel,
                     selectedPage = "loginScreen",
                     )
             }
