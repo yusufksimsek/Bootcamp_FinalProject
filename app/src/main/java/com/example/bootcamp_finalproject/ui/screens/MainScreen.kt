@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bootcamp_finalproject.R
+import com.example.bootcamp_finalproject.ui.screens.components.CheckMoviesText
 import com.example.bootcamp_finalproject.ui.screens.components.UpcomingMovies
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.skydoves.landscapist.glide.GlideImage
@@ -53,14 +54,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
     ) {
         item { UpcomingMovies() }
 
-        item {
-            Text(
-                text = "Check Movies",
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(4.dp)
-            )
-        }
+        item { CheckMoviesText() }
 
         items(
             count = moviesList.value.count(),
@@ -79,7 +73,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
                             imageModel = url,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .size(120.dp,160.dp)
+                                .size(120.dp, 160.dp)
                                 .clip(RoundedCornerShape(10.dp))
                         )
 
