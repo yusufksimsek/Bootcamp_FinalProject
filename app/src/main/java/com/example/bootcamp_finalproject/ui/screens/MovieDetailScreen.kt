@@ -202,7 +202,7 @@ fun BackGroundPoster(details: Movies) {
     val url = "http://kasimadalan.pe.hu/movies/images/${details.image}"
     Box(
         modifier = Modifier
-            .fillMaxSize(fraction = 800f)
+            .fillMaxHeight()
             .fillMaxWidth()
             .background(Color.Black)
     ) {

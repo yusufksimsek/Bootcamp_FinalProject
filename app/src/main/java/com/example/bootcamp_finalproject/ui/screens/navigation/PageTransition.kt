@@ -2,7 +2,7 @@ package com.example.bootcamp_finalproject.ui.screens.navigation
 
 import MainScreen
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,7 +26,8 @@ fun PageTransition(
     authViewModel: AuthViewModel,
     selectedPage:String,
     mainViewModel: MainViewModel,
-    searchViewModel: SearchViewModel
+    searchViewModel: SearchViewModel,
+    isBottomBarVisible: MutableState<Boolean>
     ) {
     val navController = rememberNavController()
 
@@ -45,23 +46,29 @@ fun PageTransition(
             RegisterScreen(navController = navController, authViewModel = authViewModel)
         }
         composable("mainScreen"){
+            isBottomBarVisible.value = true
             MainScreen(navController = navController, mainViewModel = mainViewModel)
         }
         composable("favouritesScreen"){
+            isBottomBarVisible.value = true
             FavouritesScreen()
         }
         composable("cartScreen"){
+            isBottomBarVisible.value = true
             CartScreen()
         }
         composable("searchScreen"){
+            isBottomBarVisible.value = true
             SearchScreen(navController = navController, searchViewModel = searchViewModel)
         }
         composable("movieDetailScreen/{movie}",
             arguments = listOf(navArgument("movie") { type = NavType.StringType } )
         ){
+            isBottomBarVisible.value = false
             val json = it.arguments?.getString("movie")
             val movieObject = Gson().fromJson(json, Movies::class.java)
             MovieDetailScreen(pullingMovie = movieObject)
         }
     }
+
 }

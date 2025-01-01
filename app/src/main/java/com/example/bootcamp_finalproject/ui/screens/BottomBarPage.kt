@@ -50,7 +50,7 @@ fun BottomBarPage(
     val authState = authViewModel.authState.observeAsState()
 
     LaunchedEffect(authState.value) {
-        when(authState.value){
+        when (authState.value) {
             is AuthState.UnAuthenticated -> navController.navigate("loginScreen")
             else -> Unit
         }
@@ -60,139 +60,150 @@ fun BottomBarPage(
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
+    val isBottomBarVisible = remember { mutableStateOf(true) }
 
     ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            ModalDrawerSheet {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 16.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.person_icon),
-                            contentDescription = "Profile Image",
-                            modifier = Modifier.align(Alignment.TopCenter).size(160.dp)
-                        )
-                    }
-                    Text(
-                        text = "Settings",
-                        modifier = Modifier
-                            .padding(vertical = 8.dp),
-                        fontSize = 18.sp
-                    )
-                    TextButton(onClick = { authViewModel.signOut() }) {
+            drawerState = drawerState,
+            drawerContent = {
+                ModalDrawerSheet {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 16.dp)
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.person_icon),
+                                contentDescription = "Profile Image",
+                                modifier = Modifier
+                                    .align(Alignment.TopCenter)
+                                    .size(160.dp)
+                            )
+                        }
                         Text(
-                            text = "Logout",
+                            text = "Settings",
                             modifier = Modifier
                                 .padding(vertical = 8.dp),
                             fontSize = 18.sp
                         )
-                    }
-                }
-            }
-        },
-    ) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text("Movies App", fontSize = 25.sp) },
-                    navigationIcon = {
-                        IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.menu_icon),
-                                contentDescription = "Menu"
+                        TextButton(onClick = { authViewModel.signOut() }) {
+                            Text(
+                                text = "Logout",
+                                modifier = Modifier
+                                    .padding(vertical = 8.dp),
+                                fontSize = 18.sp
                             )
                         }
                     }
-                )
+                }
             },
-            bottomBar = {
-                BottomAppBar(content = {
-                    NavigationBarItem(
-                        selected = secilenItem.value == 0,
-                        onClick = { secilenItem.value = 0 },
-                        label = { Text(text = "Home") },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.home_icon),
-                                contentDescription = ""
-                            )
-                        })
-                    NavigationBarItem(
-                        selected = secilenItem.value == 1,
-                        onClick = { secilenItem.value = 1 },
-                        label = { Text(text = "Search") },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.search_icon),
-                                contentDescription = ""
-                            )
-                        })
-                    NavigationBarItem(
-                        selected = secilenItem.value == 2,
-                        onClick = { secilenItem.value = 2 },
-                        label = { Text(text = "Favourites") },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.fav_icon),
-                                contentDescription = ""
-                            )
-                        })
-                    NavigationBarItem(
-                        selected = secilenItem.value == 3,
-                        onClick = { secilenItem.value = 3 },
-                        label = { Text(text = "Cart") },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.shop_icon),
-                                contentDescription = ""
-                            )
-                        })
-                }
-                )
-            },
-        ) { paddingValues ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-            ) {
-                if (secilenItem.value == 0) {
-                    PageTransition(
-                        authViewModel = authViewModel,
-                        mainViewModel = mainViewModel,
-                        searchViewModel = searchViewModel,
-                        selectedPage = "mainScreen"
-                    )
-                }
-                if (secilenItem.value == 1) {
-                    PageTransition(
-                        authViewModel = authViewModel,
-                        mainViewModel = mainViewModel,
-                        searchViewModel = searchViewModel,
-                        selectedPage = "searchScreen"
-                    )
-                }
-                if (secilenItem.value == 2) {
-                    PageTransition(
-                        authViewModel = authViewModel,
-                        mainViewModel = mainViewModel,
-                        searchViewModel = searchViewModel,
-                        selectedPage = "favouritesScreen"
-                    )
-                }
-                if (secilenItem.value == 3) {
-                    PageTransition(
-                        authViewModel = authViewModel,
-                        mainViewModel = mainViewModel,
-                        searchViewModel = searchViewModel,
-                        selectedPage = "cartScreen"
-                    )
+        ) {
+            Scaffold(
+                topBar = {
+                    if (isBottomBarVisible.value) {
+                        TopAppBar(
+                            title = { Text("Movies App", fontSize = 25.sp) },
+                            navigationIcon = {
+                                IconButton(onClick = { scope.launch { drawerState.open() } }) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.menu_icon),
+                                        contentDescription = "Menu"
+                                    )
+                                }
+                            }
+                        )
+                    }
+                },
+                bottomBar = {
+                    if (isBottomBarVisible.value) {
+                        BottomAppBar(content = {
+                            NavigationBarItem(
+                                selected = secilenItem.value == 0,
+                                onClick = { secilenItem.value = 0 },
+                                label = { Text(text = "Home") },
+                                icon = {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.home_icon),
+                                        contentDescription = ""
+                                    )
+                                })
+                            NavigationBarItem(
+                                selected = secilenItem.value == 1,
+                                onClick = { secilenItem.value = 1 },
+                                label = { Text(text = "Search") },
+                                icon = {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.search_icon),
+                                        contentDescription = ""
+                                    )
+                                })
+                            NavigationBarItem(
+                                selected = secilenItem.value == 2,
+                                onClick = { secilenItem.value = 2 },
+                                label = { Text(text = "Favourites") },
+                                icon = {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.fav_icon),
+                                        contentDescription = ""
+                                    )
+                                })
+                            NavigationBarItem(
+                                selected = secilenItem.value == 3,
+                                onClick = { secilenItem.value = 3 },
+                                label = { Text(text = "Cart") },
+                                icon = {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.shop_icon),
+                                        contentDescription = ""
+                                    )
+                                })
+                        }
+                        )
+                    }
+                },
+            ) { paddingValues ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                ) {
+                    if (secilenItem.value == 0) {
+                        PageTransition(
+                            authViewModel = authViewModel,
+                            mainViewModel = mainViewModel,
+                            searchViewModel = searchViewModel,
+                            selectedPage = "mainScreen",
+                            isBottomBarVisible = isBottomBarVisible
+                        )
+                    }
+                    if (secilenItem.value == 1) {
+                        PageTransition(
+                            authViewModel = authViewModel,
+                            mainViewModel = mainViewModel,
+                            searchViewModel = searchViewModel,
+                            selectedPage = "searchScreen",
+                            isBottomBarVisible = isBottomBarVisible
+                        )
+                    }
+                    if (secilenItem.value == 2) {
+                        PageTransition(
+                            authViewModel = authViewModel,
+                            mainViewModel = mainViewModel,
+                            searchViewModel = searchViewModel,
+                            selectedPage = "favouritesScreen",
+                            isBottomBarVisible = isBottomBarVisible
+                        )
+                    }
+                    if (secilenItem.value == 3) {
+                        PageTransition(
+                            authViewModel = authViewModel,
+                            mainViewModel = mainViewModel,
+                            searchViewModel = searchViewModel,
+                            selectedPage = "cartScreen",
+                            isBottomBarVisible = isBottomBarVisible
+                        )
+                    }
                 }
             }
         }
-    }
 }
