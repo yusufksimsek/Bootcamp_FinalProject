@@ -18,6 +18,7 @@ import com.example.bootcamp_finalproject.ui.screens.authorization.RegisterScreen
 import com.example.bootcamp_finalproject.ui.screens.SearchScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.MovieDetailsViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 import com.google.gson.Gson
 
@@ -27,6 +28,7 @@ fun PageTransition(
     selectedPage:String,
     mainViewModel: MainViewModel,
     searchViewModel: SearchViewModel,
+    movieDetailsViewModel: MovieDetailsViewModel,
     isBottomBarVisible: MutableState<Boolean>
     ) {
     val navController = rememberNavController()
@@ -67,7 +69,7 @@ fun PageTransition(
             isBottomBarVisible.value = false
             val json = it.arguments?.getString("movie")
             val movieObject = Gson().fromJson(json, Movies::class.java)
-            MovieDetailScreen(pullingMovie = movieObject)
+            MovieDetailScreen(pullingMovie = movieObject, movieDetailsViewModel = movieDetailsViewModel)
         }
     }
 

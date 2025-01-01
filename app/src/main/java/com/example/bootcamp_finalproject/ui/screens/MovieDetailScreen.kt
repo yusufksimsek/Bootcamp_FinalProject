@@ -43,10 +43,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.data.entity.Movies
+import com.example.bootcamp_finalproject.ui.viewmodels.MovieDetailsViewModel
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun MovieDetailScreen(pullingMovie: Movies) {
+fun MovieDetailScreen(
+    pullingMovie: Movies,
+    movieDetailsViewModel : MovieDetailsViewModel
+    ) {
 
     val amount = remember { mutableStateOf(0) }
 
@@ -185,7 +189,20 @@ fun MovieDetailScreen(pullingMovie: Movies) {
                         }) {
                             Text(text = "-")
                         }
-                        TextButton(onClick = { /*TODO*/ }) {
+                        TextButton(onClick = {
+                            movieDetailsViewModel.addCart(
+                                pullingMovie.name,
+                                pullingMovie.image,
+                                pullingMovie.price,
+                                pullingMovie.category,
+                                pullingMovie.rating,
+                                pullingMovie.year,
+                                pullingMovie.director,
+                                pullingMovie.description,
+                                amount.value,
+                                "yusuf_simsek"
+                            )
+                        }) {
                             Text(text = "Add to Cart")
                         }
                         Button(onClick = {
