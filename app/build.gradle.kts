@@ -91,7 +91,12 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.6.1")
 
-    //Glide
+    // Glide
     implementation ("com.github.skydoves:landscapist-glide:1.4.4")
+
+    // Chucker
+    val chuckerVersion = "4.0.0"
+    debugImplementation("com.github.chuckerteam.chucker:library:$chuckerVersion")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:$chuckerVersion")
 
 }
