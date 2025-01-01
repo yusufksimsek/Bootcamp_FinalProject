@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bootcamp_finalproject.ui.screens.BottomBarPage
 import com.example.bootcamp_finalproject.ui.screens.CartScreen
 import com.example.bootcamp_finalproject.ui.screens.FavouritesScreen
+import com.example.bootcamp_finalproject.ui.screens.MovieDetailScreen
 import com.example.bootcamp_finalproject.ui.screens.authorization.LoginScreen
 import com.example.bootcamp_finalproject.ui.screens.authorization.RegisterScreen
 import com.example.bootcamp_finalproject.ui.screens.SearchScreen
@@ -49,6 +50,9 @@ fun PageTransition(
         }
         composable("searchScreen"){
             SearchScreen(searchViewModel = searchViewModel)
+        }
+        composable("movieDetailScreen"){
+            MovieDetailScreen()
         }
     }
 }
