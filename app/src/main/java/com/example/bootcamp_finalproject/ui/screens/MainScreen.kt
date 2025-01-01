@@ -1,4 +1,5 @@
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,13 +25,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.ui.screens.components.CheckMoviesText
 import com.example.bootcamp_finalproject.ui.screens.components.UpcomingMovies
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.google.gson.Gson
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun MainScreen(mainViewModel: MainViewModel) {
+fun MainScreen(
+    navController: NavController,
+    mainViewModel: MainViewModel) {
     val moviesList = mainViewModel.moviesList.observeAsState(listOf())
     val scope = rememberCoroutineScope()
 
@@ -62,6 +67,10 @@ fun MainScreen(mainViewModel: MainViewModel) {
                             modifier = Modifier
                                 .padding(8.dp)
                                 .fillMaxWidth()
+                                .clickable {
+                                    val movieJson = Gson().toJson(movie)
+                                    navController.navigate("movieDetailScreen/${movieJson}")
+                                }
                         ) {
                             GlideImage(
                                 imageModel = url,
