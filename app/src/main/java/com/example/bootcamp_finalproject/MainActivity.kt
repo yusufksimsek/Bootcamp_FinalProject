@@ -24,8 +24,7 @@ class MainActivity : ComponentActivity() {
                     authViewModel = authViewModel,
                     mainViewModel = mainViewModel,
                     searchViewModel = searchViewModel,
-                    selectedPage = "loginScreen",
-                    )
+                    selectedPage = "loginScreen")
             }
         }
     }
