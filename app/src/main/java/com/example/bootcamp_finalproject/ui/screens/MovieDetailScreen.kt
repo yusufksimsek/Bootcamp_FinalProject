@@ -22,9 +22,13 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -43,8 +47,13 @@ import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun MovieDetailScreen(pullingMovie: Movies) {
+
+    val amount = remember { mutableStateOf(0) }
+
     Box(
-        modifier = Modifier.fillMaxSize().background(Color.Black)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
     ) {
         // Arka plan posteri
         BackGroundPoster(details = pullingMovie)
@@ -160,6 +169,32 @@ fun MovieDetailScreen(pullingMovie: Movies) {
                     modifier = Modifier.padding(horizontal = 4.dp),
                     color = Color.White
                 )
+            }
+
+            item{
+                Column(modifier = Modifier,
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally) {
+
+                    Text(text = "Amount: ${amount.value}", fontSize = 30.sp)
+
+                    Row(modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center) {
+                        Button(onClick = {
+                            amount.value--
+                        }) {
+                            Text(text = "-")
+                        }
+                        TextButton(onClick = { /*TODO*/ }) {
+                            Text(text = "Add to Cart")
+                        }
+                        Button(onClick = {
+                            amount.value++
+                        }) {
+                            Text(text = "+")
+                        }
+                    }
+                }
             }
         }
     }
