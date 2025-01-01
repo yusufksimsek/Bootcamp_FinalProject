@@ -38,6 +38,7 @@ fun PageTransition(
             BottomBarPage(navController = navController,
                 mainViewModel = mainViewModel,
                 authViewModel = authViewModel,
+                movieDetailsViewModel = movieDetailsViewModel,
                 searchViewModel = searchViewModel
                 )
         }
