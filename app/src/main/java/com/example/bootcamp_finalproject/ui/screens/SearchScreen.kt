@@ -1,6 +1,7 @@
 package com.example.bootcamp_finalproject.ui.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,13 +25,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.ui.screens.components.SearchBar
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
+import com.google.gson.Gson
 import com.skydoves.landscapist.glide.GlideImage
 
 @SuppressLint("DiscouragedApi")
 @Composable
-fun SearchScreen(searchViewModel: SearchViewModel) {
+fun SearchScreen(
+    navController: NavController,
+    searchViewModel: SearchViewModel) {
 
     val moviesList by searchViewModel.moviesList.observeAsState(emptyList())
 
@@ -57,7 +62,11 @@ fun SearchScreen(searchViewModel: SearchViewModel) {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(6.dp),
+                                .padding(6.dp)
+                                .clickable {
+                                    val movieJson = Gson().toJson(movie)
+                                    navController.navigate("movieDetailScreen/${movieJson}")
+                                },
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             GlideImage(

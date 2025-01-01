@@ -53,7 +53,7 @@ fun PageTransition(
             CartScreen()
         }
         composable("searchScreen"){
-            SearchScreen(searchViewModel = searchViewModel)
+            SearchScreen(navController = navController, searchViewModel = searchViewModel)
         }
         composable("movieDetailScreen/{movie}",
             arguments = listOf(navArgument("movie") { type = NavType.StringType } )
