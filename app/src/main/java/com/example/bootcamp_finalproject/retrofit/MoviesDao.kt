@@ -8,22 +8,22 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface MoviesDao {
-      //Base url -> http://kasimadalan.pe.hu/movies/getAllMovies.php
-      // -> movies/getAllMovies.php
+    //Base url -> http://kasimadalan.pe.hu/movies/getAllMovies.php
+    // -> movies/getAllMovies.php
     @GET("movies/getAllMovies.php")
-    suspend fun getAllMovies() : MoviesAnswer
+    suspend fun getAllMovies(): MoviesAnswer
 
     @POST("movies/insertMovie.php")
     @FormUrlEncoded
-    suspend fun addCart(@Field("name") name:String,
-                        @Field("image") image:String,
-                        @Field("price") price:Int,
-                        @Field("category") category:String,
-                        @Field("rating") rating:Double,
-                        @Field("year") year:Int,
-                        @Field("director") director:String,
-                        @Field("description") description:String,
-                        @Field("orderAmount") orderAmount:Int,
-                        @Field("userName") userName:String) : CRUDAnswer
+    suspend fun addCart(@Field("name") name: String,
+                        @Field("image") image: String,
+                        @Field("price") price: Int,
+                        @Field("category") category: String,
+                        @Field("rating") rating: Double,
+                        @Field("year") year: Int,
+                        @Field("director") director: String,
+                        @Field("description") description: String,
+                        @Field("orderAmount") orderAmount: Int,
+                        @Field("userName") userName: String): CRUDAnswer
 
 }

@@ -42,6 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bootcamp_finalproject.R
+import com.example.bootcamp_finalproject.data.entity.Movie_Cart
 import com.example.bootcamp_finalproject.data.entity.Movies
 import com.example.bootcamp_finalproject.ui.viewmodels.MovieDetailsViewModel
 import com.skydoves.landscapist.glide.GlideImage
@@ -52,7 +53,7 @@ fun MovieDetailScreen(
     movieDetailsViewModel : MovieDetailsViewModel
     ) {
 
-    val amount = remember { mutableStateOf(0) }
+    val amount = remember { mutableStateOf(1) }
 
     Box(
         modifier = Modifier
@@ -191,16 +192,16 @@ fun MovieDetailScreen(
                         }
                         TextButton(onClick = {
                             movieDetailsViewModel.addCart(
-                                pullingMovie.name,
-                                pullingMovie.image,
-                                pullingMovie.price,
-                                pullingMovie.category,
-                                pullingMovie.rating,
-                                pullingMovie.year,
-                                pullingMovie.director,
-                                pullingMovie.description,
-                                amount.value,
-                                "yusuf_simsek"
+                                name = pullingMovie.name,
+                                image = pullingMovie.image,
+                                price = pullingMovie.price,
+                                category = pullingMovie.category,
+                                rating = pullingMovie.rating,
+                                year = pullingMovie.year,
+                                director = pullingMovie.director,
+                                description = pullingMovie.description,
+                                orderAmount = amount.value,
+                                userName = "yusuf_simsek"
                             )
                         }) {
                             Text(text = "Add to Cart")

@@ -22,9 +22,7 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
         orderAmount:Int,
         userName:String
     ){
-        moviesDao.addCart(
-            name, image, price, category, rating, year, director, description, orderAmount, userName
-        )
-    }
+    moviesDao.addCart(name, image, price, category, rating, year, director, description, orderAmount, userName)
+}
 
 }

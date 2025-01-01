@@ -20,8 +20,6 @@ class MoviesRepository(var moviesDataSource: MoviesDataSource) {
         description:String,
         orderAmount:Int,
         userName:String
-    ) = moviesDataSource.addCart(
-        name, image, price, category, rating, year, director, description, orderAmount, userName
-    )
+    ) = moviesDataSource.addCart(name, image, price, category, rating, year, director, description, orderAmount, userName)
 
 }

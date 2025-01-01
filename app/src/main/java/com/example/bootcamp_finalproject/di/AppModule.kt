@@ -1,5 +1,7 @@
 package com.example.bootcamp_finalproject.di
 
+import android.app.Application
+import android.content.Context
 import com.example.bootcamp_finalproject.data.datasource.FirebaseAuthDataSource
 import com.example.bootcamp_finalproject.data.datasource.MoviesDataSource
 import com.example.bootcamp_finalproject.data.repo.AuthRepository
@@ -36,8 +38,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoviesDao() : MoviesDao {
-        return ApiUtils.getmoviesDao()
+    fun provideMoviesDao(context: Context) : MoviesDao {
+        return ApiUtils.getmoviesDao(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApplicationContext(application: Application): Context {
+        return application.applicationContext
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.bootcamp_finalproject.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.bootcamp_finalproject.data.repo.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,8 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieDetailsViewModel @Inject constructor(var moviesRepository: MoviesRepository) :
-    ViewModel() {
+class MovieDetailsViewModel @Inject constructor(var moviesRepository: MoviesRepository) : ViewModel() {
     fun addCart(
         name: String,
         image: String,
@@ -24,7 +24,7 @@ class MovieDetailsViewModel @Inject constructor(var moviesRepository: MoviesRepo
         userName: String
     ) {
         CoroutineScope(Dispatchers.Main).launch {
-            moviesRepository.addCart(
+           moviesRepository.addCart(
                 name,
                 image,
                 price,
@@ -36,6 +36,7 @@ class MovieDetailsViewModel @Inject constructor(var moviesRepository: MoviesRepo
                 orderAmount,
                 userName
             )
+
         }
     }
 }
