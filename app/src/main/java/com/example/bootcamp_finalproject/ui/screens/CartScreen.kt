@@ -44,8 +44,9 @@ fun CartScreen(cartViewModel: CartViewModel) {
             .fillMaxSize()
             .padding()
     ) {
+        val movies = moviesList.value ?: listOf()
         items(
-            count = moviesList.value.count(),
+            count = movies.count(),
             itemContent = {
                 val movie = moviesList.value[it]
                 Card(modifier = Modifier.padding(all = 5.dp)) {

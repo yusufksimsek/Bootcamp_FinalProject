@@ -22,12 +22,10 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
             moviesDao.addCart(
                 name, image, price, category, rating, year, director, description, orderAmount, userName
             )
-        } else {
-
         }
     }
 
-    suspend fun getMovieCart(userName: String) : List<Movie_Cart> = withContext(Dispatchers.IO){
+    suspend fun getMovieCart(userName: String): List<Movie_Cart> = withContext(Dispatchers.IO) {
         return@withContext moviesDao.getMovieCart(userName).moviesCart
     }
 
