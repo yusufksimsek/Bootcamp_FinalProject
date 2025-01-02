@@ -80,6 +80,7 @@ fun MovieDetailScreen(
                     text = pullingMovie.name,
                     modifier = Modifier.fillMaxWidth(),
                     fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
                     color = Color.White,
                     textAlign = TextAlign.Center
                 )
@@ -106,8 +107,8 @@ fun MovieDetailScreen(
                         tint = Color.White
                     )
                     Text(
-                        text = pullingMovie.year.toString(),
-                        Modifier.padding(start = 6.dp),
+                        text = "${pullingMovie.price}$",
+                        Modifier.padding(start = 1.dp),
                         color = Color.White
                     )
                     Spacer(modifier = Modifier.width(5.dp))
@@ -181,16 +182,20 @@ fun MovieDetailScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally) {
 
-                    Text(text = "Amount: ${amount.value}", fontSize = 30.sp)
+                    Text(
+                        text = "Amount: ${amount.value}",
+                        fontSize = 20.sp,
+                        color = Color.White
+                        )
 
                     Row(modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center) {
-                        Button(onClick = {
+                        TextButton(onClick = {
                             amount.value--
                         }) {
                             Text(text = "-")
                         }
-                        TextButton(onClick = {
+                        Button(onClick = {
                             movieDetailsViewModel.addCart(
                                 name = pullingMovie.name,
                                 image = pullingMovie.image,
@@ -206,7 +211,7 @@ fun MovieDetailScreen(
                         }) {
                             Text(text = "Add to Cart")
                         }
-                        Button(onClick = {
+                        TextButton(onClick = {
                             amount.value++
                         }) {
                             Text(text = "+")
@@ -264,7 +269,7 @@ fun BackGroundPoster(details: Movies) {
             contentDescription = details.name,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
+                .height(350.dp)
                 .alpha(0.6f) // Arka planın şeffaflığını ayarlayabilirsiniz
         )
         Box(
