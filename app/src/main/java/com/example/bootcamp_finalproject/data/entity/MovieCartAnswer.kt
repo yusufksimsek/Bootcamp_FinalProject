@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieCartAnswer(
     @SerializedName("movie_cart")
-    var moviesCart: List<Movie_Cart>)
+    var movie_cart: List<Movie_Cart>)
 {
 }

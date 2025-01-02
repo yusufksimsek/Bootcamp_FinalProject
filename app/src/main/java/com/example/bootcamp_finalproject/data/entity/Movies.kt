@@ -2,16 +2,31 @@ package com.example.bootcamp_finalproject.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-
 data class Movies(
-    @SerializedName("movies")
-    var id:Int,
-    var name:String,
-    var image:String,
-    var price:Int,
-    var category:String,
-    var rating:Double,
-    var year:Int,
-    var director:String,
-    var description:String) {
-}
+    @SerializedName("id")
+    var id: Int,
+
+    @SerializedName("name")
+    var name: String,
+
+    @SerializedName("image")
+    var image: String,
+
+    @SerializedName("price")
+    var price: Int,
+
+    @SerializedName("category")
+    var category: String,
+
+    @SerializedName("rating")
+    var rating: Double,
+
+    @SerializedName("year")
+    var year: Int,
+
+    @SerializedName("director")
+    var director: String,
+
+    @SerializedName("description")
+    var description: String
+)

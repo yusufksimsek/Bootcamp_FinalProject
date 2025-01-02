@@ -15,18 +15,13 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
         name: String, image: String, price: Int, category: String, rating: Double, year: Int,
         director: String, description: String, orderAmount: Int, userName: String
     ) {
-        val cart = moviesDao.getMovieCart(userName)
-        val existingMovie = cart.moviesCart.find { it.name == name }
-
-        if (existingMovie == null) {
-            moviesDao.addCart(
-                name, image, price, category, rating, year, director, description, orderAmount, userName
-            )
-        }
+        moviesDao.addCart(
+            name, image, price, category, rating, year, director, description, orderAmount, userName
+        )
     }
 
     suspend fun getMovieCart(userName: String): List<Movie_Cart> = withContext(Dispatchers.IO) {
-        return@withContext moviesDao.getMovieCart(userName).moviesCart
+        return@withContext moviesDao.getMovieCart(userName).movie_cart
     }
 
     suspend fun deleteMovieCart(cartId: Int, userName: String) {
