@@ -44,11 +44,10 @@ fun CartScreen(cartViewModel: CartViewModel) {
             .fillMaxSize()
             .padding()
     ) {
-        val movies = moviesList.value ?: listOf()
         items(
-            count = movies.count(),
-            itemContent = {index ->
-                val movie = movies[index]
+            count = moviesList.value.count(),
+            itemContent = {
+                val movie = moviesList.value[it]
                 Card(modifier = Modifier.padding(all = 5.dp)) {
                     Row(
                         modifier = Modifier
@@ -66,13 +65,13 @@ fun CartScreen(cartViewModel: CartViewModel) {
                                     .clip(RoundedCornerShape(10.dp))
                             )
                         }
-
                         Column(modifier = Modifier.padding(all = 10.dp)) {
+                            Text(text = movie.cartId.toString())
                             Text(text = movie.name, fontSize = 20.sp)
                             Text(text = movie.year.toString())
                         }
                         IconButton(onClick = {
-
+                            cartViewModel.deleteMovieCart(movie.cartId, "yusuf_simsek")
                         }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.delete_icon),

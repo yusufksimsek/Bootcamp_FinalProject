@@ -19,6 +19,13 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
         getMovieCart(userName = "yusuf_simsek")
     }
 
+    fun deleteMovieCart(cartId: Int, userName: String){
+        CoroutineScope(Dispatchers.Main).launch {
+            moviesRepository.deleteMovieCart(cartId, userName)
+            getMovieCart(userName = "yusuf_simsek")
+        }
+    }
+
     fun getMovieCart(userName:String){
         CoroutineScope(Dispatchers.Main).launch {
             try {

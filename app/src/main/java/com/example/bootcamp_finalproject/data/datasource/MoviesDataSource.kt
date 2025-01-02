@@ -31,4 +31,8 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
         return@withContext moviesDao.getMovieCart(userName).moviesCart
     }
 
+    suspend fun deleteMovieCart(cartId: Int, userName: String) {
+        moviesDao.deleteMovieCart(cartId, userName)
+    }
+
 }
