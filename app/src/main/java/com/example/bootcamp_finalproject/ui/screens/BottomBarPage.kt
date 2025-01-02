@@ -36,6 +36,7 @@ import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MovieDetailsViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
@@ -48,6 +49,7 @@ fun BottomBarPage(
     authViewModel: AuthViewModel,
     mainViewModel: MainViewModel,
     movieDetailsViewModel: MovieDetailsViewModel,
+    cartViewModel: CartViewModel,
     searchViewModel: SearchViewModel) {
     val authState = authViewModel.authState.observeAsState()
 
@@ -176,6 +178,7 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "mainScreen",
                             movieDetailsViewModel = movieDetailsViewModel,
+                            cartViewModel = cartViewModel,
                             isBottomBarVisible = isBottomBarVisible
                         )
                     }
@@ -186,6 +189,7 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "searchScreen",
                             movieDetailsViewModel = movieDetailsViewModel,
+                            cartViewModel = cartViewModel,
                             isBottomBarVisible = isBottomBarVisible
                         )
                     }
@@ -196,6 +200,7 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "favouritesScreen",
                             movieDetailsViewModel = movieDetailsViewModel,
+                            cartViewModel = cartViewModel,
                             isBottomBarVisible = isBottomBarVisible
                         )
                     }
@@ -206,6 +211,7 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "cartScreen",
                             movieDetailsViewModel = movieDetailsViewModel,
+                            cartViewModel = cartViewModel,
                             isBottomBarVisible = isBottomBarVisible
                         )
                     }

@@ -17,6 +17,7 @@ import com.example.bootcamp_finalproject.ui.screens.authorization.LoginScreen
 import com.example.bootcamp_finalproject.ui.screens.authorization.RegisterScreen
 import com.example.bootcamp_finalproject.ui.screens.SearchScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MovieDetailsViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
@@ -29,6 +30,7 @@ fun PageTransition(
     mainViewModel: MainViewModel,
     searchViewModel: SearchViewModel,
     movieDetailsViewModel: MovieDetailsViewModel,
+    cartViewModel: CartViewModel,
     isBottomBarVisible: MutableState<Boolean>
     ) {
     val navController = rememberNavController()
@@ -39,7 +41,8 @@ fun PageTransition(
                 mainViewModel = mainViewModel,
                 authViewModel = authViewModel,
                 movieDetailsViewModel = movieDetailsViewModel,
-                searchViewModel = searchViewModel
+                searchViewModel = searchViewModel,
+                cartViewModel = cartViewModel
                 )
         }
         composable("loginScreen"){
@@ -58,7 +61,7 @@ fun PageTransition(
         }
         composable("cartScreen"){
             isBottomBarVisible.value = true
-            CartScreen()
+            CartScreen(cartViewModel = cartViewModel)
         }
         composable("searchScreen"){
             isBottomBarVisible.value = true

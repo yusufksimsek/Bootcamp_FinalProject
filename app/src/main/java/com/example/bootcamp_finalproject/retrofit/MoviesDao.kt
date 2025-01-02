@@ -1,6 +1,7 @@
 package com.example.bootcamp_finalproject.retrofit
 
 import com.example.bootcamp_finalproject.data.entity.CRUDAnswer
+import com.example.bootcamp_finalproject.data.entity.MovieCartAnswer
 import com.example.bootcamp_finalproject.data.entity.MoviesAnswer
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -25,5 +26,9 @@ interface MoviesDao {
                         @Field("description") description: String,
                         @Field("orderAmount") orderAmount: Int,
                         @Field("userName") userName: String): CRUDAnswer
+
+    @POST("movies/getMovieCart.php")
+    @FormUrlEncoded
+    suspend fun getMovieCart(@Field("userName") userName: String): MovieCartAnswer
 
 }

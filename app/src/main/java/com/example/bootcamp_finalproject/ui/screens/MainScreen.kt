@@ -37,7 +37,6 @@ fun MainScreen(
     navController: NavController,
     mainViewModel: MainViewModel) {
     val moviesList = mainViewModel.moviesList.observeAsState(listOf())
-    val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = true) {
         mainViewModel.loadMovies()

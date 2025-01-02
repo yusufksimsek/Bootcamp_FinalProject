@@ -1,6 +1,8 @@
 package com.example.bootcamp_finalproject.data.entity
 
+import com.google.gson.annotations.SerializedName
 data class Movie_Cart(
+    @SerializedName("movie_cart") // JSON'daki anahtar ismi
     var cartId:Int,
     var name:String,
     var image:String,
