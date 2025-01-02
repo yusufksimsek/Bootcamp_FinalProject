@@ -71,9 +71,11 @@ fun CartScreen(cartViewModel: CartViewModel) {
                             Text(text = movie.name, fontSize = 20.sp)
                             Text(text = movie.year.toString())
                         }
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = {
+
+                        }) {
                             Icon(
-                                painter = painterResource(id = R.drawable.select_icon),
+                                painter = painterResource(id = R.drawable.delete_icon),
                                 contentDescription = "",
                                 tint = Color.Gray
                             )
