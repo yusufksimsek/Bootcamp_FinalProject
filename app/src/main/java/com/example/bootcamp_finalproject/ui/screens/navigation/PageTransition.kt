@@ -70,7 +70,10 @@ fun PageTransition(
             isBottomBarVisible.value = false
             val json = it.arguments?.getString("movie")
             val movieObject = Gson().fromJson(json, Movies::class.java)
-            MovieDetailScreen(pullingMovie = movieObject, cartViewModel = cartViewModel)
+            MovieDetailScreen(
+                pullingMovie = movieObject,
+                cartViewModel = cartViewModel,
+                navController = navController)
         }
     }
 
