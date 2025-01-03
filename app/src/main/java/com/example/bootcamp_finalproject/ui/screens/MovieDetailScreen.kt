@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -58,6 +59,8 @@ fun MovieDetailScreen(
     ) {
         // Arka plan posteri
         BackGroundPoster(details = pullingMovie)
+
+        TopIcons()
 
         // LazyColumn, içeriği arka planın üzerine yerleştiriyor
         LazyColumn(
@@ -215,6 +218,39 @@ fun MovieDetailScreen(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun TopIcons() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp) // Dış kenarlardan uzaklaştırma
+    ) {
+        // Sol üstteki geri ikonu
+        IconButton(
+            onClick = { },
+            modifier = Modifier.align(Alignment.TopStart)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.back_icon),
+                contentDescription = "Back",
+                tint = Color.White
+            )
+        }
+
+        // Sağ üstteki favori ikonu
+        IconButton(
+            onClick = {  },
+            modifier = Modifier.align(Alignment.TopEnd)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.fav_icon),
+                contentDescription = "Favorite",
+                tint = Color.White
+            )
         }
     }
 }
