@@ -11,7 +11,7 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
         return@withContext moviesDao.getAllMovies().movies
     }
 
-    suspend fun addCart(
+    suspend fun addMovieCart(
         name: String, image: String, price: Int, category: String, rating: Double, year: Int,
         director: String, description: String, orderAmount: Int, userName: String
     ) {

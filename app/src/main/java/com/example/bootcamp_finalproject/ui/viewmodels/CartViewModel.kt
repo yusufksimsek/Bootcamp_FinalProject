@@ -47,17 +47,9 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
         }
     }
 
-    fun addCart(
-        name: String,
-        image: String,
-        price: Int,
-        category: String,
-        rating: Double,
-        year: Int,
-        director: String,
-        description: String,
-        orderAmount: Int,
-        userName: String
+    fun addMovieCart(
+        name: String, image: String, price: Int, category: String, rating: Double, year: Int,
+        director: String, description: String, orderAmount: Int, userName: String
     ) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -69,7 +61,8 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
 
                 if (!movieExists) {
                     // Film yoksa, sepete ekle
-                    moviesRepository.addCart(name, image, price, category, rating, year, director, description, orderAmount, userName)
+                    moviesRepository.addMovieCart(name, image, price, category, rating, year,
+                        director, description, orderAmount, userName)
                     // Sepet güncellenmiş listeyi al
                     getMovieCart(userName)
                 } else {

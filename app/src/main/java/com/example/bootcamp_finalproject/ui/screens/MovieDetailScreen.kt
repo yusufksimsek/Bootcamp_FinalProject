@@ -192,7 +192,7 @@ fun MovieDetailScreen(
                             Text(text = "-")
                         }
                         Button(onClick = {
-                            cartViewModel.addCart(
+                            cartViewModel.addMovieCart(
                                 name = pullingMovie.name,
                                 image = pullingMovie.image,
                                 price = pullingMovie.price,

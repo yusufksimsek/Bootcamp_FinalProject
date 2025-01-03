@@ -10,10 +10,10 @@ class MoviesRepository(var moviesDataSource: MoviesDataSource) {
         val allMovies = loadMovies()
         return allMovies.filter { it.name.contains(query, ignoreCase = true) }
     }
-    suspend fun addCart(
+    suspend fun addMovieCart(
         name:String, image:String, price:Int, category: String, rating:Double,
         year:Int, director:String, description:String, orderAmount:Int, userName:String
-    ) = moviesDataSource.addCart(
+    ) = moviesDataSource.addMovieCart(
         name, image, price, category, rating, year, director, description, orderAmount, userName)
 
     suspend fun getMovieCart(userName: String): List<Movie_Cart> {
