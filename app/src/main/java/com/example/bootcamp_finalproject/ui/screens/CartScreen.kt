@@ -47,7 +47,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
         items(
             count = movies.count(),
             itemContent = {
-                val movie = moviesList.value[it]
+                val movie = movies[it]
                 Card(modifier = Modifier.padding(all = 5.dp)) {
                     Row(
                         modifier = Modifier

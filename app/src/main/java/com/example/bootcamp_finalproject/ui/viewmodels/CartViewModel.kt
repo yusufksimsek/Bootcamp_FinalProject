@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,17 +22,28 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
 
     fun deleteMovieCart(cartId: Int, userName: String){
         CoroutineScope(Dispatchers.Main).launch {
-            moviesRepository.deleteMovieCart(cartId, userName)
-            getMovieCart(userName = "yusuf_simsek")
+            try {
+                // Silme işlemi
+                moviesRepository.deleteMovieCart(cartId, userName)
+
+                // Silinen öğeyi listeden çıkarmak
+                val updatedList = moviesList.value?.filter { it.cartId != cartId }
+                moviesList.value = updatedList ?: listOf()
+            } catch (e: Exception) {
+                // Hata durumu
+            }
         }
     }
 
-    fun getMovieCart(userName:String){
+    fun getMovieCart(userName: String) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val movieCartList = moviesRepository.getMovieCart(userName)
                 moviesList.value = movieCartList
-            }catch (e:Exception){ }
+            } catch (e: Exception) {
+
+            }
         }
     }
 }
+
