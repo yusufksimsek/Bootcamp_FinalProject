@@ -38,50 +38,65 @@ fun CartScreen(cartViewModel: CartViewModel) {
         cartViewModel.getMovieCart("yusuf_simsek")
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding()
-    ) {
-        val movies = moviesList.value ?: listOf()
-        items(
-            count = movies.count(),
-            itemContent = {
-                val movie = movies[it]
-                Card(modifier = Modifier.padding(all = 5.dp)) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
-                        Box {
-                            GlideImage(
-                                imageModel = url,
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .size(40.dp, 90.dp)
-                                    .clip(RoundedCornerShape(10.dp))
-                            )
-                        }
-                        Column(modifier = Modifier.padding(all = 10.dp)) {
-                            Text(text = movie.orderAmount.toString())
-                            Text(text = movie.name, fontSize = 20.sp)
-                            Text(text = movie.year.toString())
-                        }
-                        IconButton(onClick = {
-                            cartViewModel.deleteMovieCart(movie.cartId, "yusuf_simsek")
-                        }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.delete_icon),
-                                contentDescription = "",
-                                tint = Color.Gray
-                            )
+    if (moviesList.value.isNullOrEmpty()) {
+        // Sepet boşsa gösterilecek uyarı mesajı
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "Your cart is empty",
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+        }
+    } else {
+        // Sepette ürün varsa listeyi göster
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding()
+        ) {
+            val movies = moviesList.value ?: listOf()
+            items(
+                count = movies.count(),
+                itemContent = {
+                    val movie = movies[it]
+                    Card(modifier = Modifier.padding(all = 5.dp)) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
+                            Box {
+                                GlideImage(
+                                    imageModel = url,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier
+                                        .size(40.dp, 90.dp)
+                                        .clip(RoundedCornerShape(10.dp))
+                                )
+                            }
+                            Column(modifier = Modifier.padding(all = 10.dp)) {
+                                Text(text = movie.orderAmount.toString())
+                                Text(text = movie.name, fontSize = 20.sp)
+                                Text(text = movie.year.toString())
+                            }
+                            IconButton(onClick = {
+                                cartViewModel.deleteMovieCart(movie.cartId, "yusuf_simsek")
+                            }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.delete_icon),
+                                    contentDescription = "",
+                                    tint = Color.Gray
+                                )
+                            }
                         }
                     }
                 }
-            }
-        )
+            )
+        }
     }
 }
