@@ -19,7 +19,6 @@ import com.example.bootcamp_finalproject.ui.screens.SearchScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
-import com.example.bootcamp_finalproject.ui.viewmodels.MovieDetailsViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 import com.google.gson.Gson
 
@@ -29,7 +28,6 @@ fun PageTransition(
     selectedPage:String,
     mainViewModel: MainViewModel,
     searchViewModel: SearchViewModel,
-    movieDetailsViewModel: MovieDetailsViewModel,
     cartViewModel: CartViewModel,
     isBottomBarVisible: MutableState<Boolean>
     ) {
@@ -40,9 +38,8 @@ fun PageTransition(
             BottomBarPage(navController = navController,
                 mainViewModel = mainViewModel,
                 authViewModel = authViewModel,
-                movieDetailsViewModel = movieDetailsViewModel,
                 searchViewModel = searchViewModel,
-                cartViewModel = cartViewModel
+                cartViewModel = cartViewModel,
                 )
         }
         composable("loginScreen"){
@@ -73,7 +70,7 @@ fun PageTransition(
             isBottomBarVisible.value = false
             val json = it.arguments?.getString("movie")
             val movieObject = Gson().fromJson(json, Movies::class.java)
-            MovieDetailScreen(pullingMovie = movieObject, movieDetailsViewModel = movieDetailsViewModel)
+            MovieDetailScreen(pullingMovie = movieObject, cartViewModel = cartViewModel)
         }
     }
 

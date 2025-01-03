@@ -16,7 +16,14 @@ class MoviesRepository(var moviesDataSource: MoviesDataSource) {
     ) = moviesDataSource.addCart(
         name, image, price, category, rating, year, director, description, orderAmount, userName)
 
-    suspend fun getMovieCart(userName: String) : List<Movie_Cart> = moviesDataSource.getMovieCart(userName)
+    suspend fun getMovieCart(userName: String): List<Movie_Cart> {
+        return try {
+            val movieCartList = moviesDataSource.getMovieCart(userName)
+            movieCartList.ifEmpty { emptyList() }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
 
     suspend fun deleteMovieCart(cartId: Int, userName: String) = moviesDataSource.deleteMovieCart(cartId, userName)
 

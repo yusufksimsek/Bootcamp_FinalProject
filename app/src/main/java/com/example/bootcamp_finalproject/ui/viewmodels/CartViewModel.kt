@@ -23,10 +23,7 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
     fun deleteMovieCart(cartId: Int, userName: String){
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                // Silme işlemi
                 moviesRepository.deleteMovieCart(cartId, userName)
-
-                // Silinen öğeyi listeden çıkarmak
                 val updatedList = moviesList.value?.filter { it.cartId != cartId }
                 moviesList.value = updatedList ?: listOf()
             } catch (e: Exception) {
@@ -39,11 +36,49 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val movieCartList = moviesRepository.getMovieCart(userName)
+                if (movieCartList.isEmpty()) {
+                    // Sepet boşsa yapılacaklar
+                }
                 moviesList.value = movieCartList
             } catch (e: Exception) {
+                // Hata durumunda yapılacaklar
+                moviesList.value = emptyList()
+            }
+        }
+    }
 
+    fun addCart(
+        name: String,
+        image: String,
+        price: Int,
+        category: String,
+        rating: Double,
+        year: Int,
+        director: String,
+        description: String,
+        orderAmount: Int,
+        userName: String
+    ) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                // Sepeti al
+                val movieCartList = moviesRepository.getMovieCart(userName)
+
+                // Film zaten sepette var mı kontrol et
+                val movieExists = movieCartList.any { it.name == name }
+
+                if (!movieExists) {
+                    // Film yoksa, sepete ekle
+                    moviesRepository.addCart(name, image, price, category, rating, year, director, description, orderAmount, userName)
+                    // Sepet güncellenmiş listeyi al
+                    getMovieCart(userName)
+                } else {
+                    // Film zaten sepette olduğu için uyarı verebilirsiniz
+                    // Örneğin: "Film zaten sepette!"
+                }
+            } catch (e: Exception) {
+                // Hata durumu
             }
         }
     }
 }
-
