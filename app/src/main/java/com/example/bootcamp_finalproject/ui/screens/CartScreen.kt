@@ -66,7 +66,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
                             )
                         }
                         Column(modifier = Modifier.padding(all = 10.dp)) {
-                            Text(text = movie.cartId.toString())
+                            Text(text = movie.orderAmount.toString())
                             Text(text = movie.name, fontSize = 20.sp)
                             Text(text = movie.year.toString())
                         }
