@@ -99,4 +99,7 @@ dependencies {
     debugImplementation("com.github.chuckerteam.chucker:library:$chuckerVersion")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:$chuckerVersion")
 
+    //UIController
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.29.0-alpha")
+
 }

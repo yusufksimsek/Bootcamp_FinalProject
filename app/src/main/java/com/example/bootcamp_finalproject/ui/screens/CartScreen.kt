@@ -32,7 +32,6 @@ import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun CartScreen(cartViewModel: CartViewModel) {
-
     val moviesList = cartViewModel.moviesList.observeAsState(listOf())
 
     LaunchedEffect(key1 = true) {
