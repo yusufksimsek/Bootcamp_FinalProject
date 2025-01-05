@@ -60,8 +60,11 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
     val authState = authViewModel.authState.observeAsState()
     val context = LocalContext.current
 
+    val isLoading = remember { mutableStateOf(false) }
+
     LaunchedEffect(authState.value) {
         when (authState.value) {
+            is AuthState.Loading -> isLoading.value = true
             is AuthState.Authenticated -> navController.navigate("bottomBarPage")
             is AuthState.Error -> Toast.makeText(
                 context,
@@ -100,7 +103,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
         EmailField(
             value = email,
             onValueChange = { email = it }
-            )
+        )
 
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -111,33 +114,30 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(35.dp))
 
-        if (authState.value is AuthState.Loading) {
+        if (isLoading.value) {
             CircularProgressIndicator(
-                modifier = Modifier.size(50.dp),
-                color = Colors.mainColor,
-                strokeWidth = 4.dp
+                color = Colors.mainColor
             )
-        } else {
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 40.dp)
-                    .height(45.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Colors.buttonColor,
-                    contentColor = Colors.black,
-                ),
-                onClick = {
-                    authViewModel.login(email, password)
-                }) {
-                Text(
-                    text = "Login",
-                    color = Colors.black,
-                    fontSize = 18.sp
-                )
-            }
         }
 
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp)
+                .height(45.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Colors.buttonColor,
+                contentColor = Colors.black,
+            ),
+            onClick = {
+                authViewModel.login(email, password)
+            }) {
+            Text(
+                text = "Login",
+                color = Colors.black,
+                fontSize = 18.sp
+            )
+        }
         Spacer(modifier = Modifier.height(15.dp))
 
         val annotatedText = buildAnnotatedString {

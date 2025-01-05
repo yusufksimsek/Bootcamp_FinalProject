@@ -52,6 +52,8 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
     val authState = authViewModel.authState.observeAsState()
     val context = LocalContext.current
 
+    val isLoading = remember { mutableStateOf(false) }
+
     LaunchedEffect(authState.value) {
         when(authState.value){
             is AuthState.Authenticated -> navController.navigate("bottomBarPage")
@@ -60,14 +62,15 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
                 (authState.value as AuthState.Error).message,
                 Toast.LENGTH_SHORT
             ).show()
+
             else -> Unit
         }
     }
 
     Column(
         modifier = Modifier
-        .fillMaxSize()
-        .background(Colors.backgroundColor),
+            .fillMaxSize()
+            .background(Colors.backgroundColor),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -116,13 +119,12 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(35.dp))
 
-        if (authState.value is AuthState.Loading) {
+        if (isLoading.value) {
             CircularProgressIndicator(
-                modifier = Modifier.size(50.dp),
-                color = Colors.mainColor,
-                strokeWidth = 4.dp
+                color = Colors.mainColor
             )
-        } else {
+        }
+
         Button(
             modifier = Modifier
                 .fillMaxWidth()
@@ -141,7 +143,6 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
                 fontSize = 18.sp
             )
         }
-    }
 
         Spacer(modifier = Modifier.height(15.dp))
 
