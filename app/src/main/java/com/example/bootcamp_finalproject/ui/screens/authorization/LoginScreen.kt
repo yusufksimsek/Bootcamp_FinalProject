@@ -108,7 +108,7 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
             Text(
                 text = "Login",
                 color = Colors.black,
-                fontSize = 16.sp
+                fontSize = 18.sp
             )
         }
 
