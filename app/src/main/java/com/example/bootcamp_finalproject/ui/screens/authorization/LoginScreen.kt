@@ -150,6 +150,3 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
         )
     }
 }
-
-
-// navController.navigate("registerScreen")
