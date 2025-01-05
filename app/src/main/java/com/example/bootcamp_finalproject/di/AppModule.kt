@@ -9,8 +9,8 @@ import com.example.bootcamp_finalproject.data.datasource.MoviesDataSource
 import com.example.bootcamp_finalproject.data.repo.AuthRepository
 import com.example.bootcamp_finalproject.data.repo.FavouriteMoviesRepository
 import com.example.bootcamp_finalproject.data.repo.MoviesRepository
-import com.example.bootcamp_finalproject.data.room.AppDatabase
-import com.example.bootcamp_finalproject.data.room.FavouriteMoviesDao
+import com.example.bootcamp_finalproject.data.local.AppDatabase
+import com.example.bootcamp_finalproject.data.local.FavouriteMoviesDao
 import com.example.bootcamp_finalproject.retrofit.ApiUtils
 import com.example.bootcamp_finalproject.retrofit.MoviesDao
 import dagger.Module

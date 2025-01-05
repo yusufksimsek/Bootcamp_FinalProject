@@ -1,4 +1,4 @@
-package com.example.bootcamp_finalproject.data.room
+package com.example.bootcamp_finalproject.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
