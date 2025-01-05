@@ -75,7 +75,7 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
             color = Colors.loginRegisterColor
             )
 
-        Spacer(modifier = Modifier.height(35.dp))
+        Spacer(modifier = Modifier.height(60.dp))
 
         OutlinedTextField(
             modifier = Modifier
