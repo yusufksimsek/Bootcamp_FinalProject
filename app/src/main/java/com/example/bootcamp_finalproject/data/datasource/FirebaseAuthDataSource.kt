@@ -1,7 +1,7 @@
 package com.example.bootcamp_finalproject.data.datasource
 
-import com.example.bootcamp_finalproject.data.entity.User
-import com.example.bootcamp_finalproject.data.entity.toUser
+import com.example.bootcamp_finalproject.data.entity.user.User
+import com.example.bootcamp_finalproject.data.entity.user.toUser
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
 

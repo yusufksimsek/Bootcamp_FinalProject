@@ -6,7 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.bootcamp_finalproject.data.entity.FavouriteMovie
+import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
 
 @Dao
 interface FavouriteMoviesDao {

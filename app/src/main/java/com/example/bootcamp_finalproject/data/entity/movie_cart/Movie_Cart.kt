@@ -1,10 +1,10 @@
-package com.example.bootcamp_finalproject.data.entity
+package com.example.bootcamp_finalproject.data.entity.movie_cart
 
 import com.google.gson.annotations.SerializedName
 
-data class Movies(
-    @SerializedName("id")
-    var id: Int,
+data class Movie_Cart(
+    @SerializedName("cartId")
+    var cartId: Int,
 
     @SerializedName("name")
     var name: String,
@@ -28,5 +28,11 @@ data class Movies(
     var director: String,
 
     @SerializedName("description")
-    var description: String
+    var description: String,
+
+    @SerializedName("orderAmount")
+    var orderAmount: Int,
+
+    @SerializedName("userName")
+    var userName: String = "yusuf_simsek"
 )

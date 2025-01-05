@@ -2,13 +2,12 @@ package com.example.bootcamp_finalproject.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.bootcamp_finalproject.data.entity.Movie_Cart
+import com.example.bootcamp_finalproject.data.entity.movie_cart.Movie_Cart
 import com.example.bootcamp_finalproject.data.repo.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel

@@ -1,4 +1,4 @@
-package com.example.bootcamp_finalproject.data.entity
+package com.example.bootcamp_finalproject.data.entity.user
 
 import com.google.firebase.auth.FirebaseUser
 

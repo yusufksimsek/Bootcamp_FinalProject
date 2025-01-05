@@ -1,8 +1,8 @@
 package com.example.bootcamp_finalproject.data.repo
 
 import com.example.bootcamp_finalproject.data.datasource.MoviesDataSource
-import com.example.bootcamp_finalproject.data.entity.Movie_Cart
-import com.example.bootcamp_finalproject.data.entity.Movies
+import com.example.bootcamp_finalproject.data.entity.movie_cart.Movie_Cart
+import com.example.bootcamp_finalproject.data.entity.movies.Movies
 
 class MoviesRepository(var moviesDataSource: MoviesDataSource) {
     suspend fun loadMovies() : List<Movies> = moviesDataSource.loadMovies()

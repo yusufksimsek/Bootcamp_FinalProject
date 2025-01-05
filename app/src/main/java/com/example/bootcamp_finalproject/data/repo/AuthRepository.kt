@@ -1,7 +1,7 @@
 package com.example.bootcamp_finalproject.data.repo
 
 import com.example.bootcamp_finalproject.data.datasource.FirebaseAuthDataSource
-import com.example.bootcamp_finalproject.data.entity.User
+import com.example.bootcamp_finalproject.data.entity.user.User
 
 class AuthRepository(private val authDataSource: FirebaseAuthDataSource) {
     suspend fun login(email: String, password: String): Result<User> {
