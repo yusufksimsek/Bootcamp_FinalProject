@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
@@ -34,6 +35,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -64,6 +67,11 @@ fun MovieDetailScreen(
     navController: NavController
 ) {
     val amount = remember { mutableStateOf(1) }
+
+    val favouriteMovieList by favouriteViewModel.favouriteMovies.observeAsState(emptyList())
+    val isFavourite = remember(favouriteMovieList) {
+        favouriteViewModel.isMovieFavourite(pullingMovie.id)
+    }
 
     Scaffold(
         topBar = {
@@ -97,13 +105,12 @@ fun MovieDetailScreen(
                             director = pullingMovie.director,
                             description = pullingMovie.description
                         )
-                        favouriteViewModel.addFavouriteMovie(favouriteMovie)
+                        favouriteViewModel.toggleFavourite(movie = favouriteMovie)
                     }) {
                         Icon(
-                            modifier = Modifier,
-                            painter = painterResource(id = R.drawable.fav_icon),
-                            contentDescription = "Favorite",
-                            tint = Color.White
+                            imageVector = if (isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = "Toggle Favorite",
+                            tint = if (isFavourite) Color.Red else Color.White
                         )
                     }
                 },
