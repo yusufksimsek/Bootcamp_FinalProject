@@ -70,6 +70,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
+
     // Firebase
     implementation(libs.firebase.auth)
 

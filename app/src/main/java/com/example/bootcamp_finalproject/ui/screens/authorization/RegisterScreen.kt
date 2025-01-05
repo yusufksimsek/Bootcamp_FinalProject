@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -74,7 +76,7 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             color = Colors.loginRegisterColor
-            )
+        )
 
         Spacer(modifier = Modifier.height(5.dp))
 
@@ -96,7 +98,7 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
             },
             label = { Text(text = "Username") },
             textStyle = TextStyle(color = Colors.loginRegisterColor)
-            )
+        )
 
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -114,6 +116,13 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(35.dp))
 
+        if (authState.value is AuthState.Loading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(50.dp),
+                color = Colors.mainColor,
+                strokeWidth = 4.dp
+            )
+        } else {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
@@ -124,14 +133,15 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
                 contentColor = Colors.black,
             ),
             onClick = {
-            authViewModel.register(email, password)
-        }) {
+                authViewModel.register(email, password)
+            }) {
             Text(
                 text = "Create Account",
                 color = Colors.black,
                 fontSize = 18.sp
-                )
+            )
         }
+    }
 
         Spacer(modifier = Modifier.height(15.dp))
 

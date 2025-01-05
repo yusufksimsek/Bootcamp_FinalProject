@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -109,23 +111,31 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(35.dp))
 
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp)
-                .height(45.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Colors.buttonColor,
-                contentColor = Colors.black,
-            ),
-            onClick = {
-                authViewModel.login(email, password)
-            }) {
-            Text(
-                text = "Login",
-                color = Colors.black,
-                fontSize = 18.sp
+        if (authState.value is AuthState.Loading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(50.dp),
+                color = Colors.mainColor,
+                strokeWidth = 4.dp
             )
+        } else {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp)
+                    .height(45.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Colors.buttonColor,
+                    contentColor = Colors.black,
+                ),
+                onClick = {
+                    authViewModel.login(email, password)
+                }) {
+                Text(
+                    text = "Login",
+                    color = Colors.black,
+                    fontSize = 18.sp
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(15.dp))
