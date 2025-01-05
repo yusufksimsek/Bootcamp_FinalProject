@@ -1,0 +1,19 @@
+package com.example.bootcamp_finalproject.data.repo
+
+import androidx.lifecycle.LiveData
+import com.example.bootcamp_finalproject.data.datasource.FavouriteMoviesDataSource
+import com.example.bootcamp_finalproject.data.entity.FavouriteMovie
+
+class FavouriteMoviesRepository(private val dataSource: FavouriteMoviesDataSource) {
+    fun getFavouriteMovies(): LiveData<List<FavouriteMovie>> {
+        return dataSource.getAllFavouriteMovies()
+    }
+
+    fun addFavouriteMovie(movie: FavouriteMovie) {
+        dataSource.insertFavouriteMovie(movie)
+    }
+
+    fun removeFavouriteMovie(movie: FavouriteMovie) {
+        dataSource.deleteFavouriteMovie(movie)
+    }
+}

@@ -50,14 +50,17 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
+import com.example.bootcamp_finalproject.data.entity.FavouriteMovie
 import com.example.bootcamp_finalproject.data.entity.Movies
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun MovieDetailScreen(
     pullingMovie: Movies,
     cartViewModel: CartViewModel,
+    favouriteViewModel: FavouriteViewModel,
     navController: NavController
 ) {
     val amount = remember { mutableStateOf(1) }
@@ -83,7 +86,19 @@ fun MovieDetailScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = {  }) {
+                    IconButton(onClick = {
+                        val favouriteMovie = FavouriteMovie(
+                            id = pullingMovie.id,
+                            name = pullingMovie.name,
+                            image = pullingMovie.image,
+                            category = pullingMovie.category,
+                            rating = pullingMovie.rating,
+                            year = pullingMovie.year,
+                            director = pullingMovie.director,
+                            description = pullingMovie.description
+                        )
+                        favouriteViewModel.addFavouriteMovie(favouriteMovie)
+                    }) {
                         Icon(
                             modifier = Modifier,
                             painter = painterResource(id = R.drawable.fav_icon),

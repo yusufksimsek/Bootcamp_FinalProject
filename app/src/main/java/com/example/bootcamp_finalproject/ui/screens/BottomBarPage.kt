@@ -37,6 +37,7 @@ import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 import kotlinx.coroutines.launch
@@ -48,6 +49,7 @@ fun BottomBarPage(
     authViewModel: AuthViewModel,
     mainViewModel: MainViewModel,
     cartViewModel: CartViewModel,
+    favouriteViewModel: FavouriteViewModel,
     searchViewModel: SearchViewModel) {
     val authState = authViewModel.authState.observeAsState()
 
@@ -176,7 +178,8 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "mainScreen",
                             cartViewModel = cartViewModel,
-                            isBottomBarVisible = isBottomBarVisible
+                            isBottomBarVisible = isBottomBarVisible,
+                            favouriteViewModel = favouriteViewModel
                         )
                     }
                     if (secilenItem.value == 1) {
@@ -186,7 +189,8 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "searchScreen",
                             cartViewModel = cartViewModel,
-                            isBottomBarVisible = isBottomBarVisible
+                            isBottomBarVisible = isBottomBarVisible,
+                            favouriteViewModel = favouriteViewModel
                         )
                     }
                     if (secilenItem.value == 2) {
@@ -196,7 +200,8 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "favouritesScreen",
                             cartViewModel = cartViewModel,
-                            isBottomBarVisible = isBottomBarVisible
+                            isBottomBarVisible = isBottomBarVisible,
+                            favouriteViewModel = favouriteViewModel
                         )
                     }
                     if (secilenItem.value == 3) {
@@ -206,7 +211,8 @@ fun BottomBarPage(
                             searchViewModel = searchViewModel,
                             selectedPage = "cartScreen",
                             cartViewModel = cartViewModel,
-                            isBottomBarVisible = isBottomBarVisible
+                            isBottomBarVisible = isBottomBarVisible,
+                            favouriteViewModel = favouriteViewModel
                         )
                     }
                 }

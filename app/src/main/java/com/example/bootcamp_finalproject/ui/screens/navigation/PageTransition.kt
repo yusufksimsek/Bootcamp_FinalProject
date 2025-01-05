@@ -18,6 +18,7 @@ import com.example.bootcamp_finalproject.ui.screens.authorization.RegisterScreen
 import com.example.bootcamp_finalproject.ui.screens.SearchScreen
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 import com.google.gson.Gson
@@ -29,6 +30,7 @@ fun PageTransition(
     mainViewModel: MainViewModel,
     searchViewModel: SearchViewModel,
     cartViewModel: CartViewModel,
+    favouriteViewModel: FavouriteViewModel,
     isBottomBarVisible: MutableState<Boolean>
     ) {
     val navController = rememberNavController()
@@ -40,6 +42,7 @@ fun PageTransition(
                 authViewModel = authViewModel,
                 searchViewModel = searchViewModel,
                 cartViewModel = cartViewModel,
+                favouriteViewModel = favouriteViewModel
                 )
         }
         composable("loginScreen"){
@@ -54,7 +57,7 @@ fun PageTransition(
         }
         composable("favouritesScreen"){
             isBottomBarVisible.value = true
-            FavouritesScreen()
+            FavouritesScreen(favouriteViewModel = favouriteViewModel)
         }
         composable("cartScreen"){
             isBottomBarVisible.value = true
@@ -73,6 +76,7 @@ fun PageTransition(
             MovieDetailScreen(
                 pullingMovie = movieObject,
                 cartViewModel = cartViewModel,
+                favouriteViewModel = favouriteViewModel,
                 navController = navController)
         }
     }

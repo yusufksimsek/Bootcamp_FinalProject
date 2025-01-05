@@ -10,6 +10,7 @@ import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
 import com.example.bootcamp_finalproject.ui.theme.Bootcamp_FinalProjectTheme
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
+import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
         val mainViewModel : MainViewModel by viewModels()
         val searchViewModel : SearchViewModel by viewModels()
         val cartViewModel: CartViewModel by viewModels()
+        val favouriteViewModel: FavouriteViewModel by viewModels()
         setContent {
             Bootcamp_FinalProjectTheme {
                 val isBottomBarVisible = remember { mutableStateOf(true) }
@@ -31,6 +33,7 @@ class MainActivity : ComponentActivity() {
                     searchViewModel = searchViewModel,
                     isBottomBarVisible = isBottomBarVisible,
                     cartViewModel = cartViewModel,
+                    favouriteViewModel = favouriteViewModel,
                     selectedPage = "loginScreen")
             }
         }
