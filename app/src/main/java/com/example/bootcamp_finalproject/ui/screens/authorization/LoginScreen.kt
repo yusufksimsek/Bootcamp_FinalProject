@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -25,7 +26,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -112,17 +117,39 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
             )
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
-        TextButton(onClick = {
-            navController.navigate("registerScreen")
-        }) {
-            Text(
-                text = "Don't have an account? Register",
-                color = Colors.haveAccountColor,
-
+        val annotatedText = buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
+                    color = Colors.haveAccountColor
                 )
-        }
-    }
+            ) {
+                append("Don't have an account? ")
+            }
 
+            pushStringAnnotation(tag = "register", annotation = "registerScreen")
+            withStyle(
+                style = SpanStyle(
+                    color = Colors.mainColor,
+                )
+            ) {
+                append("Register")
+            }
+            pop()
+        }
+
+        ClickableText(
+            text = annotatedText,
+            onClick = { offset ->
+                annotatedText.getStringAnnotations(tag = "register", start = offset, end = offset)
+                    .firstOrNull()?.let {
+                        navController.navigate(it.item)
+                    }
+            }
+        )
+    }
 }
+
+
+// navController.navigate("registerScreen")
