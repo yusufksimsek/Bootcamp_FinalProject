@@ -13,10 +13,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.bootcamp_finalproject.R
+import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
 fun PasswordField(
@@ -29,6 +31,7 @@ fun PasswordField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(text = "Password") },
+        textStyle = TextStyle(color = Colors.loginRegisterColor),
         visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp),
         trailingIcon = {

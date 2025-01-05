@@ -26,12 +26,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.bootcamp_finalproject.ui.screens.authorization.components.EmailField
 import com.example.bootcamp_finalproject.ui.screens.authorization.components.PasswordField
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
@@ -82,18 +84,17 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
             value = username,
             onValueChange = {
                 username = it
-            }, label = { Text(text = "Username") } )
+            },
+            label = { Text(text = "Username") },
+            textStyle = TextStyle(color = Colors.loginRegisterColor)
+            )
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp),
+        EmailField(
             value = email,
-            onValueChange = {
-            email = it
-        }, label = { Text(text = "Email") } )
+            onValueChange = { email = it }
+        )
 
         Spacer(modifier = Modifier.height(10.dp))
 

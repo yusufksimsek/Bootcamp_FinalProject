@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -42,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
+import com.example.bootcamp_finalproject.ui.screens.authorization.components.EmailField
 import com.example.bootcamp_finalproject.ui.screens.authorization.components.PasswordField
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
@@ -85,6 +87,8 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(35.dp))
 
+        /*
+
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -92,7 +96,16 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
             value = email,
             onValueChange = {
                 email = it
-            }, label = { Text(text = "Email") })
+            }, label = { Text(text = "Email") },
+            textStyle = TextStyle(color = Colors.loginRegisterColor)
+            )
+
+         */
+
+        EmailField(
+            value = email,
+            onValueChange = { email = it }
+            )
 
         Spacer(modifier = Modifier.height(10.dp))
 
