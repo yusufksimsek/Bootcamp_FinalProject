@@ -11,8 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
-fun EmailField(value: String,
-               onValueChange: (String) -> Unit) {
+fun EmailField(value: String, onValueChange: (String) -> Unit) {
     OutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()

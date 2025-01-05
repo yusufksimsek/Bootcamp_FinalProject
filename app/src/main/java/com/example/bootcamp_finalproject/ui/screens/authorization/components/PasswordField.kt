@@ -21,10 +21,8 @@ import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
-fun PasswordField(
-    value: String,
-    onValueChange: (String) -> Unit
-) {
+fun PasswordField(value: String, onValueChange: (String) -> Unit) {
+
     var isPasswordVisible by remember { mutableStateOf(false) }
 
     OutlinedTextField(

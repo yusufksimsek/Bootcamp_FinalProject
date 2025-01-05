@@ -87,21 +87,6 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(35.dp))
 
-        /*
-
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp),
-            value = email,
-            onValueChange = {
-                email = it
-            }, label = { Text(text = "Email") },
-            textStyle = TextStyle(color = Colors.loginRegisterColor)
-            )
-
-         */
-
         EmailField(
             value = email,
             onValueChange = { email = it }
