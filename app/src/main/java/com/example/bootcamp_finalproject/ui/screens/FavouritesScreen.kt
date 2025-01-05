@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -35,63 +36,80 @@ import com.skydoves.landscapist.glide.GlideImage
 fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
     val favouriteMoviesList by favouriteViewModel.favouriteMovies.observeAsState(emptyList())
 
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(count = 2),
-    ) {
-        items(
-            count = favouriteMoviesList.count(),
-            itemContent = {
-                val movie = favouriteMoviesList[it]
-                val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
-                Box(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(MaterialTheme.colorScheme.surface)
-                ) {
-                    Column(
+    if (favouriteMoviesList.isEmpty()) {
+        // Favori listesi boşsa bir mesaj göster
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "Your favourite list is empty",
+                fontSize = 20.sp,
+                color = Color.Gray
+            )
+        }
+    } else {
+        // Favori listesi doluysa filmleri göster
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(count = 2),
+        ) {
+            items(
+                count = favouriteMoviesList.count(),
+                itemContent = {
+                    val movie = favouriteMoviesList[it]
+                    val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
+                    Box(
                         modifier = Modifier
                             .padding(8.dp)
                             .fillMaxSize()
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(MaterialTheme.colorScheme.surface)
                     ) {
-                        Box(modifier = Modifier.fillMaxWidth()) {
-                            GlideImage(
-                                imageModel = url,
-                                contentDescription = null,
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .height(180.dp)
-                                    .fillMaxWidth()
-                                    .clip(RoundedCornerShape(8.dp))
-                            )
-                            IconButton(
-                                onClick = { favouriteViewModel.removeFavouriteMovie(movie) },
-                                modifier = Modifier
-                                    .align(Alignment.TopEnd)
-                                    .padding(4.dp)
-                                    .background(Color.Red.copy(alpha = 0.8f), shape = CircleShape)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Delete,
-                                    contentDescription = "Remove from favourites",
-                                    tint = Color.White
+                        Column(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxSize()
+                        ) {
+                            Box(modifier = Modifier.fillMaxWidth()) {
+                                GlideImage(
+                                    imageModel = url,
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier
+                                        .height(180.dp)
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(8.dp))
                                 )
+                                IconButton(
+                                    onClick = { favouriteViewModel.removeFavouriteMovie(movie) },
+                                    modifier = Modifier
+                                        .align(Alignment.TopEnd)
+                                        .padding(4.dp)
+                                        .background(Color.Red.copy(alpha = 0.8f), shape = CircleShape)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = "Remove from favourites",
+                                        tint = Color.White
+                                    )
+                                }
                             }
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = movie.name,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Text(
+                                text = "Rating: ${movie.rating}",
+                                color = Color.Gray
+                            )
                         }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = movie.name,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = "Rating: ${movie.rating}",
-                            color = Color.Gray
-                        )
                     }
                 }
-            }
-        )
+            )
+        }
     }
 }
