@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -32,7 +34,7 @@ import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 
 @Composable
-fun LoginScreen(navController: NavController,authViewModel: AuthViewModel) {
+fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -41,55 +43,75 @@ fun LoginScreen(navController: NavController,authViewModel: AuthViewModel) {
     val context = LocalContext.current
 
     LaunchedEffect(authState.value) {
-        when(authState.value){
+        when (authState.value) {
             is AuthState.Authenticated -> navController.navigate("bottomBarPage")
             is AuthState.Error -> Toast.makeText(
                 context,
                 (authState.value as AuthState.Error).message,
                 Toast.LENGTH_SHORT
             ).show()
+
             else -> Unit
         }
     }
 
-    Column(modifier = Modifier.fillMaxSize()
-                              .background(Colors.backgroundColor),
-           verticalArrangement = Arrangement.Center,
-           horizontalAlignment = Alignment.CenterHorizontally,
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Colors.backgroundColor),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = "Login",
-            fontSize = 32.sp,
+            fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             color = Colors.loginRegisterColor
         )
-        
-        Spacer(modifier = Modifier.height(25.dp))
 
-        OutlinedTextField(value = email, onValueChange = {
-            email = it
-        }, label = { Text(text = "Email") } )
+        Spacer(modifier = Modifier.height(35.dp))
 
-        OutlinedTextField(value = password, onValueChange = {
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp),
+            value = email,
+            onValueChange = {
+                email = it
+            }, label = { Text(text = "Email") })
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp),
+            value = password,
+            onValueChange = {
             password = it
-        }, label = { Text(text = "Password") } )
+        }, label = { Text(text = "Password") })
 
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = Modifier.height(35.dp))
 
         Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 40.dp)
+                .height(45.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Colors.buttonColor,
                 contentColor = Colors.black,
             ),
             onClick = {
-            authViewModel.login(email, password)
-        }) {
+                authViewModel.login(email, password)
+            }) {
             Text(
                 text = "Login",
-                color = Colors.black
-                )
+                color = Colors.black,
+                fontSize = 16.sp
+            )
         }
-        
+
         Spacer(modifier = Modifier.height(12.dp))
 
         TextButton(onClick = {
@@ -99,7 +121,7 @@ fun LoginScreen(navController: NavController,authViewModel: AuthViewModel) {
                 text = "Don't have an account? Register",
                 color = Colors.haveAccountColor,
 
-            )
+                )
         }
     }
 
