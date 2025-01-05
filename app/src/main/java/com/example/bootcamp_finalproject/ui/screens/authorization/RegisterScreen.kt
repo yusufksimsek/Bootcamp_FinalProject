@@ -32,6 +32,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.bootcamp_finalproject.ui.screens.authorization.components.PasswordField
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
@@ -96,14 +97,10 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp),
+        PasswordField(
             value = password,
-            onValueChange = {
-            password = it
-        }, label = { Text(text = "Password") } )
+            onValueChange = { password = it }
+        )
 
         Spacer(modifier = Modifier.height(35.dp))
 
