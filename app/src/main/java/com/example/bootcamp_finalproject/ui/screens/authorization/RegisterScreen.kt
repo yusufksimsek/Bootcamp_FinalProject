@@ -126,7 +126,7 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
                 )
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
         val annotatedText = buildAnnotatedString {
             withStyle(
