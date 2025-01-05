@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    var moviesRepository : MoviesRepository) : ViewModel() {
+    var moviesRepository : MoviesRepository
+) : ViewModel() {
 
     val moviesList = MutableLiveData<List<Movies>>()
     private var searchJob: Job? = null

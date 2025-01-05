@@ -33,4 +33,9 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
         moviesDao.deleteMovieCart(cartId, userName)
     }
 
+    suspend fun searchMovies(query: String): List<Movies> = withContext(Dispatchers.IO) {
+        val allMovies = moviesDao.getAllMovies().movies
+        return@withContext allMovies.filter { it.name.contains(query, ignoreCase = true) }
+    }
+
 }
