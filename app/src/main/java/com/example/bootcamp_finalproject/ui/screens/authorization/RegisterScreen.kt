@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -74,6 +75,14 @@ fun RegisterScreen(navController: NavController, authViewModel: AuthViewModel) {
             fontWeight = FontWeight.Bold,
             color = Colors.loginRegisterColor
             )
+
+        Spacer(modifier = Modifier.height(5.dp))
+
+        Text(
+            text = "Please fill the informations",
+            fontSize = 16.sp,
+            color = Color.Gray
+        )
 
         Spacer(modifier = Modifier.height(60.dp))
 

@@ -85,6 +85,14 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
             color = Colors.loginRegisterColor
         )
 
+        Spacer(modifier = Modifier.height(5.dp))
+
+        Text(
+            text = "Sign in with your account",
+            fontSize = 16.sp,
+            color = Color.Gray
+        )
+
         Spacer(modifier = Modifier.height(60.dp))
 
         EmailField(
