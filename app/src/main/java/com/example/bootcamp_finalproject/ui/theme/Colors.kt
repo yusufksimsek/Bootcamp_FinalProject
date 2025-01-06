@@ -14,5 +14,6 @@ object Colors {
     val loginRegisterColor = Color(0xFFF3F3F3)
     val barIconColor = Color(0xFFCCCCCC)
     val movieItemColor = Color(0xFFDEDEDE)
+    val searchCartBackground = Color(0xFF1C1C1C)
 
 }
