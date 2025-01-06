@@ -13,5 +13,6 @@ object Colors {
     val barTitleColor = Color(0xFFF2F2F2)
     val loginRegisterColor = Color(0xFFF3F3F3)
     val barIconColor = Color(0xFFCCCCCC)
+    val movieItemColor = Color(0xFFDEDEDE)
 
 }

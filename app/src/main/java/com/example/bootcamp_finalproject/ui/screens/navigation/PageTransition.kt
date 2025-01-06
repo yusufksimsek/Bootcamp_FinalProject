@@ -53,7 +53,11 @@ fun PageTransition(
         }
         composable("mainScreen"){
             isBottomBarVisible.value = true
-            MainScreen(navController = navController, mainViewModel = mainViewModel)
+            MainScreen(
+                navController = navController,
+                mainViewModel = mainViewModel,
+                cartViewModel = cartViewModel
+                )
         }
         composable("favouritesScreen"){
             isBottomBarVisible.value = true

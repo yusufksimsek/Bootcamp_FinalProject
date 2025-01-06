@@ -37,14 +37,14 @@ fun UpcomingMovies() {
             Text(
                 text = "Upcoming Movies",
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 modifier = Modifier.weight(1f),
                 color = Colors.barTitleColor
             )
             Text(
                 text = "2025",
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 color = Colors.barTitleColor
             )
         }

@@ -15,7 +15,7 @@ fun CheckMoviesText() {
     Text(
         text = "Check Movies",
         fontWeight = FontWeight.Bold,
-        fontSize = 18.sp,
+        fontSize = 20.sp,
         modifier = Modifier.padding(6.dp),
         color = Colors.barTitleColor
     )
