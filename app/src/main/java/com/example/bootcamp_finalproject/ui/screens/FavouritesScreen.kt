@@ -3,11 +3,14 @@ package com.example.bootcamp_finalproject.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
@@ -108,10 +111,21 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                                 color = Colors.movieItemColor,
                                 fontWeight = FontWeight.Bold
                             )
-                            Text(
-                                text = "${movie.rating}",
-                                color = Colors.movieItemColor
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.star_icon),
+                                    contentDescription = "Rating star",
+                                    tint = Colors.mainColor,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = movie.rating.toString(),
+                                    color = Colors.movieItemColor
+                                )
+                            }
                         }
                     }
                 }
