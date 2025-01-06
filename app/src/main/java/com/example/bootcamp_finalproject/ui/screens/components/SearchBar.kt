@@ -43,10 +43,10 @@ fun SearchBar(
             singleLine = true,
             textStyle = TextStyle(color = Colors.barTitleColor),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Colors.searchCartBackground,
-                unfocusedContainerColor = Colors.searchCartBackground,
-                focusedIndicatorColor = Colors.searchCartBackground, // Çizgiyi kaldırıyoruz
-                unfocusedIndicatorColor = Colors.searchCartBackground // Çizgiyi kaldırıyoruz
+                focusedContainerColor = Colors.searchCartBackgroundColor,
+                unfocusedContainerColor = Colors.searchCartBackgroundColor,
+                focusedIndicatorColor = Colors.searchCartBackgroundColor, // Çizgiyi kaldırıyoruz
+                unfocusedIndicatorColor = Colors.searchCartBackgroundColor // Çizgiyi kaldırıyoruz
             ),
             trailingIcon = {
                 IconButton(onClick = {
@@ -63,7 +63,7 @@ fun SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
-                .background(Colors.searchCartBackground)
+                .background(Colors.searchCartBackgroundColor)
                 .padding(horizontal = 10.dp)
         )
     }

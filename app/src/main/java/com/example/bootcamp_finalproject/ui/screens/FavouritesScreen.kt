@@ -26,9 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.bootcamp_finalproject.R
+import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -53,6 +57,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
     } else {
         // Favori listesi doluysa filmleri göster
         LazyVerticalGrid(
+            modifier = Modifier.padding(8.dp),
             columns = GridCells.Fixed(count = 2),
         ) {
             items(
@@ -65,7 +70,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                             .padding(8.dp)
                             .fillMaxSize()
                             .clip(RoundedCornerShape(8.dp))
-                            .background(MaterialTheme.colorScheme.surface)
+                            .background(Colors.black)
                     ) {
                         Column(
                             modifier = Modifier
@@ -86,13 +91,12 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                                     onClick = { favouriteViewModel.removeFavouriteMovie(movie) },
                                     modifier = Modifier
                                         .align(Alignment.TopEnd)
-                                        .padding(4.dp)
-                                        .background(Color.Red.copy(alpha = 0.8f), shape = CircleShape)
+                                        .padding(4.dp),
                                 ) {
                                     Icon(
-                                        imageVector = Icons.Default.Delete,
+                                        painter = painterResource(id = R.drawable.delete_icon),
                                         contentDescription = "Remove from favourites",
-                                        tint = Color.White
+                                        tint = Color.Red
                                     )
                                 }
                             }
@@ -100,11 +104,13 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                             Text(
                                 text = movie.name,
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
+                                color = Colors.movieItemColor,
+                                fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = "Rating: ${movie.rating}",
-                                color = Color.Gray
+                                text = "${movie.rating}",
+                                color = Colors.movieItemColor
                             )
                         }
                     }

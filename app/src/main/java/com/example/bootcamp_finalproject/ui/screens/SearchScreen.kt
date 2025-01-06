@@ -83,7 +83,7 @@ fun SearchScreen(
                             .height(150.dp),
                         shape = RoundedCornerShape(12.dp), // Kartın kenarlarını yuvarlıyoruz
                         colors = CardDefaults.cardColors(
-                        containerColor = Colors.searchCartBackground // Kartın arka plan rengini siyah yapıyoruz
+                        containerColor = Colors.cartBackgroundColor // Kartın arka plan rengini siyah yapıyoruz
                         ),
                         elevation = CardDefaults.cardElevation(8.dp),
                     ) {
