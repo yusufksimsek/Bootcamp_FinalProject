@@ -65,7 +65,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 70.dp) // Footer için boşluk bırak
+                    .padding(start = 6.dp, end = 6.dp , top = 6.dp, bottom = 70.dp) // Footer için boşluk bırak
             ) {
                 val movies = moviesList.value ?: listOf()
                 items(
