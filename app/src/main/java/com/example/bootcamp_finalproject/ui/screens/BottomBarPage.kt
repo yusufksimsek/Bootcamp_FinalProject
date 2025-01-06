@@ -15,10 +15,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.screens.navigation.PageTransition
+import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
@@ -114,13 +119,21 @@ fun BottomBarPage(
                                         contentDescription = "Menu"
                                     )
                                 }
-                            }
+                            },
+                            colors = TopAppBarDefaults.topAppBarColors(
+                                containerColor = Colors.backgroundColor,
+                                titleContentColor = Colors.barTitleColor,
+                                navigationIconContentColor = Colors.barTitleColor
+                            )
                         )
                     }
                 },
                 bottomBar = {
                     if (isBottomBarVisible.value) {
-                        BottomAppBar(content = {
+                        BottomAppBar(
+                            containerColor = Colors.backgroundColor,
+                            contentColor = Colors.barTitleColor ,
+                            content = {
                             NavigationBarItem(
                                 selected = secilenItem.value == 0,
                                 onClick = { secilenItem.value = 0 },
@@ -130,7 +143,14 @@ fun BottomBarPage(
                                         painter = painterResource(id = R.drawable.home_icon),
                                         contentDescription = ""
                                     )
-                                })
+                                },
+                                colors = NavigationBarItemDefaults.colors(
+                                    selectedIconColor = Colors.mainColor,
+                                    unselectedIconColor = Colors.barIconColor,
+                                    selectedTextColor = Colors.mainColor,
+                                    unselectedTextColor = Colors.barIconColor
+                                )
+                            )
                             NavigationBarItem(
                                 selected = secilenItem.value == 1,
                                 onClick = { secilenItem.value = 1 },
@@ -140,7 +160,14 @@ fun BottomBarPage(
                                         painter = painterResource(id = R.drawable.search_icon),
                                         contentDescription = ""
                                     )
-                                })
+                                },
+                                colors = NavigationBarItemDefaults.colors(
+                                    selectedIconColor = Colors.mainColor,
+                                    unselectedIconColor = Colors.barIconColor,
+                                    selectedTextColor = Colors.mainColor,
+                                    unselectedTextColor = Colors.barIconColor
+                                )
+                                )
                             NavigationBarItem(
                                 selected = secilenItem.value == 2,
                                 onClick = { secilenItem.value = 2 },
@@ -150,7 +177,14 @@ fun BottomBarPage(
                                         painter = painterResource(id = R.drawable.fav_icon),
                                         contentDescription = ""
                                     )
-                                })
+                                },
+                                colors = NavigationBarItemDefaults.colors(
+                                    selectedIconColor = Colors.mainColor,
+                                    unselectedIconColor = Colors.barIconColor,
+                                    selectedTextColor = Colors.mainColor,
+                                    unselectedTextColor = Colors.barIconColor
+                                )
+                                )
                             NavigationBarItem(
                                 selected = secilenItem.value == 3,
                                 onClick = { secilenItem.value = 3 },
@@ -160,7 +194,14 @@ fun BottomBarPage(
                                         painter = painterResource(id = R.drawable.shop_icon),
                                         contentDescription = ""
                                     )
-                                })
+                                },
+                                colors = NavigationBarItemDefaults.colors(
+                                    selectedIconColor = Colors.mainColor,
+                                    unselectedIconColor = Colors.barIconColor,
+                                    selectedTextColor = Colors.mainColor,
+                                    unselectedTextColor = Colors.barIconColor
+                                )
+                                )
                         }
                         )
                     }

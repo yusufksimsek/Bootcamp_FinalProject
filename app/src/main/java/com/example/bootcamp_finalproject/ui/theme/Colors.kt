@@ -10,6 +10,8 @@ object Colors {
     val buttonColor = Color(0xFFFCC434)
     val backgroundColor = Color(0xFF121212)
     val haveAccountColor = Color(0xFFF2F2F2)
+    val barTitleColor = Color(0xFFF2F2F2)
     val loginRegisterColor = Color(0xFFF3F3F3)
+    val barIconColor = Color(0xFFCCCCCC)
 
 }
