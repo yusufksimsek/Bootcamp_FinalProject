@@ -189,7 +189,6 @@ fun CartScreen(cartViewModel: CartViewModel) {
                     Text(
                         text = "Total",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
                         color = Colors.barTitleColor
                     )
                     Text(
