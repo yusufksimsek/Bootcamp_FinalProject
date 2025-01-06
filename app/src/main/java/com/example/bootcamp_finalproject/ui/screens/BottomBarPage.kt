@@ -89,9 +89,7 @@ fun BottomBarPage(
                     Column(modifier = Modifier.padding(20.dp)) {
                         // Kullanıcı profili (görsel ve isim)
                         Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 40.dp),
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 40.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
@@ -145,6 +143,9 @@ fun BottomBarPage(
                                         contentDescription = "Arrow Icon",
                                         tint = Colors.barTitleColor
                                     )
+                                }
+                                if (index != menuItems.size - 1) { // Son öğe için divider eklemiyoruz
+                                    Divider(color = Colors.dividerColor, thickness = 1.dp)
                                 }
                             }
                         }
