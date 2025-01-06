@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.ui.screens.components.CheckMoviesText
 import com.example.bootcamp_finalproject.ui.screens.components.UpcomingMovies
+import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.google.gson.Gson
 import com.skydoves.landscapist.glide.GlideImage
@@ -43,7 +44,8 @@ fun MainScreen(
     }
 
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+                           .background(Colors.black),
         contentPadding = PaddingValues(8.dp)
     ) {
         item { UpcomingMovies() }
