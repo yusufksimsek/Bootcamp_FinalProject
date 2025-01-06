@@ -2,13 +2,20 @@ package com.example.bootcamp_finalproject.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,8 +38,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -74,39 +83,75 @@ fun BottomBarPage(
     ModalNavigationDrawer(
             drawerState = drawerState,
             drawerContent = {
-                ModalDrawerSheet {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Box(
+                ModalDrawerSheet(
+                    drawerContainerColor = Colors.backgroundColor
+                ) {
+                    Column(modifier = Modifier.padding(20.dp)) {
+                        // Kullanıcı profili (görsel ve isim)
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(bottom = 16.dp)
+                                .padding(bottom = 40.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Image(
+                            Icon(
                                 painter = painterResource(id = R.drawable.person_icon),
                                 contentDescription = "Profile Image",
+                                tint = Colors.white,
                                 modifier = Modifier
-                                    .align(Alignment.TopCenter)
-                                    .size(160.dp)
+                                    .size(50.dp)
+                                    .clip(CircleShape)
+                                    .border(2.dp, Colors.white, CircleShape)
+                            )
+                            Spacer(modifier = Modifier.width(20.dp))
+                            Text(
+                                text = "Guest", // Firebase'den kullanıcı adını al
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Colors.barTitleColor
                             )
                         }
-                        Text(
-                            text = "Settings",
-                            modifier = Modifier
-                                .padding(vertical = 8.dp),
-                            fontSize = 18.sp
+
+                        // Menü öğeleri
+                        val menuItems = listOf(
+                            "Edit Profile" to R.drawable.arrow_right,
+                            "Settings" to R.drawable.arrow_right,
+                            "Change Password" to R.drawable.arrow_right,
+                            "Notification" to R.drawable.arrow_right,
+                            "Download" to R.drawable.arrow_right,
+                            "Security" to R.drawable.arrow_right,
+                            "Help Center" to R.drawable.arrow_right,
+                            "Logout" to R.drawable.arrow_right
                         )
-                        TextButton(onClick = { authViewModel.signOut() }) {
-                            Text(
-                                text = "Logout",
-                                modifier = Modifier
-                                    .padding(vertical = 8.dp),
-                                fontSize = 18.sp
-                            )
+
+                        menuItems.forEachIndexed { index, item ->
+                            Column(modifier = Modifier.padding(6.dp)) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable { /* Tıklama işlemleri */ }
+                                        .padding(vertical = 8.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = item.first,
+                                        fontSize = 20.sp,
+                                        color = Colors.barTitleColor,
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                    Icon(
+                                        modifier = Modifier.size(25.dp),
+                                        painter = painterResource(id = item.second),
+                                        contentDescription = "Arrow Icon",
+                                        tint = Colors.barTitleColor
+                                    )
+                                }
+                            }
                         }
                     }
                 }
-            },
-        ) {
+            }
+    ) {
             Scaffold(
                 topBar = {
                     if (isBottomBarVisible.value) {
