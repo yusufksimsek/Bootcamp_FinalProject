@@ -15,13 +15,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -32,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -111,12 +110,16 @@ fun BottomBarPage(
                 topBar = {
                     if (isBottomBarVisible.value) {
                         TopAppBar(
-                            title = { Text("Movies App", fontSize = 25.sp) },
+                            title = { Text(
+                                    "Movies App",
+                                    fontSize = 25.sp,
+                                    color = Colors.barTitleColor) },
                             navigationIcon = {
                                 IconButton(onClick = { scope.launch { drawerState.open() } }) {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.menu_icon),
-                                        contentDescription = "Menu"
+                                        painter = painterResource(id = R.drawable.menu),
+                                        contentDescription = "Menu",
+                                        modifier = Modifier.size(30.dp)
                                     )
                                 }
                             },
@@ -176,7 +179,7 @@ fun BottomBarPage(
                                 label = { Text(text = "Favourites") },
                                 icon = {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.fav_icon),
+                                        painter = painterResource(id = R.drawable.favourite),
                                         contentDescription = "",
                                         modifier = Modifier.size(25.dp)
                                     )
@@ -194,7 +197,7 @@ fun BottomBarPage(
                                 label = { Text(text = "Cart") },
                                 icon = {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.shop_icon),
+                                        painter = painterResource(id = R.drawable.shop),
                                         contentDescription = "",
                                         modifier = Modifier.size(25.dp)
                                     )
