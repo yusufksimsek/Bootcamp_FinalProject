@@ -45,7 +45,7 @@ fun UpcomingMovies() {
                 text = "2025",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-                color = Colors.barTitleColor
+                color = Colors.mainColor
             )
         }
 
