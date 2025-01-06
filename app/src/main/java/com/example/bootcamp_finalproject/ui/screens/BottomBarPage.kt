@@ -1,6 +1,7 @@
 package com.example.bootcamp_finalproject.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -218,6 +219,7 @@ fun BottomBarPage(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(paddingValues)
+                        .background(Colors.black)
                 ) {
                     if (secilenItem.value == 0) {
                         PageTransition(
