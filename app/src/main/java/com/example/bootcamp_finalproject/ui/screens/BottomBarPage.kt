@@ -140,8 +140,9 @@ fun BottomBarPage(
                                 label = { Text(text = "Home") },
                                 icon = {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.home_icon),
-                                        contentDescription = ""
+                                        painter = painterResource(id = R.drawable.home),
+                                        contentDescription = "",
+                                        modifier = Modifier.size(25.dp)
                                     )
                                 },
                                 colors = NavigationBarItemDefaults.colors(
@@ -157,8 +158,9 @@ fun BottomBarPage(
                                 label = { Text(text = "Search") },
                                 icon = {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.search_icon),
-                                        contentDescription = ""
+                                        painter = painterResource(id = R.drawable.search),
+                                        contentDescription = "",
+                                        modifier = Modifier.size(25.dp)
                                     )
                                 },
                                 colors = NavigationBarItemDefaults.colors(
@@ -175,7 +177,8 @@ fun BottomBarPage(
                                 icon = {
                                     Icon(
                                         painter = painterResource(id = R.drawable.fav_icon),
-                                        contentDescription = ""
+                                        contentDescription = "",
+                                        modifier = Modifier.size(25.dp)
                                     )
                                 },
                                 colors = NavigationBarItemDefaults.colors(
@@ -192,7 +195,8 @@ fun BottomBarPage(
                                 icon = {
                                     Icon(
                                         painter = painterResource(id = R.drawable.shop_icon),
-                                        contentDescription = ""
+                                        contentDescription = "",
+                                        modifier = Modifier.size(25.dp)
                                     )
                                 },
                                 colors = NavigationBarItemDefaults.colors(
