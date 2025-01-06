@@ -109,19 +109,23 @@ fun SearchScreen(
                                 Text(
                                     text = movie.name,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color.White,
+                                    color = Colors.mainColor,
+                                    fontSize = 18.sp
                                 )
                                 Text(
                                     text = "Category: ${movie.category}",
-                                    color = Color.White,
+                                    color = Colors.searchCartTextColor,
+                                    fontSize = 15.sp
                                 )
                                 Text(
                                     text = "Director: ${movie.director}",
-                                    color = Color.White,
+                                    color = Colors.searchCartTextColor,
+                                    fontSize = 15.sp
                                 )
                                 Text(
                                     text = "Rating: ${movie.rating}",
-                                    color = Color.White,
+                                    color = Colors.searchCartTextColor,
+                                    fontSize = 15.sp
                                 )
                             }
 
@@ -129,7 +133,7 @@ fun SearchScreen(
                             Icon(
                                 imageVector = Icons.Default.ArrowForward,
                                 contentDescription = "Arrow Icon",
-                                tint = Color.White,
+                                tint = Colors.barTitleColor,
                                 modifier = Modifier.size(30.dp)
                             )
                         }
