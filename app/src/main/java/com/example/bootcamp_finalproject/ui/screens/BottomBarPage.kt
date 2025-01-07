@@ -32,10 +32,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,6 +56,7 @@ import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,7 +70,11 @@ fun BottomBarPage(
     searchViewModel: SearchViewModel) {
     val authState = authViewModel.authState.observeAsState()
 
+    var userEmail by remember { mutableStateOf("Guest") }
+
     LaunchedEffect(authState.value) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        userEmail = currentUser?.email ?: "Guest"
         when (authState.value) {
             is AuthState.UnAuthenticated -> navController.navigate("loginScreen")
             else -> Unit
@@ -93,17 +100,15 @@ fun BottomBarPage(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
-                                painter = painterResource(id = R.drawable.person_icon),
+                                painter = painterResource(id = R.drawable.person),
                                 contentDescription = "Profile Image",
                                 tint = Colors.white,
                                 modifier = Modifier
-                                    .size(50.dp)
-                                    .clip(CircleShape)
-                                    .border(2.dp, Colors.white, CircleShape)
+                                    .size(60.dp)
                             )
                             Spacer(modifier = Modifier.width(20.dp))
                             Text(
-                                text = "Guest", // Firebase'den kullanıcı adını al
+                                text = userEmail, // Firebase'den kullanıcı adını al
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Colors.drawerItemColor
@@ -127,7 +132,12 @@ fun BottomBarPage(
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .clickable { /* Tıklama işlemleri */ }
+                                        .clickable {
+                                            if (item.first == "Logout") {
+                                                // Çıkış işlemi
+                                                authViewModel.signOut()
+                                            }
+                                        }
                                         .padding(vertical = 8.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
