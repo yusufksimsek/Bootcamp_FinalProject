@@ -491,7 +491,7 @@ fun BackGroundPoster(details: Movies) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(350.dp)
-                .alpha(0.6f) // Arka planın şeffaflığını ayarlayabilirsiniz
+                .alpha(0.5f) // Arka planın şeffaflığını ayarlayabilirsiniz
         )
         Box(
             modifier = Modifier
