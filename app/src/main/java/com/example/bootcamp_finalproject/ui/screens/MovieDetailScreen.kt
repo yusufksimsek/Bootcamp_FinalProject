@@ -26,6 +26,8 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -165,31 +167,68 @@ fun MovieDetailScreen(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.director),
-                            contentDescription = null,
-                            tint = Colors.mainColor,
-                            modifier = Modifier.size(25.dp)
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-                        Text(
-                            text = pullingMovie.director,
-                            color = Colors.moveDetailTitleColor
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-                        Icon(
-                            painter = painterResource(id = R.drawable.category),
-                            contentDescription = null,
-                            tint = Colors.mainColor,
-                            modifier = Modifier.size(22.dp)
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-                        Text(
-                            text = pullingMovie.category,
-                            color = Colors.moveDetailTitleColor
-                        )
+                        // Yönetmen Card
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Colors.cartBackgroundColor),
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .weight(1f), // Dengelemek için
+                            elevation = CardDefaults.cardElevation(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(horizontal = 6.dp, vertical = 8.dp)
+                                    .fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.director),
+                                    contentDescription = null,
+                                    tint = Colors.mainColor,
+                                    modifier = Modifier.size(25.dp)
+                                )
+                                Spacer(modifier = Modifier.width(7.dp))
+                                Text(
+                                    text = pullingMovie.director,
+                                    color = Colors.moveDetailTitleColor
+                                )
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(5.dp))
+
+                        // Kategori Card
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Colors.cartBackgroundColor),
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .width(100.dp)
+                                .weight(1f), // Dengelemek için
+                            elevation = CardDefaults.cardElevation(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(horizontal = 6.dp, vertical = 8.dp)
+                                    .fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.category),
+                                    contentDescription = null,
+                                    tint = Colors.mainColor,
+                                    modifier = Modifier.size(25.dp)
+                                )
+                                Spacer(modifier = Modifier.width(7.dp))
+                                Text(
+                                    text = pullingMovie.category,
+                                    color = Colors.moveDetailTitleColor
+                                )
+                            }
+                        }
                     }
-                    Spacer(modifier = Modifier.size(15.dp))
+                    Spacer(modifier = Modifier.size(5.dp))
                 }
 
                 // Film bilgileri (puan, yıl vs.)
@@ -201,41 +240,95 @@ fun MovieDetailScreen(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.movie_star),
-                            contentDescription = null,
-                            tint = Colors.mainColor,
-                            modifier = Modifier.size(25.dp)
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-                        Text(
-                            text = pullingMovie.rating.toString(),
-                            color = Colors.moveDetailTitleColor
-                        )
-                        Spacer(modifier = Modifier.width(20.dp))
-                        Icon(
-                            painter = painterResource(id = R.drawable.price),
-                            contentDescription = null,
-                            tint = Colors.mainColor,
-                            modifier = Modifier.size(25.dp)
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-                        Text(
-                            text = "${pullingMovie.price}$",
-                            color = Colors.moveDetailTitleColor
-                        )
-                        Spacer(modifier = Modifier.width(20.dp))
-                        Icon(
-                            painter = painterResource(id = R.drawable.calendar),
-                            contentDescription = null,
-                            tint = Colors.mainColor,
-                            modifier = Modifier.size(25.dp)
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-                        Text(
-                            text = pullingMovie.year.toString(),
-                            color = Colors.moveDetailTitleColor
-                        )
+                        // İlk Item
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Colors.cartBackgroundColor),
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .width(100.dp),
+                            elevation = CardDefaults.cardElevation(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(horizontal = 4.dp, vertical = 7.dp)
+                                    .fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.movie_star),
+                                    contentDescription = null,
+                                    tint = Colors.mainColor,
+                                    modifier = Modifier.size(25.dp)
+                                )
+                                Spacer(modifier = Modifier.width(7.dp))
+                                Text(
+                                    text = pullingMovie.rating.toString(),
+                                    color = Colors.moveDetailTitleColor,
+                                    fontSize = 16.sp
+                                )
+                            }
+                        }
+
+                        // İkinci Item
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Colors.cartBackgroundColor),
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .width(100.dp),
+                            elevation = CardDefaults.cardElevation(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(horizontal = 6.dp, vertical = 8.dp)
+                                    .fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.price),
+                                    contentDescription = null,
+                                    tint = Colors.mainColor,
+                                    modifier = Modifier.size(25.dp)
+                                )
+                                Spacer(modifier = Modifier.width(7.dp))
+                                Text(
+                                    text = "${pullingMovie.price}$",
+                                    color = Colors.moveDetailTitleColor,
+                                    fontSize = 16.sp
+                                )
+                            }
+                        }
+
+                        // Üçüncü Item
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = Colors.cartBackgroundColor),
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .width(100.dp),
+                            elevation = CardDefaults.cardElevation(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(horizontal = 6.dp, vertical = 8.dp)
+                                    .fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.calendar),
+                                    contentDescription = null,
+                                    tint = Colors.mainColor,
+                                    modifier = Modifier.size(25.dp)
+                                )
+                                Spacer(modifier = Modifier.width(7.dp))
+                                Text(
+                                    text = pullingMovie.year.toString(),
+                                    color = Colors.moveDetailTitleColor,
+                                    fontSize = 16.sp
+                                )
+                            }
+                        }
                     }
                     Spacer(modifier = Modifier.size(30.dp))
                 }
