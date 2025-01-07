@@ -171,10 +171,9 @@ fun MovieDetailScreen(
                             tint = Colors.mainColor,
                             modifier = Modifier.size(25.dp)
                         )
-                        Spacer(modifier = Modifier.width(2.dp))
+                        Spacer(modifier = Modifier.width(7.dp))
                         Text(
                             text = pullingMovie.director,
-                            modifier = Modifier.padding(start = 6.dp),
                             color = Colors.moveDetailTitleColor
                         )
                         Spacer(modifier = Modifier.width(15.dp))
@@ -187,7 +186,6 @@ fun MovieDetailScreen(
                         Spacer(modifier = Modifier.width(7.dp))
                         Text(
                             text = pullingMovie.category,
-                            Modifier.padding(start = 1.dp),
                             color = Colors.moveDetailTitleColor
                         )
                     }
@@ -203,35 +201,43 @@ fun MovieDetailScreen(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(imageVector = Icons.Filled.Star, contentDescription = null, tint = Color.White)
+                        Icon(
+                            painter = painterResource(id = R.drawable.movie_star),
+                            contentDescription = null,
+                            tint = Colors.mainColor,
+                            modifier = Modifier.size(25.dp)
+                        )
+                        Spacer(modifier = Modifier.width(7.dp))
                         Text(
                             text = pullingMovie.rating.toString(),
-                            modifier = Modifier.padding(start = 6.dp),
-                            color = Color.White
+                            color = Colors.moveDetailTitleColor
                         )
-                        Spacer(modifier = Modifier.width(5.dp))
+                        Spacer(modifier = Modifier.width(20.dp))
                         Icon(
-                            painter = painterResource(id = R.drawable.price_icon),
+                            painter = painterResource(id = R.drawable.price),
                             contentDescription = null,
-                            tint = Color.White
+                            tint = Colors.mainColor,
+                            modifier = Modifier.size(25.dp)
                         )
+                        Spacer(modifier = Modifier.width(7.dp))
                         Text(
                             text = "${pullingMovie.price}$",
-                            Modifier.padding(start = 1.dp),
-                            color = Color.White
+                            color = Colors.moveDetailTitleColor
                         )
-                        Spacer(modifier = Modifier.width(5.dp))
+                        Spacer(modifier = Modifier.width(20.dp))
                         Icon(
-                            imageVector = Icons.Filled.DateRange,
+                            painter = painterResource(id = R.drawable.calendar),
                             contentDescription = null,
-                            tint = Color.White
+                            tint = Colors.mainColor,
+                            modifier = Modifier.size(25.dp)
                         )
+                        Spacer(modifier = Modifier.width(7.dp))
                         Text(
                             text = pullingMovie.year.toString(),
-                            Modifier.padding(start = 6.dp),
-                            color = Color.White
+                            color = Colors.moveDetailTitleColor
                         )
                     }
+                    Spacer(modifier = Modifier.size(30.dp))
                 }
 
                 // Özet başlığı ve içeriği
@@ -255,32 +261,6 @@ fun MovieDetailScreen(
                     }
                     Text(
                         text = pullingMovie.description,
-                        modifier = Modifier.padding(horizontal = 4.dp),
-                        color = Color.White
-                    )
-                }
-
-                // Yönetmen başlığı ve içeriği
-                item {
-                    Row(
-                        modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Person,
-                            contentDescription = "Director",
-                            tint = Color.White
-                        )
-                        Text(
-                            text = "Director",
-                            Modifier.padding(start = 10.dp),
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
-                    }
-                    Text(
-                        text = pullingMovie.director,
                         modifier = Modifier.padding(horizontal = 4.dp),
                         color = Color.White
                     )
