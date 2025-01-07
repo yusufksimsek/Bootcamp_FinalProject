@@ -156,6 +156,44 @@ fun MovieDetailScreen(
                     Spacer(modifier = Modifier.size(15.dp))
                 }
 
+                // Yönetmen ve Kategori bilgisi
+                item {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 2.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.director),
+                            contentDescription = null,
+                            tint = Colors.mainColor,
+                            modifier = Modifier.size(25.dp)
+                        )
+                        Spacer(modifier = Modifier.width(2.dp))
+                        Text(
+                            text = pullingMovie.director,
+                            modifier = Modifier.padding(start = 6.dp),
+                            color = Colors.moveDetailTitleColor
+                        )
+                        Spacer(modifier = Modifier.width(15.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.category),
+                            contentDescription = null,
+                            tint = Colors.mainColor,
+                            modifier = Modifier.size(22.dp)
+                        )
+                        Spacer(modifier = Modifier.width(7.dp))
+                        Text(
+                            text = pullingMovie.category,
+                            Modifier.padding(start = 1.dp),
+                            color = Colors.moveDetailTitleColor
+                        )
+                    }
+                    Spacer(modifier = Modifier.size(15.dp))
+                }
+
                 // Film bilgileri (puan, yıl vs.)
                 item {
                     Row(
