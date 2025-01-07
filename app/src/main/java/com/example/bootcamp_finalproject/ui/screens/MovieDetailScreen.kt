@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -330,7 +331,7 @@ fun MovieDetailScreen(
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.size(15.dp))
+                    Spacer(modifier = Modifier.size(20.dp))
                 }
 
                 // Özet başlığı ve içeriği
@@ -367,18 +368,31 @@ fun MovieDetailScreen(
 
                         Text(
                             text = "Amount: ${amount.value}",
-                            fontSize = 20.sp,
+                            fontSize = 16.sp,
                             color = Color.White
                         )
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            TextButton(onClick = {
+                            TextButton(
+                                onClick = {
                                 if (amount.value > 1) amount.value--
-                            }) {
-                                Text(text = "-")
+                            },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Colors.mainColor
+                                ),
+                                modifier = Modifier.size(30.dp)
+                            ) {
+                                Text(
+                                    text = "-",
+                                    color = Colors.black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 10.sp,
+                                    textAlign = TextAlign.Center
+                                )
                             }
                             Button(onClick = {
                                 cartViewModel.addMovieCart(
@@ -392,14 +406,34 @@ fun MovieDetailScreen(
                                     description = pullingMovie.description,
                                     orderAmount = amount.value,
                                     userName = "yusuf_simsek"
+                                )},
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Colors.mainColor
+                                )) {
+                                Text(
+                                    text = "Add to Cart",
+                                    color = Colors.black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp,
+                                    textAlign = TextAlign.Center
                                 )
-                            }) {
-                                Text(text = "Add to Cart")
                             }
-                            TextButton(onClick = {
+                            TextButton(
+                                onClick = {
                                 amount.value++
-                            }) {
-                                Text(text = "+")
+                            },
+                                colors = ButtonDefaults.buttonColors(
+                                containerColor = Colors.mainColor
+                            ),
+                                modifier = Modifier.size(30.dp)
+                            ) {
+                                Text(
+                                    text = "+",
+                                    color = Colors.black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 10.sp,
+                                    textAlign = TextAlign.Center
+                                    )
                             }
                         }
                     }
