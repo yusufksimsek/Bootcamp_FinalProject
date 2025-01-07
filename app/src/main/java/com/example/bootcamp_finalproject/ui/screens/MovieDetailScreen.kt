@@ -200,7 +200,8 @@ fun MovieDetailScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 2.dp),
-                        horizontalArrangement = Arrangement.Center
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(imageVector = Icons.Filled.Star, contentDescription = null, tint = Color.White)
                         Text(
