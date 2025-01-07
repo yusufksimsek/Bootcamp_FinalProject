@@ -1,6 +1,11 @@
 package com.example.bootcamp_finalproject.ui.screens
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -22,29 +28,38 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.ExperimentalWearMaterialApi
+import androidx.wear.compose.material.FractionalThreshold
+import androidx.wear.compose.material.rememberSwipeableState
+import androidx.wear.compose.material.swipeable
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.skydoves.landscapist.glide.GlideImage
 
+@OptIn(ExperimentalWearMaterialApi::class)
 @Composable
 fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
     val favouriteMoviesList by favouriteViewModel.favouriteMovies.observeAsState(emptyList())
 
     if (favouriteMoviesList.isEmpty()) {
-        // Favori listesi boşsa bir mesaj göster
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -58,22 +73,35 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
             )
         }
     } else {
-        // Favori listesi doluysa filmleri göster
         LazyVerticalGrid(
             modifier = Modifier.padding(8.dp),
             columns = GridCells.Fixed(count = 2),
         ) {
             items(
                 count = favouriteMoviesList.count(),
-                itemContent = {
-                    val movie = favouriteMoviesList[it]
+                itemContent = { index ->
+                    val movie = favouriteMoviesList[index]
                     val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
+
+                    val swipeableState = rememberSwipeableState(0)
+                    val offset = animateFloatAsState(
+                        targetValue = swipeableState.offset.value,
+                        animationSpec = tween(durationMillis = 400, easing = LinearEasing)
+                    ).value
+
                     Box(
                         modifier = Modifier
                             .padding(8.dp)
                             .fillMaxSize()
                             .clip(RoundedCornerShape(8.dp))
-                            .background(Colors.black)
+                            .background(Color.Black)
+                            .swipeable(
+                                state = swipeableState,
+                                anchors = mapOf(0f to 0, 400f to 1), // 200f kaydırma mesafesi
+                                orientation = Orientation.Horizontal,
+                                thresholds = { _, _ -> FractionalThreshold(0.3f) }
+                            )
+                            .offset(x = offset.dp) // Animasyonlu kaydırma
                     ) {
                         Column(
                             modifier = Modifier
@@ -126,6 +154,13 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                                     color = Colors.movieItemColor
                                 )
                             }
+                        }
+                    }
+
+                    // Kaydırma tamamlanınca silme işlemi
+                    LaunchedEffect(swipeableState.offset.value) {
+                        if (swipeableState.offset.value > 350f) { // 350f kaydırma eşiği
+                            favouriteViewModel.removeFavouriteMovie(movie)
                         }
                     }
                 }
