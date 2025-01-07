@@ -54,6 +54,7 @@ import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
+import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.skydoves.landscapist.glide.GlideImage
@@ -149,7 +150,7 @@ fun MovieDetailScreen(
                         modifier = Modifier.fillMaxWidth(),
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        color = Colors.moveDetailTitleColor,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.size(15.dp))

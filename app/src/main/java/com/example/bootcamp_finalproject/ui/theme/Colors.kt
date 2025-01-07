@@ -20,5 +20,6 @@ object Colors {
     val dividerColor = Color(0xFF4A4A4A)
     val drawerItemColor = Color(0xFFF2F2F2)
     val drawerIconColor = Color(0xFFDEDEDE)
+    val moveDetailTitleColor = Color(0xFFF2F2F2)
 
 }
