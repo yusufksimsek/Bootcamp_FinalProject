@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -136,7 +137,9 @@ fun MovieDetailScreen(
             ) {
                 // Ön plan posteri
                 item {
+                    Spacer(modifier = Modifier.size(45.dp))
                     ForegroundPoster(details = pullingMovie)
+                    Spacer(modifier = Modifier.size(45.dp))
                 }
 
                 // Film adı
@@ -149,6 +152,7 @@ fun MovieDetailScreen(
                         color = Color.White,
                         textAlign = TextAlign.Center
                     )
+                    Spacer(modifier = Modifier.size(15.dp))
                 }
 
                 // Film bilgileri (puan, yıl vs.)
