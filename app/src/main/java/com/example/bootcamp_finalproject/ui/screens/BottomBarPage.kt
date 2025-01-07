@@ -88,12 +88,12 @@ fun BottomBarPage(
             ModalDrawerSheet(
                 drawerContainerColor = Colors.backgroundColor
             ) {
-                Column(modifier = Modifier.padding(20.dp)) {
+                Column(modifier = Modifier.padding(10.dp)) {
                     // Kullanıcı profili (görsel ve isim)
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 40.dp),
+                            .padding(start = 10.dp ,top = 30.dp, bottom = 30.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
