@@ -384,16 +384,18 @@ fun MovieDetailScreen(
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = Colors.mainColor
                                 ),
-                                modifier = Modifier.size(30.dp)
+                                modifier = Modifier.size(34.dp),
+                                shape = RoundedCornerShape(6.dp)
                             ) {
                                 Text(
                                     text = "-",
                                     color = Colors.black,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 10.sp,
+                                    fontSize = 16.sp,
                                     textAlign = TextAlign.Center
                                 )
                             }
+                            Spacer(modifier = Modifier.width(5.dp))
                             Button(onClick = {
                                 cartViewModel.addMovieCart(
                                     name = pullingMovie.name,
@@ -409,7 +411,9 @@ fun MovieDetailScreen(
                                 )},
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = Colors.mainColor
-                                )) {
+                                ),
+                                shape = RoundedCornerShape(3.dp)
+                                ) {
                                 Text(
                                     text = "Add to Cart",
                                     color = Colors.black,
@@ -418,6 +422,7 @@ fun MovieDetailScreen(
                                     textAlign = TextAlign.Center
                                 )
                             }
+                            Spacer(modifier = Modifier.width(5.dp))
                             TextButton(
                                 onClick = {
                                 amount.value++
@@ -425,13 +430,14 @@ fun MovieDetailScreen(
                                 colors = ButtonDefaults.buttonColors(
                                 containerColor = Colors.mainColor
                             ),
-                                modifier = Modifier.size(30.dp)
+                                modifier = Modifier.size(34.dp),
+                                shape = RoundedCornerShape(6.dp)
                             ) {
                                 Text(
                                     text = "+",
                                     color = Colors.black,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 10.sp,
+                                    fontSize = 16.sp,
                                     textAlign = TextAlign.Center
                                     )
                             }
