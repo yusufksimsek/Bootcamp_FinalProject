@@ -85,7 +85,6 @@ fun MovieDetailScreen(
         // Arka plan posteri
         BackGroundPoster(details = pullingMovie)
 
-        // Favori ve geri ikonlarını konumlandırma
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -93,39 +92,45 @@ fun MovieDetailScreen(
                 .zIndex(1f) // İkonları üst sıraya taşı
         ) {
             // Geri ikonunu sol üst köşeye yerleştir
-            IconButton(
-                onClick = { navController.popBackStack() },
-                modifier = Modifier.align(Alignment.TopStart)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.back_icon),
-                    contentDescription = "Back",
-                    tint = Color.White
-                )
-            }
-
-            // Favori ikonunu sağ üst köşeye yerleştir
-            IconButton(
-                onClick = {
-                    val favouriteMovie = FavouriteMovie(
-                        id = pullingMovie.id,
-                        name = pullingMovie.name,
-                        image = pullingMovie.image,
-                        category = pullingMovie.category,
-                        rating = pullingMovie.rating,
-                        year = pullingMovie.year,
-                        director = pullingMovie.director,
-                        description = pullingMovie.description
+                IconButton(
+                    onClick = { navController.popBackStack() }
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.back),
+                        contentDescription = "Back",
+                        tint = Color.White,
+                        modifier = Modifier.size(30.dp)
                     )
-                    favouriteViewModel.toggleFavourite(movie = favouriteMovie)
-                },
-                modifier = Modifier.align(Alignment.TopEnd)
-            ) {
-                Icon(
-                    imageVector = if (isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                    contentDescription = "Toggle Favorite",
-                    tint = if (isFavourite) Color.Red else Color.White
-                )
+                }
+
+                // Favori ikonunu sağ tarafa yerleştir
+                IconButton(
+                    onClick = {
+                        val favouriteMovie = FavouriteMovie(
+                            id = pullingMovie.id,
+                            name = pullingMovie.name,
+                            image = pullingMovie.image,
+                            category = pullingMovie.category,
+                            rating = pullingMovie.rating,
+                            year = pullingMovie.year,
+                            director = pullingMovie.director,
+                            description = pullingMovie.description
+                        )
+                        favouriteViewModel.toggleFavourite(movie = favouriteMovie)
+                    }
+                ) {
+                    Icon(
+                        imageVector = if (isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = "Toggle Favorite",
+                        tint = if (isFavourite) Color.Red else Color.White,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
             }
         }
 
