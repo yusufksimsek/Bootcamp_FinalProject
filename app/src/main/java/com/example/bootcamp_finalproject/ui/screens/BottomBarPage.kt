@@ -100,33 +100,31 @@ fun BottomBarPage(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
-                                painter = painterResource(id = R.drawable.person),
+                                painter = painterResource(id = R.drawable.user_icon),
                                 contentDescription = "Profile Image",
-                                tint = Colors.white,
+                                tint = Colors.drawerIconColor,
                                 modifier = Modifier
-                                    .size(60.dp)
+                                    .size(40.dp)
                             )
                             Spacer(modifier = Modifier.width(20.dp))
                             Text(
                                 text = userEmail, // Firebase'den kullanıcı adını al
-                                fontSize = 20.sp,
+                                fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Colors.drawerItemColor
                             )
                         }
-
-                        // Menü öğeleri
+                        // Menü öğeleri ve ilgili ikonları
                         val menuItems = listOf(
-                            "Edit Profile" to R.drawable.arrow_right,
-                            "Settings" to R.drawable.arrow_right,
-                            "Change Password" to R.drawable.arrow_right,
-                            "Notification" to R.drawable.arrow_right,
-                            "Download" to R.drawable.arrow_right,
-                            "Security" to R.drawable.arrow_right,
-                            "Help Center" to R.drawable.arrow_right,
-                            "Logout" to R.drawable.arrow_right
+                            "Edit Profile" to R.drawable.edit_profile_icon,
+                            "Settings" to R.drawable.settings_icon,
+                            "Change Password" to R.drawable.password_icon,
+                            "Notification" to R.drawable.notification_icon,
+                            "Download" to R.drawable.download_icon,
+                            "Security" to R.drawable.security_icon,
+                            "Help Center" to R.drawable.help_icon,
+                            "Logout" to R.drawable.logout_icon
                         )
-
                         menuItems.forEachIndexed { index, item ->
                             Column(modifier = Modifier.padding(6.dp)) {
                                 Row(
@@ -141,15 +139,28 @@ fun BottomBarPage(
                                         .padding(vertical = 8.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
+                                    // Sol tarafta ikon
+                                    Icon(
+                                        painter = painterResource(id = item.second),
+                                        contentDescription = "${item.first} Icon",
+                                        tint = Colors.drawerIconColor,
+                                        modifier = Modifier
+                                            .size(25.dp)
+                                            .padding(end = 10.dp) // İkon ile metin arasında boşluk
+                                    )
+
+                                    // Menü metni
                                     Text(
                                         text = item.first,
-                                        fontSize = 20.sp,
+                                        fontSize = 16.sp,
                                         color = Colors.drawerItemColor,
                                         modifier = Modifier.weight(1f)
                                     )
+
+                                    // Sağ tarafta ok ikonu
                                     Icon(
-                                        modifier = Modifier.size(25.dp),
-                                        painter = painterResource(id = item.second),
+                                        modifier = Modifier.size(20.dp),
+                                        painter = painterResource(id = R.drawable.arrow_right),
                                         contentDescription = "Arrow Icon",
                                         tint = Colors.drawerIconColor
                                     )
@@ -174,7 +185,7 @@ fun BottomBarPage(
                             navigationIcon = {
                                 IconButton(onClick = { scope.launch { drawerState.open() } }) {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.menu),
+                                        painter = painterResource(id = R.drawable.drawer_icon),
                                         contentDescription = "Menu",
                                         modifier = Modifier.size(30.dp)
                                     )
