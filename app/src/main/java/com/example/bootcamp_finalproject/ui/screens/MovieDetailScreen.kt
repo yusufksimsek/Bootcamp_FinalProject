@@ -330,33 +330,31 @@ fun MovieDetailScreen(
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.size(30.dp))
+                    Spacer(modifier = Modifier.size(15.dp))
                 }
 
                 // Özet başlığı ve içeriği
                 item {
                     Row(
                         modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.Start
                     ) {
-                        Icon(
-                            imageVector = Icons.Filled.Info,
-                            contentDescription = "Summary",
-                            tint = Color.White
-                        )
                         Text(
                             text = "Summary",
-                            Modifier.padding(start = 10.dp),
-                            fontSize = 18.sp,
+                            Modifier
+                                .padding(start = 10.dp)
+                                .fillMaxWidth(),
+                            fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.White
+                            color = Colors.moveDetailTitleColor
                         )
                     }
                     Text(
                         text = pullingMovie.description,
-                        modifier = Modifier.padding(horizontal = 4.dp),
-                        color = Color.White
+                        modifier = Modifier.padding(horizontal = 10.dp),
+                        color = Colors.moveDetailTitleColor
                     )
+                    Spacer(modifier = Modifier.size(20.dp))
                 }
 
                 // Miktar seçimi ve sepete ekleme
