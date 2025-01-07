@@ -53,6 +53,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
@@ -76,62 +77,57 @@ fun MovieDetailScreen(
         favouriteViewModel.isMovieFavourite(pullingMovie.id)
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Movie Details",
-                        color = Color.White,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.back_icon),
-                            contentDescription = "Back",
-                            tint = Color.White
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = {
-                        val favouriteMovie = FavouriteMovie(
-                            id = pullingMovie.id,
-                            name = pullingMovie.name,
-                            image = pullingMovie.image,
-                            category = pullingMovie.category,
-                            rating = pullingMovie.rating,
-                            year = pullingMovie.year,
-                            director = pullingMovie.director,
-                            description = pullingMovie.description
-                        )
-                        favouriteViewModel.toggleFavourite(movie = favouriteMovie)
-                    }) {
-                        Icon(
-                            imageVector = if (isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                            contentDescription = "Toggle Favorite",
-                            tint = if (isFavourite) Color.Red else Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Black
-                ),
-                modifier = Modifier.height(65.dp)
-            )
-        }
-    ) { innerPadding ->
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+    ) {
+        // Arka plan posteri
+        BackGroundPoster(details = pullingMovie)
+
+        // Favori ve geri ikonlarını konumlandırma
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black)
-                .padding(innerPadding)
+                .fillMaxWidth()
+                .padding(16.dp)
+                .zIndex(1f) // İkonları üst sıraya taşı
         ) {
-            // Arka plan posteri
-            BackGroundPoster(details = pullingMovie)
+            // Geri ikonunu sol üst köşeye yerleştir
+            IconButton(
+                onClick = { navController.popBackStack() },
+                modifier = Modifier.align(Alignment.TopStart)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.back_icon),
+                    contentDescription = "Back",
+                    tint = Color.White
+                )
+            }
+
+            // Favori ikonunu sağ üst köşeye yerleştir
+            IconButton(
+                onClick = {
+                    val favouriteMovie = FavouriteMovie(
+                        id = pullingMovie.id,
+                        name = pullingMovie.name,
+                        image = pullingMovie.image,
+                        category = pullingMovie.category,
+                        rating = pullingMovie.rating,
+                        year = pullingMovie.year,
+                        director = pullingMovie.director,
+                        description = pullingMovie.description
+                    )
+                    favouriteViewModel.toggleFavourite(movie = favouriteMovie)
+                },
+                modifier = Modifier.align(Alignment.TopEnd)
+            ) {
+                Icon(
+                    imageVector = if (isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    contentDescription = "Toggle Favorite",
+                    tint = if (isFavourite) Color.Red else Color.White
+                )
+            }
+        }
 
             // LazyColumn, içeriği arka planın üzerine yerleştiriyor
             LazyColumn(
@@ -447,7 +443,6 @@ fun MovieDetailScreen(
             }
         }
     }
-}
 
 @Composable
 fun ForegroundPoster(details: Movies) {
