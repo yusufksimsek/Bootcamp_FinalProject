@@ -106,7 +106,7 @@ fun BottomBarPage(
                                 text = "Guest", // Firebase'den kullanıcı adını al
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Colors.barTitleColor
+                                color = Colors.drawerItemColor
                             )
                         }
 
@@ -134,14 +134,14 @@ fun BottomBarPage(
                                     Text(
                                         text = item.first,
                                         fontSize = 20.sp,
-                                        color = Colors.barTitleColor,
+                                        color = Colors.drawerItemColor,
                                         modifier = Modifier.weight(1f)
                                     )
                                     Icon(
                                         modifier = Modifier.size(25.dp),
                                         painter = painterResource(id = item.second),
                                         contentDescription = "Arrow Icon",
-                                        tint = Colors.barTitleColor
+                                        tint = Colors.drawerIconColor
                                     )
                                 }
                                 if (index != menuItems.size - 1) { // Son öğe için divider eklemiyoruz

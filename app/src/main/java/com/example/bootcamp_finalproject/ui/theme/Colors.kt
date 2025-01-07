@@ -18,5 +18,7 @@ object Colors {
     val searchCartBackgroundColor = Color(0xFF1C1C1C)
     val searchCartTextColor = Color(0xFFF2F2F2)
     val dividerColor = Color(0xFF4A4A4A)
+    val drawerItemColor = Color(0xFFF2F2F2)
+    val drawerIconColor = Color(0xFFDEDEDE)
 
 }
