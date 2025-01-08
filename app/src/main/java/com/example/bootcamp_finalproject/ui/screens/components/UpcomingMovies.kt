@@ -92,7 +92,8 @@ fun SnapAlignedLazyRow(modifier: Modifier = Modifier, items: List<Item>) {
     LazyRow(
         modifier = modifier,
         state = lazyListState,
-        contentPadding = PaddingValues(horizontal = 8.dp)
+        contentPadding = PaddingValues(horizontal = 2.dp),
+        horizontalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         items(items.size) { index ->
             // offset hesaplamasını derivedStateOf ile yapıyoruz
