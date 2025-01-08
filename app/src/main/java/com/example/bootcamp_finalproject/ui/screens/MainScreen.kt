@@ -45,6 +45,7 @@ import com.example.bootcamp_finalproject.ui.screens.components.UpcomingMovies
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -155,7 +156,7 @@ fun MainScreen(
                                                 director = movie.director,
                                                 description = movie.description,
                                                 orderAmount = 1,
-                                                userName = "yusuf_simsek"
+                                                userName = FirebaseAuth.getInstance().currentUser?.email.toString()
                                             )
                                         },
                                         modifier = Modifier

@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.sp
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun CartScreen(cartViewModel: CartViewModel) {
@@ -71,7 +72,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
     }
 
     LaunchedEffect(key1 = true) {
-        cartViewModel.getMovieCart("yusuf_simsek")
+        cartViewModel.getMovieCart(FirebaseAuth.getInstance().currentUser?.email.toString())
     }
 
     if (moviesList.value.isNullOrEmpty()) {
@@ -185,7 +186,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
 
                                 // Delete Icon Section
                                 IconButton(onClick = {
-                                    cartViewModel.deleteMovieCart(movie.cartId, "yusuf_simsek")
+                                    cartViewModel.deleteMovieCart(movie.cartId, FirebaseAuth.getInstance().currentUser?.email.toString())
                                 }) {
                                     Icon(
                                         painter = painterResource(id = R.drawable.delete_icon),
