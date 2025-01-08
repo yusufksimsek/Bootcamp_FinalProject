@@ -71,7 +71,7 @@ fun BottomBarPage(
         val currentUser = FirebaseAuth.getInstance().currentUser
         userEmail = currentUser?.email ?: "Guest"
         when (authState.value) {
-            is AuthState.UnAuthenticated -> navController.navigate("loginScreen")
+            is AuthState.UnAuthenticated -> navController.navigate("authenticationScreen")
             else -> Unit
         }
     }

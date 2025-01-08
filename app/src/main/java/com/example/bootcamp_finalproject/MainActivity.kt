@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     isBottomBarVisible = isBottomBarVisible,
                     cartViewModel = cartViewModel,
                     favouriteViewModel = favouriteViewModel,
-                    selectedPage = "loginScreen")
+                    selectedPage = "authenticationScreen")
             }
         }
     }

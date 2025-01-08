@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
+import com.example.bootcamp_finalproject.ui.screens.authorization.AuthenticationScreen
 import com.example.bootcamp_finalproject.ui.screens.BottomBarPage
 import com.example.bootcamp_finalproject.ui.screens.CartScreen
 import com.example.bootcamp_finalproject.ui.screens.FavouritesScreen
@@ -45,6 +46,10 @@ fun PageTransition(
                 favouriteViewModel = favouriteViewModel
                 )
         }
+        composable("authenticationScreen"){
+            AuthenticationScreen(navController)
+        }
+
         composable("loginScreen"){
             LoginScreen(navController = navController, authViewModel = authViewModel)
         }
