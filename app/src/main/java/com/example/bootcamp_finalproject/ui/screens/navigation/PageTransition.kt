@@ -47,7 +47,7 @@ fun PageTransition(
                 )
         }
         composable("authenticationScreen"){
-            AuthenticationScreen(navController)
+            AuthenticationScreen(navController = navController, authViewModel = authViewModel)
         }
 
         composable("loginScreen"){
