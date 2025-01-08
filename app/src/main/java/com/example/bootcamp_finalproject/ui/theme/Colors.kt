@@ -21,5 +21,6 @@ object Colors {
     val drawerItemColor = Color(0xFFF2F2F2)
     val drawerIconColor = Color(0xFFDEDEDE)
     val moveDetailTitleColor = Color(0xFFF2F2F2)
+    val favDeletionColor = Color(0xE1C20505)
 
 }

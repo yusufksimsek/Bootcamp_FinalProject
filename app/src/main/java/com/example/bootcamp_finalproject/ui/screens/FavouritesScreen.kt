@@ -96,7 +96,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                             .padding(8.dp)
                             .fillMaxSize()
                             .clip(RoundedCornerShape(8.dp))
-                            .background(if (isRemoved) Color.Red else Color.Black)
+                            .background(if (isRemoved) Colors.favDeletionColor else Colors.black)
                             .swipeable(
                                 state = swipeableState,
                                 anchors = mapOf(0f to 0, 400f to 1), // 200f kaydırma mesafesi
