@@ -32,7 +32,7 @@ fun SlidingBackgroundImage() {
 
     val gradientColor = Brush.verticalGradient(
         listOf(
-            Color(0x2000000),
+            Color(0x20000000),
             Color(0x80000000),
             Color(0xE6000000),
         )
@@ -53,7 +53,7 @@ fun SlidingBackgroundImage() {
     positionX = slidingAnimation * 1000
 
     Image(
-        painter = painterResource(id = R.drawable.movie_posters),
+        painter = painterResource(id = R.drawable.onboarding_background),
         contentDescription = "Background Image",
         modifier = Modifier
             .fillMaxSize()

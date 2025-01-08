@@ -84,9 +84,9 @@ fun MainScreen(
                             .weight(1f)
                             .background(Colors.black)
                             .padding(4.dp),
-                        shape = RoundedCornerShape(5.dp), // Kartın kenarlarını yuvarlıyoruz
+                        shape = RoundedCornerShape(5.dp), // Kartın kenarları yuvarlak
                         colors = CardDefaults.cardColors(
-                            containerColor = Colors.black // Kartın arka plan rengini siyah yapıyoruz
+                            containerColor = Colors.black // Kartın arka plan rengi siyah
                         ),
                         elevation = CardDefaults.cardElevation(8.dp),
                     ) {
