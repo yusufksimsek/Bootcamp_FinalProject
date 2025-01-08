@@ -63,8 +63,9 @@ fun LoginScreen(navController: NavController, authViewModel: AuthViewModel) {
     val isLoading = remember { mutableStateOf(false) }
 
     LaunchedEffect(authState.value) {
+        isLoading.value = authState.value is AuthState.Loading
         when (authState.value) {
-            is AuthState.Loading -> isLoading.value = true
+            is AuthState.Loading -> Unit
             is AuthState.Authenticated -> navController.navigate("bottomBarPage")
             is AuthState.Error -> Toast.makeText(
                 context,
