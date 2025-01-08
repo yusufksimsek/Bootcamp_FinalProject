@@ -99,7 +99,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                             .background(if (isRemoved) Colors.favDeletionColor else Colors.black)
                             .swipeable(
                                 state = swipeableState,
-                                anchors = mapOf(0f to 0, 400f to 1), // 200f kaydırma mesafesi
+                                anchors = mapOf(0f to 0, 500f to 1), // 200f kaydırma mesafesi
                                 orientation = Orientation.Horizontal,
                                 thresholds = { _, _ -> FractionalThreshold(0.3f) }
                             )
@@ -179,7 +179,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
 
                     // Kaydırma tamamlanınca silme işlemi
                     LaunchedEffect(swipeableState.offset.value) {
-                        if (swipeableState.offset.value > 350f) { // 350f kaydırma eşiği
+                        if (swipeableState.offset.value > 450f) { // 450f kaydırma eşiği
                             favouriteViewModel.removeFavouriteMovie(movie)
                         }
                     }
