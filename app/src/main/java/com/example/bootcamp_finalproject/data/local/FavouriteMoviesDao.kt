@@ -11,10 +11,10 @@ import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMo
 @Dao
 interface FavouriteMoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(movie: FavouriteMovie)
+    suspend fun insert(movie: FavouriteMovie)
 
     @Delete
-    fun delete(movie: FavouriteMovie)
+    suspend fun delete(movie: FavouriteMovie)
 
     @Query("SELECT * FROM favourite_movies")
     fun getAllFavouriteMovies(): LiveData<List<FavouriteMovie>>

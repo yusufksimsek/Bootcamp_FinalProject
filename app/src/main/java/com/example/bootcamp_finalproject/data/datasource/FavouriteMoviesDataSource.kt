@@ -9,11 +9,11 @@ class FavouriteMoviesDataSource(private val favouriteMoviesDao: FavouriteMoviesD
         return favouriteMoviesDao.getAllFavouriteMovies()
     }
 
-    fun insertFavouriteMovie(movie: FavouriteMovie) {
+    suspend fun insertFavouriteMovie(movie: FavouriteMovie) {
         favouriteMoviesDao.insert(movie)
     }
 
-    fun deleteFavouriteMovie(movie: FavouriteMovie) {
+    suspend fun deleteFavouriteMovie(movie: FavouriteMovie) {
         favouriteMoviesDao.delete(movie)
     }
 }

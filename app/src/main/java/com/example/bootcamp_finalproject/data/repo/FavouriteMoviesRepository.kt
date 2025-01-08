@@ -9,11 +9,11 @@ class FavouriteMoviesRepository(private val dataSource: FavouriteMoviesDataSourc
         return dataSource.getAllFavouriteMovies()
     }
 
-    fun addFavouriteMovie(movie: FavouriteMovie) {
+    suspend fun addFavouriteMovie(movie: FavouriteMovie) {
         dataSource.insertFavouriteMovie(movie)
     }
 
-    fun removeFavouriteMovie(movie: FavouriteMovie) {
+    suspend fun removeFavouriteMovie(movie: FavouriteMovie) {
         dataSource.deleteFavouriteMovie(movie)
     }
 }
