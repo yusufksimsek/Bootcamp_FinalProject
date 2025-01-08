@@ -86,6 +86,7 @@ fun PageTransition(
                 pullingMovie = movieObject,
                 cartViewModel = cartViewModel,
                 favouriteViewModel = favouriteViewModel,
+                mainViewModel = mainViewModel,
                 navController = navController)
         }
     }

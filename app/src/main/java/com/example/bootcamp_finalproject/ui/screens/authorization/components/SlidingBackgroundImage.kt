@@ -53,7 +53,7 @@ fun SlidingBackgroundImage() {
     positionX = slidingAnimation * 1000
 
     Image(
-        painter = painterResource(id = R.drawable.poster_2),
+        painter = painterResource(id = R.drawable.movie_posters),
         contentDescription = "Background Image",
         modifier = Modifier
             .fillMaxSize()

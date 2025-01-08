@@ -26,5 +26,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun getMoviesByCategory(category: String): List<Movies> {
+        return moviesList.value?.filter { it.category.equals(category, ignoreCase = true) } ?: emptyList()
+    }
+
 
 }
