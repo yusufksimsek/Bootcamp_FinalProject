@@ -1,6 +1,7 @@
 package com.example.bootcamp_finalproject.ui.screens.navigation
 
 import MainScreen
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.navigation.NavType

@@ -1,6 +1,6 @@
 package com.example.bootcamp_finalproject.ui.screens
 
-import android.widget.Toast
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -30,6 +30,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,6 +40,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -56,6 +59,7 @@ import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.landscapist.glide.GlideImage
+import kotlinx.coroutines.launch
 
 @Composable
 fun CartScreen(cartViewModel: CartViewModel) {
@@ -65,7 +69,10 @@ fun CartScreen(cartViewModel: CartViewModel) {
     var previousScrollOffset by remember { mutableIntStateOf(0) }
     var isFooterVisible by remember { mutableStateOf(true) }
 
-    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    // SnackbarHostState to show messages
+    val snackbarHostState = remember { SnackbarHostState() }
 
     // Liste kaydırma durumunu takip ederek görünürlüğü güncelle
     LaunchedEffect(listState) {
@@ -195,18 +202,16 @@ fun CartScreen(cartViewModel: CartViewModel) {
                                         movie.cartId,
                                         FirebaseAuth.getInstance().currentUser?.email.toString(),
                                         onSuccess = {
-                                            Toast.makeText(
-                                                context,
-                                                "Movie removed from your cart!",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                            // Show success Snackbar
+                                            scope.launch {
+                                                snackbarHostState.showSnackbar("Movie deleted successfully!")
+                                            }
                                         },
                                         onFailure = {
-                                            Toast.makeText(
-                                                context,
-                                                "Failure!",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                            // Show failure Snackbar
+                                            scope.launch {
+                                                snackbarHostState.showSnackbar("Failed to delete movie. Please try again.")
+                                            }
                                         }
                                     )
                                 }) {
@@ -268,6 +273,16 @@ fun CartScreen(cartViewModel: CartViewModel) {
                         )
                     }
                 }
+            }
+
+            // Snackbar Host at the bottom
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 10.dp), // Add padding to move it up a little
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                SnackbarHost(hostState = snackbarHostState)
             }
         }
     }
