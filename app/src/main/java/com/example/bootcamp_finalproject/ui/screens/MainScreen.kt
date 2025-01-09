@@ -172,7 +172,7 @@ fun MainScreen(
                                                 )
                                             },
                                             modifier = Modifier
-                                                .width(45.dp)
+                                                .width(70.dp)
                                                 .height(22.dp)
                                         ) {
                                             Text(
