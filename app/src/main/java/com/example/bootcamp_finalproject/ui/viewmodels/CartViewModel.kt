@@ -50,30 +50,35 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
     fun addMovieCart(
         name: String, image: String, price: Int, category: String, rating: Double, year: Int,
         director: String, description: String, orderAmount: Int, userName: String,
-        onSuccess: () -> Unit, onFailure: () -> Unit
+        onSuccess: () -> Unit,
     ) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                // Sepeti al
                 val movieCartList = moviesRepository.getMovieCart(userName)
 
                 // Film zaten sepette var mı kontrol et
-                val movieExists = movieCartList.any { it.name == name }
+                val existingMovie = movieCartList.find { it.name == name }
 
-                if (!movieExists) {
-                    // Film yoksa, sepete ekle
-                    moviesRepository.addMovieCart(name, image, price, category, rating, year,
-                        director, description, orderAmount, userName)
-                    // Başarı durumunda
-                    onSuccess()
-                    // Sepet güncellenmiş listeyi al
-                    getMovieCart(userName)
+                if (existingMovie != null) {
+                    // Film zaten sepette, önce sil, sonra yeni miktarla ekle
+                    moviesRepository.deleteMovieCart(existingMovie.cartId, userName)
+                    val newAmount = existingMovie.orderAmount + orderAmount
+                    moviesRepository.addMovieCart(
+                        name, image, price, category, rating, year,
+                        director, description, newAmount, userName
+                    )
                 } else {
-                    // Film zaten sepette olduğu için uyarı verebilirsiniz
-                    onFailure()
+                    // Film yoksa, doğrudan ekle
+                    moviesRepository.addMovieCart(
+                        name, image, price, category, rating, year,
+                        director, description, orderAmount, userName
+                    )
                 }
+
+                onSuccess()
+                getMovieCart(userName)
             } catch (e: Exception) {
-                // Hata durumu
+
             }
         }
     }

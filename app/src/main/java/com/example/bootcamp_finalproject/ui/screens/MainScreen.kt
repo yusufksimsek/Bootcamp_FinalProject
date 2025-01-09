@@ -169,11 +169,6 @@ fun MainScreen(
                                                             snackbarHostState.showSnackbar("Movie added to your cart successfully.")
                                                         }
                                                     },
-                                                    onFailure = {
-                                                        scope.launch {
-                                                            snackbarHostState.showSnackbar("This movie is already in your cart!")
-                                                        }
-                                                    }
                                                 )
                                             },
                                             modifier = Modifier

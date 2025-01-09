@@ -418,9 +418,6 @@ fun MovieDetailScreen(
                                     onSuccess = {
                                         Toast.makeText(context, "Movie added to your cart successfully.", Toast.LENGTH_SHORT).show()
                                     },
-                                    onFailure = {
-                                        Toast.makeText(context, "This movie is already in your cart!", Toast.LENGTH_SHORT).show()
-                                    }
                                 )
                             },
                             colors = ButtonDefaults.buttonColors(
