@@ -19,14 +19,15 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
         getMovieCart(userName = "yusuf_simsek")
     }
 
-    fun deleteMovieCart(cartId: Int, userName: String){
+    fun deleteMovieCart(cartId: Int, userName: String,onSuccess: () -> Unit, onFailure: () -> Unit){
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 moviesRepository.deleteMovieCart(cartId, userName)
                 val updatedList = moviesList.value?.filter { it.cartId != cartId }
+                onSuccess()
                 moviesList.value = updatedList ?: listOf()
             } catch (e: Exception) {
-                // Hata durumu
+                onFailure()
             }
         }
     }

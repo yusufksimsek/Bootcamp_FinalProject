@@ -1,5 +1,6 @@
 package com.example.bootcamp_finalproject.ui.screens
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -44,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,6 +56,7 @@ import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.skydoves.landscapist.glide.GlideImage
+
 @Composable
 fun CartScreen(cartViewModel: CartViewModel) {
     val moviesList = cartViewModel.moviesList.observeAsState(listOf())
@@ -61,6 +64,8 @@ fun CartScreen(cartViewModel: CartViewModel) {
     val density = LocalDensity.current
     var previousScrollOffset by remember { mutableIntStateOf(0) }
     var isFooterVisible by remember { mutableStateOf(true) }
+
+    val context = LocalContext.current
 
     // Liste kaydırma durumunu takip ederek görünürlüğü güncelle
     LaunchedEffect(listState) {
@@ -94,7 +99,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
                 state = listState,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 6.dp, end = 6.dp , top = 6.dp)
+                    .padding(start = 6.dp, end = 6.dp, top = 6.dp)
             ) {
                 val movies = moviesList.value ?: listOf()
                 items(
@@ -186,7 +191,24 @@ fun CartScreen(cartViewModel: CartViewModel) {
 
                                 // Delete Icon Section
                                 IconButton(onClick = {
-                                    cartViewModel.deleteMovieCart(movie.cartId, FirebaseAuth.getInstance().currentUser?.email.toString())
+                                    cartViewModel.deleteMovieCart(
+                                        movie.cartId,
+                                        FirebaseAuth.getInstance().currentUser?.email.toString(),
+                                        onSuccess = {
+                                            Toast.makeText(
+                                                context,
+                                                "Movie removed from your cart!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        },
+                                        onFailure = {
+                                            Toast.makeText(
+                                                context,
+                                                "Failure!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    )
                                 }) {
                                     Icon(
                                         painter = painterResource(id = R.drawable.delete_icon),
