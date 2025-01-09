@@ -1,3 +1,4 @@
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,6 +34,7 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,6 +58,7 @@ fun MainScreen(
     cartViewModel: CartViewModel,
 ) {
     val moviesList = mainViewModel.moviesList.observeAsState(listOf())
+    val context = LocalContext.current
 
     LaunchedEffect(key1 = true) {
         mainViewModel.loadMovies()
@@ -156,7 +159,13 @@ fun MainScreen(
                                                 director = movie.director,
                                                 description = movie.description,
                                                 orderAmount = 1,
-                                                userName = FirebaseAuth.getInstance().currentUser?.email.toString()
+                                                userName = FirebaseAuth.getInstance().currentUser?.email.toString(),
+                                                onSuccess = {
+                                                    Toast.makeText(context, "Movie added to your cart successfully.", Toast.LENGTH_SHORT).show()
+                                                },
+                                                onFailure = {
+                                                    Toast.makeText(context, "This movie is already in your cart!", Toast.LENGTH_SHORT).show()
+                                                }
                                             )
                                         },
                                         modifier = Modifier

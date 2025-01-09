@@ -1,6 +1,7 @@
 package com.example.bootcamp_finalproject.ui.screens
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,6 +43,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -68,6 +70,8 @@ fun MovieDetailScreen(
     navController: NavController
 ) {
     val amount = remember { mutableStateOf(1) }
+
+    val context = LocalContext.current
 
     val similarMovies = remember {
         mainViewModel.getMoviesByCategory(pullingMovie.category).filter { it.id != pullingMovie.id }
@@ -410,7 +414,13 @@ fun MovieDetailScreen(
                                     director = pullingMovie.director,
                                     description = pullingMovie.description,
                                     orderAmount = amount.value,
-                                    userName = FirebaseAuth.getInstance().currentUser?.email.toString()
+                                    userName = FirebaseAuth.getInstance().currentUser?.email.toString(),
+                                    onSuccess = {
+                                        Toast.makeText(context, "Movie added to your cart successfully.", Toast.LENGTH_SHORT).show()
+                                    },
+                                    onFailure = {
+                                        Toast.makeText(context, "This movie is already in your cart!", Toast.LENGTH_SHORT).show()
+                                    }
                                 )
                             },
                             colors = ButtonDefaults.buttonColors(

@@ -48,7 +48,8 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
 
     fun addMovieCart(
         name: String, image: String, price: Int, category: String, rating: Double, year: Int,
-        director: String, description: String, orderAmount: Int, userName: String
+        director: String, description: String, orderAmount: Int, userName: String,
+        onSuccess: () -> Unit, onFailure: () -> Unit
     ) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -62,11 +63,13 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
                     // Film yoksa, sepete ekle
                     moviesRepository.addMovieCart(name, image, price, category, rating, year,
                         director, description, orderAmount, userName)
+                    // Başarı durumunda
+                    onSuccess()
                     // Sepet güncellenmiş listeyi al
                     getMovieCart(userName)
                 } else {
                     // Film zaten sepette olduğu için uyarı verebilirsiniz
-                    // Örneğin: "Film zaten sepette!"
+                    onFailure()
                 }
             } catch (e: Exception) {
                 // Hata durumu
