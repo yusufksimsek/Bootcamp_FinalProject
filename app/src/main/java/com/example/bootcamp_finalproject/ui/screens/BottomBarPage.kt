@@ -50,6 +50,7 @@ import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.SearchViewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
@@ -66,6 +67,13 @@ fun BottomBarPage(
     val authState = authViewModel.authState.observeAsState()
 
     var userEmail by remember { mutableStateOf("Guest") }
+    val systemUiController = rememberSystemUiController()
+
+    LaunchedEffect(Unit) {
+        systemUiController.setSystemBarsColor(
+            color = Colors.black
+        )
+    }
 
     LaunchedEffect(authState.value) {
         val currentUser = FirebaseAuth.getInstance().currentUser
