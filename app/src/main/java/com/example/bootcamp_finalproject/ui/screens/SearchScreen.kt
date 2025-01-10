@@ -59,11 +59,13 @@ fun SearchScreen(
 ) {
 
     val moviesList by searchViewModel.moviesList.observeAsState(emptyList())
+    val query by searchViewModel.searchQuery.observeAsState("")
 
     Column {
         SearchBar(
-            onSearch = { query ->
-                searchViewModel.searchMovies(query)
+            query = query,
+            onSearch = { newQuery ->
+                searchViewModel.setSearchQuery(newQuery)
             }
         )
         LazyColumn(

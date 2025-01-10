@@ -19,6 +19,13 @@ class SearchViewModel @Inject constructor(
     val moviesList = MutableLiveData<List<Movies>>()
     private var searchJob: Job? = null
 
+    val searchQuery = MutableLiveData<String>("")
+
+    fun setSearchQuery(query: String) {
+        searchQuery.value = query
+        searchMovies(query)
+    }
+
     fun searchMovies(query: String) {
         searchJob?.cancel() // Önceki aramayı iptal et
         searchJob = CoroutineScope(Dispatchers.Main).launch {

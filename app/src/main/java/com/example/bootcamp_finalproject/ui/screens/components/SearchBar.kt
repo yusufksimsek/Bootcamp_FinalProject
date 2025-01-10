@@ -20,15 +20,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.room.Query
+import androidx.room.util.query
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
 fun SearchBar(
+    query: String,
     onSearch: (String) -> Unit
 ) {
     var text by remember {
-        mutableStateOf("")
+        mutableStateOf(query)
     }
 
     Box(modifier = Modifier.padding(10.dp)

@@ -153,7 +153,7 @@ fun MainScreen(
                                     ) {
                                         IconButton(
                                             onClick = {
-                                                cartViewModel.addMovieCart(
+                                                cartViewModel.addMovieCart( // Movie adding into Cart.
                                                     name = movie.name,
                                                     image = movie.image,
                                                     price = movie.price,
