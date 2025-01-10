@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.bootcamp_finalproject.data.datasource.FavouriteMoviesDataSource
-import com.example.bootcamp_finalproject.data.datasource.FirebaseAuthDataSource
+import com.example.bootcamp_finalproject.data.datasource.AuthDataSource
 import com.example.bootcamp_finalproject.data.datasource.MoviesDataSource
 import com.example.bootcamp_finalproject.data.repo.AuthRepository
 import com.example.bootcamp_finalproject.data.repo.FavouriteMoviesRepository
@@ -27,7 +27,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAuthRepository() : AuthRepository {
-        return AuthRepository(FirebaseAuthDataSource())
+        return AuthRepository(AuthDataSource())
     }
 
     @Provides
