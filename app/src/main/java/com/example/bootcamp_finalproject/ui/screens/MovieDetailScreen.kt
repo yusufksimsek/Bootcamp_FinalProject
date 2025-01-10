@@ -54,6 +54,7 @@ import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
+import com.example.bootcamp_finalproject.ui.screens.components.AddCartInDetail
 import com.example.bootcamp_finalproject.ui.screens.components.BackgroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.ForegroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.MovieCategoryCard
@@ -77,13 +78,6 @@ fun MovieDetailScreen(
     mainViewModel: MainViewModel,
     navController: NavController
 ) {
-    val amount = remember { mutableStateOf(1) }
-
-    val context = LocalContext.current
-
-    val similarMovies = remember {
-        mainViewModel.getMoviesByCategory(pullingMovie.category).filter { it.id != pullingMovie.id }
-    }
 
     val favouriteMovieList by favouriteViewModel.favouriteMovies.observeAsState(emptyList())
     val isFavourite = remember(favouriteMovieList) {
@@ -186,94 +180,7 @@ fun MovieDetailScreen(
 
             // Miktar seçimi ve sepete ekleme
             item {
-                Column(
-                    modifier = Modifier,
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-
-                    Text(
-                        text = "Amount: ${amount.value}",
-                        fontSize = 16.sp,
-                        color = Color.White
-                    )
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        TextButton(
-                            onClick = {
-                                if (amount.value > 1) amount.value--
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Colors.mainColor
-                            ),
-                            modifier = Modifier.size(34.dp),
-                            shape = RoundedCornerShape(6.dp)
-                        ) {
-                            Text(
-                                text = "-",
-                                color = Colors.black,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(5.dp))
-                        Button(
-                            onClick = {
-                                cartViewModel.addMovieCart(
-                                    name = pullingMovie.name,
-                                    image = pullingMovie.image,
-                                    price = pullingMovie.price,
-                                    category = pullingMovie.category,
-                                    rating = pullingMovie.rating,
-                                    year = pullingMovie.year,
-                                    director = pullingMovie.director,
-                                    description = pullingMovie.description,
-                                    orderAmount = amount.value,
-                                    userName = FirebaseAuth.getInstance().currentUser?.email.toString(),
-                                    onSuccess = {
-                                        Toast.makeText(context, "Movie added to your cart successfully.", Toast.LENGTH_SHORT).show()
-                                    },
-                                )
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Colors.mainColor
-                            ),
-                            shape = RoundedCornerShape(3.dp)
-                        ) {
-                            Text(
-                                text = "Add to Cart",
-                                color = Colors.black,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(5.dp))
-                        TextButton(
-                            onClick = {
-                                amount.value++
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Colors.mainColor
-                            ),
-                            modifier = Modifier.size(34.dp),
-                            shape = RoundedCornerShape(6.dp)
-                        ) {
-                            Text(
-                                text = "+",
-                                color = Colors.black,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                    }
-                }
+                AddCartInDetail(cartViewModel = cartViewModel, pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
