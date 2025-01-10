@@ -125,7 +125,7 @@ fun MainScreen(
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(horizontal = 18.dp),
+                                        .padding(horizontal = 14.dp),
                                     horizontalArrangement = Arrangement.Start,
                                     verticalAlignment = Alignment.CenterVertically,
                                 ) {
@@ -172,12 +172,12 @@ fun MainScreen(
                                                 )
                                             },
                                             modifier = Modifier
-                                                .width(70.dp)
+                                                .width(90.dp)
                                                 .height(22.dp)
                                         ) {
                                             Text(
                                                 text = "$${movie.price}",
-                                                fontSize = 16.sp,
+                                                fontSize = 17.sp,
                                                 color = Colors.black,
                                                 textAlign = TextAlign.Center,
                                                 modifier = Modifier
