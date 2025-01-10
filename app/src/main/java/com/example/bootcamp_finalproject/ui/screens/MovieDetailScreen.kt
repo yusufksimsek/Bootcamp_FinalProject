@@ -57,6 +57,7 @@ import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.screens.components.BackgroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.ForegroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.MovieCategoryCard
+import com.example.bootcamp_finalproject.ui.screens.components.SummaryText
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
@@ -345,25 +346,7 @@ fun MovieDetailScreen(
 
             // Özet başlığı ve içeriği
             item {
-                Row(
-                    modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    Text(
-                        text = "Summary",
-                        Modifier
-                            .padding(start = 10.dp)
-                            .fillMaxWidth(),
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Colors.moveDetailTitleColor
-                    )
-                }
-                Text(
-                    text = pullingMovie.description,
-                    modifier = Modifier.padding(horizontal = 10.dp),
-                    color = Colors.moveDetailTitleColor
-                )
+                SummaryText(pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
