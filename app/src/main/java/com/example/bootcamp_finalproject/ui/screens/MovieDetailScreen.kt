@@ -56,6 +56,7 @@ import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMo
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.screens.components.BackgroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.ForegroundPoster
+import com.example.bootcamp_finalproject.ui.screens.components.MovieCategoryCard
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
@@ -460,6 +461,7 @@ fun MovieDetailScreen(
             }
 
 
+            // Similar Movies List
             item {
                 Column(modifier = Modifier.fillMaxSize()) {
                     Text(
@@ -479,26 +481,5 @@ fun MovieDetailScreen(
             }
         }
 
-    }
-}
-
-@Composable
-fun MovieCategoryCard(movie: Movies) {
-    Card(
-        modifier = Modifier
-            .padding(8.dp)
-            .width(110.dp),
-    ) {
-        Column {
-            val url = "http://kasimadalan.pe.hu/movies/images/${movie.image}"
-            GlideImage(
-                imageModel = url,
-                contentDescription = null,
-                modifier = Modifier
-                    .height(140.dp)
-                    .fillMaxWidth(),
-                contentScale = ContentScale.Crop
-            )
-        }
     }
 }
