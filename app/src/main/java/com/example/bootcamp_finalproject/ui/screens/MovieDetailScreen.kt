@@ -60,6 +60,7 @@ import com.example.bootcamp_finalproject.ui.screens.components.MovieCategoryCard
 import com.example.bootcamp_finalproject.ui.screens.components.MovieDirectorInfo
 import com.example.bootcamp_finalproject.ui.screens.components.MovieNameDetailScreen
 import com.example.bootcamp_finalproject.ui.screens.components.MovieYearInfo
+import com.example.bootcamp_finalproject.ui.screens.components.SimilarMoviesList
 import com.example.bootcamp_finalproject.ui.screens.components.SummaryText
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
@@ -279,21 +280,7 @@ fun MovieDetailScreen(
 
             // Similar Movies List
             item {
-                Column(modifier = Modifier.fillMaxSize()) {
-                    Text(
-                        text = "Similar Movies",
-                        modifier = Modifier.padding(10.dp),
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Colors.moveDetailTitleColor
-                    )
-
-                    LazyRow(modifier = Modifier.fillMaxWidth()) {
-                        items(similarMovies) { movie ->
-                            MovieCategoryCard(movie)
-                        }
-                    }
-                }
+                SimilarMoviesList(pullingMovie = pullingMovie, mainViewModel = mainViewModel)
             }
         }
 
