@@ -55,6 +55,7 @@ import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.screens.components.BackgroundPoster
+import com.example.bootcamp_finalproject.ui.screens.components.ForegroundPoster
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.CartViewModel
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
@@ -499,36 +500,5 @@ fun MovieCard(movie: Movies) {
                 contentScale = ContentScale.Crop
             )
         }
-    }
-}
-
-@Composable
-fun ForegroundPoster(details: Movies) {
-    val url = "http://kasimadalan.pe.hu/movies/images/${details.image}"
-    Box(
-        modifier = Modifier
-            .padding(top = 40.dp)
-            .width(150.dp)
-            .height(220.dp)
-            .clip(RoundedCornerShape(6.dp)),
-    ) {
-        GlideImage(
-            imageModel = url,
-            contentDescription = details.name,
-            modifier = Modifier
-                .clip(RoundedCornerShape(6.dp))
-        )
-        Box(
-            modifier = Modifier
-                .background(
-                    brush = Brush.verticalGradient(
-                        listOf(
-                            Color.Transparent,
-                            Color(0xB91A1B1B)
-                        )
-                    ),
-                    shape = RoundedCornerShape(6.dp)
-                )
-        )
     }
 }
