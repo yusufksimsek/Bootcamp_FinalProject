@@ -472,7 +472,7 @@ fun MovieDetailScreen(
 
                     LazyRow(modifier = Modifier.fillMaxWidth()) {
                         items(similarMovies) { movie ->
-                            MovieCard(movie)
+                            MovieCategoryCard(movie)
                         }
                     }
                 }
@@ -483,7 +483,7 @@ fun MovieDetailScreen(
 }
 
 @Composable
-fun MovieCard(movie: Movies) {
+fun MovieCategoryCard(movie: Movies) {
     Card(
         modifier = Modifier
             .padding(8.dp)
