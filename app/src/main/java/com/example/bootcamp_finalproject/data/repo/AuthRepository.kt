@@ -13,7 +13,7 @@ class AuthRepository(private val authDataSource: AuthDataSource) {
     }
 
     fun getCurrentUser(): User? {
-        return authDataSource.getCurrentUser()
+        return authDataSource.getCurrentUser()  // Get the currently authenticated user.
     }
 
     fun signOut() {

@@ -23,7 +23,7 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
     suspend fun getMovieCart(userName: String): List<Movie_Cart> = withContext(Dispatchers.IO) {
         try {
             val response = moviesDao.getMovieCart(userName)
-            return@withContext response.movie_cart ?: emptyList()
+            return@withContext response.movie_cart ?: emptyList() // MovieList should be nullable
         } catch (e: Exception) {
             return@withContext emptyList()
         }

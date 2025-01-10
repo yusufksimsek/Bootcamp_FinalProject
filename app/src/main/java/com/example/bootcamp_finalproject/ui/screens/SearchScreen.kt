@@ -62,6 +62,7 @@ fun SearchScreen(
     val query by searchViewModel.searchQuery.observeAsState("")
 
     Column {
+        // Search bar at the top to input query
         SearchBar(
             query = query,
             onSearch = { newQuery ->
@@ -83,9 +84,9 @@ fun SearchScreen(
                         modifier = Modifier
                             .padding(all = 6.dp)
                             .height(150.dp),
-                        shape = RoundedCornerShape(12.dp), // Kartın kenarlarını yuvarlıyoruz
+                        shape = RoundedCornerShape(12.dp), // Round corners of the card
                         colors = CardDefaults.cardColors(
-                        containerColor = Colors.cartBackgroundColor // Kartın arka plan rengini siyah yapıyoruz
+                        containerColor = Colors.cartBackgroundColor // Set card background color
                         ),
                         elevation = CardDefaults.cardElevation(8.dp),
                     ) {

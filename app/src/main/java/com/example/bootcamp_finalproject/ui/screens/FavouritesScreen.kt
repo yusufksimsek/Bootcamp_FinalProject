@@ -89,7 +89,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                         animationSpec = tween(durationMillis = 400, easing = LinearEasing)
                     ).value
 
-                    val isRemoved = swipeableState.offset.value > 50f // Silme durumu
+                    val isRemoved = swipeableState.offset.value > 50f // Deletion State
 
                     Box(
                         modifier = Modifier
@@ -99,11 +99,11 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                             .background(if (isRemoved) Colors.favDeletionColor else Colors.black)
                             .swipeable(
                                 state = swipeableState,
-                                anchors = mapOf(0f to 0, 500f to 1), // 200f kaydırma mesafesi
+                                anchors = mapOf(0f to 0, 500f to 1),
                                 orientation = Orientation.Horizontal,
                                 thresholds = { _, _ -> FractionalThreshold(0.3f) }
                             )
-                            .offset(x = offset.dp) // Animasyonlu kaydırma
+                            .offset(x = offset.dp) // Animated Sliding
                     ) {
                         Column(
                             modifier = Modifier
@@ -158,7 +158,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                             }
                         }
 
-                        // Kırmızı arka plan ve çöp kutusu simgesi ekleniyor
+                        // Red background and trash icon added
                         if (isRemoved) {
                             Box(
                                 modifier = Modifier
@@ -167,7 +167,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
                                     .padding(8.dp)
                             ) {
                                 Icon(
-                                    painter = painterResource(id = R.drawable.delete_icon), // Çöp kutusu simgesi
+                                    painter = painterResource(id = R.drawable.delete_icon),
                                     contentDescription = "Trash icon",
                                     tint = Color.White,
                                     modifier = Modifier.size(50.dp)
@@ -177,7 +177,7 @@ fun FavouritesScreen(favouriteViewModel: FavouriteViewModel) {
 
                     }
 
-                    // Kaydırma tamamlanınca silme işlemi
+                    // When sliding completed, deletion operation
                     LaunchedEffect(swipeableState.offset.value) {
                         if (swipeableState.offset.value > 450f) { // 450f kaydırma eşiği
                             favouriteViewModel.removeFavouriteMovie(movie)

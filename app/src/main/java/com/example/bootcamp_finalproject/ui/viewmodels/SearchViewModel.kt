@@ -21,7 +21,7 @@ class SearchViewModel @Inject constructor(
 
     val searchQuery = MutableLiveData<String>("")
 
-    fun setSearchQuery(query: String) {
+    fun setSearchQuery(query: String) {     // Searching dinamically in SearchBar
         searchQuery.value = query
         searchMovies(query)
     }

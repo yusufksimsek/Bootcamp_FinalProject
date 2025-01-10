@@ -38,11 +38,9 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
             try {
                 val movieCartList = moviesRepository.getMovieCart(userName)
                 if (movieCartList.isEmpty()) {
-                    // Sepet boşsa yapılacaklar
                 }
                 moviesList.value = movieCartList
             } catch (e: Exception) {
-                // Hata durumunda yapılacaklar
                 moviesList.value = emptyList()
             }
         }

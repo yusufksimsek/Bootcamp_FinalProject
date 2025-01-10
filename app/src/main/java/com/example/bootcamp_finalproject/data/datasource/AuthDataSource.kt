@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
 
 class AuthDataSource {
+    // FirebaseAuth instance for authentication operations
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     suspend fun login(email: String, password: String): Result<User> {
@@ -41,6 +42,6 @@ class AuthDataSource {
     }
 
     fun signOut() {
-        auth.signOut()
+        auth.signOut() // Clears the current session
     }
 }

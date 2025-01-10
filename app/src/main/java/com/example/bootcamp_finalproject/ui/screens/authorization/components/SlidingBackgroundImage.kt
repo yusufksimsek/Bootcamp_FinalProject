@@ -30,6 +30,7 @@ fun SlidingBackgroundImage() {
     var positionX by remember { mutableStateOf(0f) }
     val infiniteTransition = rememberInfiniteTransition()
 
+    // Gradient overlay to add a fade effect on top of the background image.
     val gradientColor = Brush.verticalGradient(
         listOf(
             Color(0x20000000),
@@ -38,6 +39,7 @@ fun SlidingBackgroundImage() {
         )
     )
 
+    // Animation for sliding effect: Moves the image horizontally back and forth.
     val slidingAnimation by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = -0.03f,
@@ -59,7 +61,7 @@ fun SlidingBackgroundImage() {
             .fillMaxSize()
             .scale(1.4f)
             .graphicsLayer {
-                translationX = positionX.dp.toPx()
+                translationX = positionX.dp.toPx()  // Apply horizontal translation to the image.
             },
         contentScale = ContentScale.Crop
     )

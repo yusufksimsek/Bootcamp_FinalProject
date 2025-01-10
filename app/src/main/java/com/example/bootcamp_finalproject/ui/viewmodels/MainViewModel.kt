@@ -20,13 +20,13 @@ class MainViewModel @Inject constructor(
         loadMovies()
     }
 
-    fun loadMovies() {
+    fun loadMovies() {    // get all movies
         CoroutineScope(Dispatchers.Main).launch {
             moviesList.value = moviesRepository.loadMovies()
         }
     }
 
-    fun getMoviesByCategory(category: String): List<Movies> {
+    fun getMoviesByCategory(category: String): List<Movies> {   // getting movies method by category
         return moviesList.value?.filter { it.category.equals(category, ignoreCase = true) } ?: emptyList()
     }
 

@@ -4,6 +4,7 @@ import com.example.bootcamp_finalproject.data.datasource.MoviesDataSource
 import com.example.bootcamp_finalproject.data.entity.movie_cart.Movie_Cart
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 
+// Acts as a bridge between the data layer (MoviesDataSource) and the rest of the application.
 class MoviesRepository(var moviesDataSource: MoviesDataSource) {
     suspend fun loadMovies() : List<Movies> = moviesDataSource.loadMovies()
     suspend fun searchMovies(query: String): List<Movies> {

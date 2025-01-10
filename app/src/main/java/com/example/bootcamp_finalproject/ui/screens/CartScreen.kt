@@ -74,7 +74,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
     // SnackbarHostState to show messages
     val snackbarHostState = remember { SnackbarHostState() }
 
-    // Liste kaydırma durumunu takip ederek görünürlüğü güncelle
+    // Update Visibility of Footer by following sliding list
     LaunchedEffect(listState) {
         snapshotFlow { listState.firstVisibleItemScrollOffset }
             .collect { currentOffset ->
@@ -88,7 +88,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
     }
 
     if (moviesList.value.isNullOrEmpty()) {
-        // Sepet boşsa gösterilecek uyarı mesajı
+        // Warning message if the Cart is empty
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -101,7 +101,6 @@ fun CartScreen(cartViewModel: CartViewModel) {
         }
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
-            // LazyColumn: Kaydırılabilir ürün listesi
             LazyColumn(
                 state = listState,
                 modifier = Modifier

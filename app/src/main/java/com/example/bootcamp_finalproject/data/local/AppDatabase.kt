@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
 
-@Database(entities = [FavouriteMovie::class], version = 2)
+@Database(entities = [FavouriteMovie::class], version = 2) // Specifies the database schema
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favouriteMoviesDao(): FavouriteMoviesDao
 }

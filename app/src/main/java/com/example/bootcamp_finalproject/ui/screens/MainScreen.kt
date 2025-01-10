@@ -63,6 +63,7 @@ fun MainScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
+    // Load the movies when the screen is launched
     LaunchedEffect(key1 = true) {
         mainViewModel.loadMovies()
     }
@@ -77,6 +78,7 @@ fun MainScreen(
             item { UpcomingMovies() }
             item { CheckMoviesText() }
 
+            // Display movies in rows, 2 movies per row
             items(moviesList.value.chunked(2)) { moviePair ->
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(2.dp),

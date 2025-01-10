@@ -9,8 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface MoviesDao {
-    //Base url -> http://kasimadalan.pe.hu/movies/getAllMovies.php
-    // -> movies/getAllMovies.php
+
     @GET("movies/getAllMovies.php")
     suspend fun getAllMovies(): MoviesAnswer
 
