@@ -17,17 +17,17 @@ class FavouriteViewModel @Inject constructor(
 
     val favouriteMovies: LiveData<List<FavouriteMovie>> = favouriteMoviesRepository.getFavouriteMovies()
 
-    fun removeFavouriteMovie(movie: FavouriteMovie) {
+    fun removeFavouriteMovie(movie: FavouriteMovie) {   // delete fav movie
         viewModelScope.launch(Dispatchers.IO) {
             favouriteMoviesRepository.removeFavouriteMovie(movie)
         }
     }
 
-    fun isMovieFavourite(movieId: Int): Boolean {
+    fun isMovieFavourite(movieId: Int): Boolean {   // Check the movie is favourite or not
         return favouriteMovies.value?.any { it.id == movieId } ?: false
     }
 
-    fun toggleFavourite(movie: FavouriteMovie) {
+    fun toggleFavourite(movie: FavouriteMovie) {    // add or remove movie according fav or not
         viewModelScope.launch(Dispatchers.IO) {
             if (isMovieFavourite(movie.id)) {
                 favouriteMoviesRepository.removeFavouriteMovie(movie)
