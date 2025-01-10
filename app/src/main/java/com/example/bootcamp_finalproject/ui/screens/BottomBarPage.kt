@@ -1,5 +1,6 @@
 package com.example.bootcamp_finalproject.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +12,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
@@ -26,7 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.ui.screens.components.AppDrawer
@@ -86,7 +85,13 @@ fun BottomBarPage(
             topBar = {
                 if (isBottomBarVisible.value) {
                     TopAppBar(
-                        title = { Text("Movies App", fontSize = 25.sp, color = Colors.barTitleColor) },
+                        title = {
+                            Image(
+                                painter = painterResource(id = R.drawable.cinemate),
+                                contentDescription = "App Logo",
+                                modifier = Modifier.size(310.dp)
+                            )
+                        },
                         navigationIcon = {
                             IconButton(onClick = { scope.launch { drawerState.open() } }) {
                                 Icon(
