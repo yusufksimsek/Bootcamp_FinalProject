@@ -1,6 +1,5 @@
 package com.example.bootcamp_finalproject.ui.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -30,8 +29,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -48,7 +49,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -197,22 +197,35 @@ fun CartScreen(cartViewModel: CartViewModel) {
 
                                 // Delete Icon Section
                                 IconButton(onClick = {
-                                    cartViewModel.deleteMovieCart(
-                                        movie.cartId,
-                                        FirebaseAuth.getInstance().currentUser?.email.toString(),
-                                        onSuccess = {
-                                            // Show success Snackbar
-                                            scope.launch {
-                                                snackbarHostState.showSnackbar("Movie deleted successfully!")
+                                    scope.launch {
+                                        val result = snackbarHostState
+                                            .showSnackbar(
+                                                message = "Are you sure to delete this movie?",
+                                                actionLabel = "Yes",
+                                                duration = SnackbarDuration.Short
+                                            )
+                                        when (result) {
+                                            SnackbarResult.ActionPerformed -> {
+                                                cartViewModel.deleteMovieCart(
+                                                    movie.cartId,
+                                                    FirebaseAuth.getInstance().currentUser?.email.toString(),
+                                                    onSuccess = {
+                                                        scope.launch {
+                                                            snackbarHostState.showSnackbar("Movie deleted successfully!")
+                                                        }
+                                                    },
+                                                    onFailure = {
+                                                        scope.launch {
+                                                            snackbarHostState.showSnackbar("Failed to delete movie. Please try again.")
+                                                        }
+                                                    }
+                                                )
                                             }
-                                        },
-                                        onFailure = {
-                                            // Show failure Snackbar
-                                            scope.launch {
-                                                snackbarHostState.showSnackbar("Failed to delete movie. Please try again.")
+                                            SnackbarResult.Dismissed -> {
+                                                /* Handle snackbar dismissed */
                                             }
                                         }
-                                    )
+                                    }
                                 }) {
                                     Icon(
                                         painter = painterResource(id = R.drawable.delete_icon),
