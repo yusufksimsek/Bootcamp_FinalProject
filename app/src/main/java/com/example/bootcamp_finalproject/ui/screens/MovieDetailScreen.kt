@@ -55,6 +55,7 @@ import com.example.bootcamp_finalproject.R
 import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.screens.components.AddCartInDetail
+import com.example.bootcamp_finalproject.ui.screens.components.AddFavInDetail
 import com.example.bootcamp_finalproject.ui.screens.components.BackgroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.ForegroundPoster
 import com.example.bootcamp_finalproject.ui.screens.components.MovieCategoryCard
@@ -79,67 +80,12 @@ fun MovieDetailScreen(
     navController: NavController
 ) {
 
-    val favouriteMovieList by favouriteViewModel.favouriteMovies.observeAsState(emptyList())
-    val isFavourite = remember(favouriteMovieList) {
-        favouriteViewModel.isMovieFavourite(pullingMovie.id)
-    }
+    AddFavInDetail(
+        pullingMovie = pullingMovie,
+        favouriteViewModel = favouriteViewModel,
+        navController = navController)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
-    ) {
-        // Arka plan posteri
         BackgroundPoster(details = pullingMovie)
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-                .zIndex(1f) // İkonları üst sıraya taşı
-        ) {
-            // Geri ikonunu sol üst köşeye yerleştir
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                IconButton(
-                    onClick = { navController.popBackStack() }
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.back),
-                        contentDescription = "Back",
-                        tint = Color.White,
-                        modifier = Modifier.size(30.dp)
-                    )
-                }
-
-                // Favori ikonunu sağ tarafa yerleştir
-                IconButton(
-                    onClick = {
-                        val favouriteMovie = FavouriteMovie(
-                            id = pullingMovie.id,
-                            name = pullingMovie.name,
-                            image = pullingMovie.image,
-                            category = pullingMovie.category,
-                            rating = pullingMovie.rating,
-                            year = pullingMovie.year,
-                            director = pullingMovie.director,
-                            description = pullingMovie.description
-                        )
-                        favouriteViewModel.toggleFavourite(movie = favouriteMovie)
-                    }
-                ) {
-                    Icon(
-                        imageVector = if (isFavourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        contentDescription = "Toggle Favorite",
-                        tint = if (isFavourite) Color.Red else Color.White,
-                        modifier = Modifier.size(30.dp)
-                    )
-                }
-            }
-        }
 
         // LazyColumn, içeriği arka planın üzerine yerleştiriyor
         LazyColumn(
@@ -147,38 +93,38 @@ fun MovieDetailScreen(
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Ön plan posteri
+            // Foreground Poster
             item {
                 Spacer(modifier = Modifier.size(45.dp))
                 ForegroundPoster(details = pullingMovie)
                 Spacer(modifier = Modifier.size(45.dp))
             }
 
-            // Film adı
+            // MovieName
             item {
                 MovieNameDetailScreen(pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(15.dp))
             }
 
-            // Yönetmen ve Kategori bilgisi
+            // Director and Category
             item {
                 MovieDirectorInfo(pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(5.dp))
             }
 
-            // Film bilgileri (puan, yıl vs.)
+            // Rating, price, year
             item {
                 MovieYearInfo(pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
-            // Özet başlığı ve içeriği
+            // Summary
             item {
                 SummaryText(pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
-            // Miktar seçimi ve sepete ekleme
+            // Amount and Add Cart
             item {
                 AddCartInDetail(cartViewModel = cartViewModel, pullingMovie = pullingMovie)
                 Spacer(modifier = Modifier.size(20.dp))
@@ -192,4 +138,3 @@ fun MovieDetailScreen(
         }
 
     }
-}
