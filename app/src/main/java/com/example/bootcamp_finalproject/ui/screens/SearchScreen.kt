@@ -122,7 +122,7 @@ fun SearchScreen(
                                     Icon(
                                         painter = painterResource(id = R.drawable.movie),
                                         contentDescription = "Movie Icon",
-                                        tint = Colors.searchCartTextColor,
+                                        tint = Colors.mainColor,
                                         modifier = Modifier.size(20.dp)
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
