@@ -210,9 +210,7 @@ fun CartScreen(cartViewModel: CartViewModel) {
                                                     movie.cartId,
                                                     FirebaseAuth.getInstance().currentUser?.email.toString(),
                                                     onSuccess = {
-                                                        scope.launch {
-                                                            snackbarHostState.showSnackbar("Movie deleted successfully!")
-                                                        }
+
                                                     },
                                                     onFailure = {
                                                         scope.launch {
