@@ -89,7 +89,7 @@ fun BottomBarPage(
                             Image(
                                 painter = painterResource(id = R.drawable.cinemate),
                                 contentDescription = "App Logo",
-                                modifier = Modifier.size(310.dp)
+                                modifier = Modifier.size(290.dp)
                             )
                         },
                         navigationIcon = {
