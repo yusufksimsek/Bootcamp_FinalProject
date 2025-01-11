@@ -30,13 +30,18 @@ import com.example.bootcamp_finalproject.ui.screens.authorization.components.Sli
 import com.example.bootcamp_finalproject.ui.theme.Colors
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthState
 import com.example.bootcamp_finalproject.ui.viewmodels.AuthViewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun AuthenticationScreen(navController: NavController, authViewModel: AuthViewModel) {
 
     val authState = authViewModel.authState.observeAsState()
-
+    val systemUiController = rememberSystemUiController()
     val isLoading = remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        systemUiController.setSystemBarsColor(color = Colors.black)
+    }
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
