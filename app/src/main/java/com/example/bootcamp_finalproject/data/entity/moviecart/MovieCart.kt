@@ -1,8 +1,8 @@
-package com.example.bootcamp_finalproject.data.entity.movie_cart
+package com.example.bootcamp_finalproject.data.entity.moviecart
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie_Cart(
+data class MovieCart(
     @SerializedName("cartId")
     var cartId: Int,
 

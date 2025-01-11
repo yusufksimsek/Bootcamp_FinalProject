@@ -1,4 +1,4 @@
-package com.example.bootcamp_finalproject.data.entity.favourite_movie
+package com.example.bootcamp_finalproject.data.entity.favouritemovie
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

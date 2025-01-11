@@ -3,7 +3,7 @@ package com.example.bootcamp_finalproject.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
+import com.example.bootcamp_finalproject.data.entity.favouritemovie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.repo.FavouriteMoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

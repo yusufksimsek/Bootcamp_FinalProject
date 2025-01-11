@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.example.bootcamp_finalproject.R
-import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
+import com.example.bootcamp_finalproject.data.entity.favouritemovie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 

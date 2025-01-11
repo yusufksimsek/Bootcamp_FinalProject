@@ -1,7 +1,7 @@
 package com.example.bootcamp_finalproject.data.repo
 
 import com.example.bootcamp_finalproject.data.datasource.MoviesDataSource
-import com.example.bootcamp_finalproject.data.entity.movie_cart.Movie_Cart
+import com.example.bootcamp_finalproject.data.entity.moviecart.MovieCart
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 
 // Acts as a bridge between the data layer (MoviesDataSource) and the rest of the application.
@@ -16,7 +16,7 @@ class MoviesRepository(var moviesDataSource: MoviesDataSource) {
     ) = moviesDataSource.addMovieCart(
         name, image, price, category, rating, year, director, description, orderAmount, userName)
 
-    suspend fun getMovieCart(userName: String): List<Movie_Cart> {
+    suspend fun getMovieCart(userName: String): List<MovieCart> {
         return try {
             val movieCartList = moviesDataSource.getMovieCart(userName)
             movieCartList.ifEmpty { emptyList() }

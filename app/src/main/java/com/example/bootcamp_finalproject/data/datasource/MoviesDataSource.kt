@@ -1,6 +1,6 @@
 package com.example.bootcamp_finalproject.data.datasource
 
-import com.example.bootcamp_finalproject.data.entity.movie_cart.Movie_Cart
+import com.example.bootcamp_finalproject.data.entity.moviecart.MovieCart
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.retrofit.MoviesDao
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +20,7 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
             )
     }
 
-    suspend fun getMovieCart(userName: String): List<Movie_Cart> = withContext(Dispatchers.IO) {
+    suspend fun getMovieCart(userName: String): List<MovieCart> = withContext(Dispatchers.IO) {
         try {
             val response = moviesDao.getMovieCart(userName)
             return@withContext response.movie_cart ?: emptyList() // MovieList should be nullable

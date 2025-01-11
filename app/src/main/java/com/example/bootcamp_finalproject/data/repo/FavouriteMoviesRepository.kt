@@ -2,7 +2,7 @@ package com.example.bootcamp_finalproject.data.repo
 
 import androidx.lifecycle.LiveData
 import com.example.bootcamp_finalproject.data.datasource.FavouriteMoviesDataSource
-import com.example.bootcamp_finalproject.data.entity.favourite_movie.FavouriteMovie
+import com.example.bootcamp_finalproject.data.entity.favouritemovie.FavouriteMovie
 
 class FavouriteMoviesRepository(private val dataSource: FavouriteMoviesDataSource) {
     fun getFavouriteMovies(): LiveData<List<FavouriteMovie>> {

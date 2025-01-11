@@ -2,7 +2,7 @@ package com.example.bootcamp_finalproject.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.bootcamp_finalproject.data.entity.movie_cart.Movie_Cart
+import com.example.bootcamp_finalproject.data.entity.moviecart.MovieCart
 import com.example.bootcamp_finalproject.data.repo.MoviesRepository
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) : ViewModel() {
 
-    val moviesList = MutableLiveData<List<Movie_Cart>>()
+    val moviesList = MutableLiveData<List<MovieCart>>()
 
     init {
         getMovieCart(userName = FirebaseAuth.getInstance().currentUser?.email.toString())

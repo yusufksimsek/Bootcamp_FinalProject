@@ -1,7 +1,7 @@
 package com.example.bootcamp_finalproject.retrofit
 
 import com.example.bootcamp_finalproject.data.entity.CRUDAnswer
-import com.example.bootcamp_finalproject.data.entity.movie_cart.MovieCartAnswer
+import com.example.bootcamp_finalproject.data.entity.moviecart.MovieCartAnswer
 import com.example.bootcamp_finalproject.data.entity.movies.MoviesAnswer
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
