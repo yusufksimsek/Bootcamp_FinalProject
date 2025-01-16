@@ -21,7 +21,7 @@ import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
-fun MovieDirectorInfo(pullingMovie: Movies) {
+fun MovieDirectorInfo(details: Movies) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -52,7 +52,7 @@ fun MovieDirectorInfo(pullingMovie: Movies) {
                 )
                 Spacer(modifier = Modifier.width(7.dp))
                 Text(
-                    text = pullingMovie.director,
+                    text = details.director,
                     color = Colors.moveDetailTitleColor
                 )
             }
@@ -84,7 +84,7 @@ fun MovieDirectorInfo(pullingMovie: Movies) {
                 )
                 Spacer(modifier = Modifier.width(7.dp))
                 Text(
-                    text = pullingMovie.category,
+                    text = details.category,
                     color = Colors.moveDetailTitleColor
                 )
             }

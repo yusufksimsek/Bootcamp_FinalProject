@@ -11,9 +11,9 @@ import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
-fun MovieNameDetailScreen(pullingMovie: Movies) {
+fun MovieNameDetailScreen(details: Movies) {
     Text(
-        text = pullingMovie.name,
+        text = details.name,
         modifier = Modifier.fillMaxWidth(),
         fontSize = 28.sp,
         fontWeight = FontWeight.Bold,

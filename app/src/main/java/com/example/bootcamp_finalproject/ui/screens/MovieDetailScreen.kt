@@ -26,7 +26,7 @@ import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 
 @Composable
 fun MovieDetailScreen(
-    pullingMovie: Movies,
+    movie: Movies,
     cartViewModel: CartViewModel,
     favouriteViewModel: FavouriteViewModel,
     mainViewModel: MainViewModel,
@@ -34,11 +34,11 @@ fun MovieDetailScreen(
 ) {
 
     AddFavInDetail(
-        pullingMovie = pullingMovie,
+        details = movie,
         favouriteViewModel = favouriteViewModel,
         navController = navController)
 
-        BackgroundPoster(details = pullingMovie)
+        BackgroundPoster(details = movie)
 
         // LazyColumn, içeriği arka planın üzerine yerleştiriyor
         LazyColumn(
@@ -49,44 +49,44 @@ fun MovieDetailScreen(
             // Foreground Poster
             item {
                 Spacer(modifier = Modifier.size(45.dp))
-                ForegroundPoster(details = pullingMovie)
+                ForegroundPoster(details = movie)
                 Spacer(modifier = Modifier.size(45.dp))
             }
 
             // MovieName
             item {
-                MovieNameDetailScreen(pullingMovie = pullingMovie)
+                MovieNameDetailScreen(details = movie)
                 Spacer(modifier = Modifier.size(15.dp))
             }
 
             // Director and Category
             item {
-                MovieDirectorInfo(pullingMovie = pullingMovie)
+                MovieDirectorInfo(details = movie)
                 Spacer(modifier = Modifier.size(5.dp))
             }
 
             // Rating, price, year
             item {
-                MovieYearInfo(pullingMovie = pullingMovie)
+                MovieYearInfo(details = movie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
             // Summary
             item {
-                SummaryText(pullingMovie = pullingMovie)
+                SummaryText(details = movie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
             // Amount and Add Cart
             item {
-                AddCartInDetail(cartViewModel = cartViewModel, pullingMovie = pullingMovie)
+                AddCartInDetail(cartViewModel = cartViewModel, details = movie)
                 Spacer(modifier = Modifier.size(20.dp))
             }
 
 
             // Similar Movies List
             item {
-                SimilarMoviesList(pullingMovie = pullingMovie, mainViewModel = mainViewModel)
+                SimilarMoviesList(details = movie, mainViewModel = mainViewModel)
             }
         }
 

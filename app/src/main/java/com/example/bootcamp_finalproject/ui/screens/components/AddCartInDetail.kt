@@ -32,7 +32,7 @@ import com.google.firebase.auth.FirebaseAuth
 @Composable
 fun AddCartInDetail(
     cartViewModel: CartViewModel,
-    pullingMovie: Movies
+    details: Movies
 ) {
     val amount = remember { mutableStateOf(1) }
     val context = LocalContext.current
@@ -75,14 +75,14 @@ fun AddCartInDetail(
             Button(
                 onClick = {
                     cartViewModel.addMovieCart(
-                        name = pullingMovie.name,
-                        image = pullingMovie.image,
-                        price = pullingMovie.price,
-                        category = pullingMovie.category,
-                        rating = pullingMovie.rating,
-                        year = pullingMovie.year,
-                        director = pullingMovie.director,
-                        description = pullingMovie.description,
+                        name = details.name,
+                        image = details.image,
+                        price = details.price,
+                        category = details.category,
+                        rating = details.rating,
+                        year = details.year,
+                        director = details.director,
+                        description = details.description,
                         orderAmount = amount.value,
                         userName = FirebaseAuth.getInstance().currentUser?.email.toString(),
                         onSuccess = {

@@ -29,14 +29,14 @@ import com.example.bootcamp_finalproject.ui.viewmodels.FavouriteViewModel
 
 @Composable
 fun AddFavInDetail(
-    pullingMovie: Movies,
+    details: Movies,
     favouriteViewModel: FavouriteViewModel,
     navController: NavController
 ) {
 
     val favouriteMovieList by favouriteViewModel.favouriteMovies.observeAsState(emptyList())
     val isFavourite = remember(favouriteMovieList) {
-        favouriteViewModel.isMovieFavourite(pullingMovie.id)
+        favouriteViewModel.isMovieFavourite(details.id)
     }
 
     Box(
@@ -66,14 +66,14 @@ fun AddFavInDetail(
             IconButton(
                 onClick = {
                     val favouriteMovie = FavouriteMovie(
-                        id = pullingMovie.id,
-                        name = pullingMovie.name,
-                        image = pullingMovie.image,
-                        category = pullingMovie.category,
-                        rating = pullingMovie.rating,
-                        year = pullingMovie.year,
-                        director = pullingMovie.director,
-                        description = pullingMovie.description
+                        id = details.id,
+                        name = details.name,
+                        image = details.image,
+                        category = details.category,
+                        rating = details.rating,
+                        year = details.year,
+                        director = details.director,
+                        description = details.description
                     )
                     favouriteViewModel.toggleFavourite(movie = favouriteMovie)
                 }

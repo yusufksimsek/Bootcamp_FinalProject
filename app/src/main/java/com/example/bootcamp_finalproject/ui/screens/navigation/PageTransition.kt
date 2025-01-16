@@ -84,7 +84,7 @@ fun PageTransition(
             val json = it.arguments?.getString("movie")
             val movieObject = Gson().fromJson(json, Movies::class.java)
             MovieDetailScreen(
-                pullingMovie = movieObject,
+                movie = movieObject,
                 cartViewModel = cartViewModel,
                 favouriteViewModel = favouriteViewModel,
                 mainViewModel = mainViewModel,

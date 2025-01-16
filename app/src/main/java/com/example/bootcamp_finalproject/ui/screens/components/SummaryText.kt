@@ -14,7 +14,7 @@ import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
-fun SummaryText(pullingMovie: Movies,){
+fun SummaryText(details: Movies,){
     Row(
         modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
         horizontalArrangement = Arrangement.Start
@@ -30,7 +30,7 @@ fun SummaryText(pullingMovie: Movies,){
         )
     }
     Text(
-        text = pullingMovie.description,
+        text = details.description,
         modifier = Modifier.padding(horizontal = 10.dp),
         color = Colors.moveDetailTitleColor
     )

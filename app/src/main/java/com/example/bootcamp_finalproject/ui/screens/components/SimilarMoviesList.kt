@@ -19,12 +19,12 @@ import com.example.bootcamp_finalproject.ui.viewmodels.MainViewModel
 
 @Composable
 fun SimilarMoviesList(
-    pullingMovie: Movies,
+    details: Movies,
     mainViewModel: MainViewModel,
 ) {
 
     val similarMovies = remember {
-        mainViewModel.getMoviesByCategory(pullingMovie.category).filter { it.id != pullingMovie.id }
+        mainViewModel.getMoviesByCategory(details.category).filter { it.id != details.id }
     }
 
     Column(modifier = Modifier.fillMaxSize()) {

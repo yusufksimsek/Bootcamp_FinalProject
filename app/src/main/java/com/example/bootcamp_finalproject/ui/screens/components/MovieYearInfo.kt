@@ -22,7 +22,7 @@ import com.example.bootcamp_finalproject.data.entity.movies.Movies
 import com.example.bootcamp_finalproject.ui.theme.Colors
 
 @Composable
-fun MovieYearInfo(pullingMovie: Movies) {
+fun MovieYearInfo(details: Movies) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -53,7 +53,7 @@ fun MovieYearInfo(pullingMovie: Movies) {
                 )
                 Spacer(modifier = Modifier.width(7.dp))
                 Text(
-                    text = pullingMovie.rating.toString(),
+                    text = details.rating.toString(),
                     color = Colors.moveDetailTitleColor,
                     fontSize = 16.sp
                 )
@@ -83,7 +83,7 @@ fun MovieYearInfo(pullingMovie: Movies) {
                 )
                 Spacer(modifier = Modifier.width(7.dp))
                 Text(
-                    text = "${pullingMovie.price}$",
+                    text = "${details.price}$",
                     color = Colors.moveDetailTitleColor,
                     fontSize = 16.sp
                 )
@@ -113,7 +113,7 @@ fun MovieYearInfo(pullingMovie: Movies) {
                 )
                 Spacer(modifier = Modifier.width(7.dp))
                 Text(
-                    text = pullingMovie.year.toString(),
+                    text = details.year.toString(),
                     color = Colors.moveDetailTitleColor,
                     fontSize = 16.sp
                 )
