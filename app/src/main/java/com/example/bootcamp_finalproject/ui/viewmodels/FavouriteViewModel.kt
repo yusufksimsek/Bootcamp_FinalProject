@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.bootcamp_finalproject.data.entity.favouritemovie.FavouriteMovie
 import com.example.bootcamp_finalproject.data.repo.FavouriteMoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class FavouriteViewModel @Inject constructor(
     val favouriteMovies: LiveData<List<FavouriteMovie>> = favouriteMoviesRepository.getFavouriteMovies()
 
     fun removeFavouriteMovie(movie: FavouriteMovie) {   // delete fav movie
-        viewModelScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             favouriteMoviesRepository.removeFavouriteMovie(movie)
         }
     }
@@ -28,7 +29,7 @@ class FavouriteViewModel @Inject constructor(
     }
 
     fun toggleFavourite(movie: FavouriteMovie) {    // add or remove movie according fav or not
-        viewModelScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             if (isMovieFavourite(movie.id)) {
                 favouriteMoviesRepository.removeFavouriteMovie(movie)
             } else {
