@@ -209,9 +209,6 @@ fun CartScreen(cartViewModel: CartViewModel) {
                                                 cartViewModel.deleteMovieCart(
                                                     movie.cartId,
                                                     FirebaseAuth.getInstance().currentUser?.email.toString(),
-                                                    onSuccess = {
-
-                                                    },
                                                     onFailure = {
                                                         scope.launch {
                                                             snackbarHostState.showSnackbar("Failed to delete movie. Please try again.")

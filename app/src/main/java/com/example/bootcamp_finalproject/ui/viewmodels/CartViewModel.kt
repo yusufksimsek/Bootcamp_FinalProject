@@ -20,12 +20,11 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
         getMovieCart(userName = FirebaseAuth.getInstance().currentUser?.email.toString())
     }
 
-    fun deleteMovieCart(cartId: Int, userName: String,onSuccess: () -> Unit, onFailure: () -> Unit){
+    fun deleteMovieCart(cartId: Int, userName: String, onFailure: () -> Unit){
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 moviesRepository.deleteMovieCart(cartId, userName)
                 val updatedList = moviesList.value?.filter { it.cartId != cartId }
-                onSuccess()
                 moviesList.value = updatedList ?: listOf()
             } catch (e: Exception) {
                 onFailure()
@@ -37,8 +36,6 @@ class CartViewModel @Inject constructor(var moviesRepository: MoviesRepository) 
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val movieCartList = moviesRepository.getMovieCart(userName)
-                if (movieCartList.isEmpty()) {
-                }
                 moviesList.value = movieCartList
             } catch (e: Exception) {
                 moviesList.value = emptyList()
