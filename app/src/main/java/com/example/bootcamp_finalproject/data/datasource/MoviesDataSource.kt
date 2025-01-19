@@ -38,4 +38,9 @@ class MoviesDataSource(var moviesDao: MoviesDao) {
         return@withContext allMovies.filter { it.name.contains(query, ignoreCase = true) }
     }
 
+    suspend fun getMoviesByCategory(category: String): List<Movies> = withContext(Dispatchers.IO) {
+        val allMovies = moviesDao.getAllMovies().movies
+        return@withContext allMovies.filter { it.category.equals(category, ignoreCase = true) }
+    }
+
 }

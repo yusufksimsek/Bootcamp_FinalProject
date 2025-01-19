@@ -1,5 +1,6 @@
 package com.example.bootcamp_finalproject.ui.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bootcamp_finalproject.data.entity.movies.Movies
@@ -26,9 +27,14 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getMoviesByCategory(category: String): List<Movies> {   // getting movies method by category
-        return moviesList.value?.filter { it.category.equals(category, ignoreCase = true) } ?: emptyList()
+    fun getMoviesByCategory(category: String): LiveData<List<Movies>> {
+        val filteredMovies = MutableLiveData<List<Movies>>()
+        CoroutineScope(Dispatchers.Main).launch {
+            filteredMovies.value = moviesRepository.getMoviesByCategory(category)
+        }
+        return filteredMovies
     }
+
 
 
 }

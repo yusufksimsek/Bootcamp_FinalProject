@@ -8,7 +8,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,9 +24,7 @@ fun SimilarMoviesList(
     mainViewModel: MainViewModel,
 ) {
 
-    val similarMovies = remember {
-        mainViewModel.getMoviesByCategory(details.category).filter { it.id != details.id }
-    }
+    val similarMovies by mainViewModel.getMoviesByCategory(details.category).observeAsState(emptyList())
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
@@ -37,7 +36,7 @@ fun SimilarMoviesList(
         )
 
         LazyRow(modifier = Modifier.fillMaxWidth()) {
-            items(similarMovies) { movie ->
+            items(similarMovies.filter { it.id != details.id }) { movie ->
                 MovieCategoryCard(movie)
             }
         }

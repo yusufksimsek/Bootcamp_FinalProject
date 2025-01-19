@@ -27,4 +27,8 @@ class MoviesRepository(var moviesDataSource: MoviesDataSource) {
 
     suspend fun deleteMovieCart(cartId: Int, userName: String) = moviesDataSource.deleteMovieCart(cartId, userName)
 
+    suspend fun getMoviesByCategory(category: String): List<Movies> {
+        return moviesDataSource.getMoviesByCategory(category)
+    }
+
 }
