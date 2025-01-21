@@ -63,11 +63,6 @@ fun MainScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    // Load the movies when the screen is launched
-    LaunchedEffect(key1 = true) {
-        mainViewModel.loadMovies()
-    }
-
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier
