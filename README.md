@@ -36,13 +36,18 @@ This project was developed as a capstone project for the **Android Jetpack Compo
 https://github.com/user-attachments/assets/f2acaaac-4748-4397-8dd5-6e64bf4cca38
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/f2acaaac-4748-4397-8dd5-6e64bf4cca38" alt="Screenshot 1" width="400" />
   <img src="https://github.com/user-attachments/assets/cc50194d-5c66-4f38-9a11-7c20de7f2a18" alt="Screenshot 2" width="400" />
   <img src="https://github.com/user-attachments/assets/4e251864-49aa-43fd-812b-bbf40aac0680" alt="Screenshot 3" width="400" />
-  <img src="https://github.com/user-attachments/assets/5d48701a-07ab-4946-84c9-397fdba5bef0" alt="Screenshot 4" width="400" />
-  <img src="https://github.com/user-attachments/assets/bc50e03c-3e4b-4439-8ed4-d35d5139f48e" alt="Screenshot 5" width="400" />
-  <img src="https://github.com/user-attachments/assets/5e7c0b23-bbac-496f-ace6-3f1af1187974" alt="Screenshot 6" width="400" />
-  <img src="https://github.com/user-attachments/assets/4d3c3b17-dc37-492f-b76b-2a596765b978" alt="Screenshot 7" width="400" />
-  <img src="https://github.com/user-attachments/assets/90b9e381-7192-4838-b6c1-b1aa97083ea8" alt="Screenshot 8" width="400" />
-  <img src="https://github.com/user-attachments/assets/96c967b9-cc03-4ecd-b4fe-2b7303d8fd42" alt="Screenshot 9" width="400" />
-  <img src="https://github.com/user-attachments/assets/fd26b354-eb87-4a0e-9b24-85deeb23aa4d" alt="Screenshot 10" width="400" />
+  <img src="https://github.com/user-attachments/assets/95ac28f9-5fb2-4dd4-98cf-c04ff1356e20" alt="Screenshot 4" width="400" />
+  <img src="https://github.com/user-attachments/assets/6dd22b1e-c42d-4314-bd49-cc0dfc3c4eb2" alt="Screenshot 5" width="400" />
+  <img src="https://github.com/user-attachments/assets/b72e20df-83c7-4665-88f6-ddcce7193d49" alt="Screenshot 6" width="400" />
+  <img src="https://github.com/user-attachments/assets/cc9e84e6-1382-4ba3-ae1b-f34f4fea5a51" alt="Screenshot 7" width="400" />
+  <img src="https://github.com/user-attachments/assets/5d48701a-07ab-4946-84c9-397fdba5bef0" alt="Screenshot 8" width="400" />
+  <img src="https://github.com/user-attachments/assets/bc50e03c-3e4b-4439-8ed4-d35d5139f48e" alt="Screenshot 9" width="400" />
+  <img src="https://github.com/user-attachments/assets/5e7c0b23-bbac-496f-ace6-3f1af1187974" alt="Screenshot 10" width="400" />
+  <img src="https://github.com/user-attachments/assets/4d3c3b17-dc37-492f-b76b-2a596765b978" alt="Screenshot 11" width="400" />
+  <img src="https://github.com/user-attachments/assets/90b9e381-7192-4838-b6c1-b1aa97083ea8" alt="Screenshot 12" width="400" />
+  <img src="https://github.com/user-attachments/assets/96c967b9-cc03-4ecd-b4fe-2b7303d8fd42" alt="Screenshot 13" width="400" />
+  <img src="https://github.com/user-attachments/assets/fd26b354-eb87-4a0e-9b24-85deeb23aa4d" alt="Screenshot 14" width="400" />
 </div>
