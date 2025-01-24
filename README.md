@@ -33,10 +33,10 @@ This project was developed as a capstone project for the **Android Jetpack Compo
  
 
 ## 📷 Screenshots
+
 https://github.com/user-attachments/assets/f2acaaac-4748-4397-8dd5-6e64bf4cca38
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="https://github.com/user-attachments/assets/f2acaaac-4748-4397-8dd5-6e64bf4cca38" alt="Screenshot 1" width="400" />
   <img src="https://github.com/user-attachments/assets/cc50194d-5c66-4f38-9a11-7c20de7f2a18" alt="Screenshot 2" width="400" />
   <img src="https://github.com/user-attachments/assets/4e251864-49aa-43fd-812b-bbf40aac0680" alt="Screenshot 3" width="400" />
   <img src="https://github.com/user-attachments/assets/95ac28f9-5fb2-4dd4-98cf-c04ff1356e20" alt="Screenshot 4" width="400" />
